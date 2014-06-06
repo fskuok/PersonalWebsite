@@ -27,8 +27,11 @@ $header-folded-padding-bottom: $header-folded-padding-top;
 $header-folded-fs: 12px;
 $header-folded-bg: white;
 
+
 $header-transition-time: 0.15s;
 $header-transition: all $header-transition-time linear;
+
+$header-sns-icon-height: 32px;
 
 
 @mixin nav-tag-style($color, $bg-color, $border-top-color){
@@ -61,7 +64,6 @@ header{
     display: block;
     float: left;
     height: $header-identification-height;
-
 
     div.logoContainer{
       display: block;
@@ -118,13 +120,12 @@ header{
 
 
     //navigation tags: project, project.in, about, contact
-    & > a, div.contact{
+    & > a{
       display: block;
       float: left;
       position: relative;
       width: $header-nav-tag-width;
       padding: 0 $header-nav-tag-padding-lr;
-
       line-height: $header-height;
       text-align: center;
 
@@ -159,54 +160,14 @@ header{
       }
     }
 
-    div.contact{
-      position: relative;
-      cursor: default;
 
-      div.popup{
-        position: absolute;
-        z-index: 8000;
-        right: 0;
-        display: block;
-        overflow: hidden;
-        padding: 0;
-        width: 160px;
-        height: 0;
-        background: white;
 
-        @include transition(height $header-transition-time ease-out);
-
-        p, a{
-          float: left;
-          width: 128px;
-          margin: 16px 0 0 16px;
-          position: relative;
-          &:hover{ top: -1px; }
-
-          &.sns-icon{
-            width: 32px;
-            height: 32px;
-            margin-bottom: 16px;
-          }
-
-          font-size: 14px;
-          line-height: 16px;
-          text-align: center;
-          color: $c-text-regular;
-
-        }
-
-        a#github{ @extend .icons-icons_github_32x32; }
-        a#twitter{ @extend .icons-icons_twitter_32x32; }
-        a#linkedin{ @extend .icons-icons_linkedin_32x32; }
-      }
-
-      &:hover div, &.on div{
-        height: initial;
-        padding: 10px;
-      }
-    }
   }//header nav
+
+  &.project a.sns-icon, &.about a.sns-icon{
+    display: none;
+  }
+
 
 
 
@@ -263,10 +224,14 @@ header{
     }
 
     nav{
-      &>a, div.contact{
+      &>a{
         font-size: $header-folded-fs;
         line-height: $header-folded-line-height;
       }//header.folded nav a
+
+      a.sns-icon{
+        display: none;
+      }
     }//header.folded nav
 
   }//header.folded

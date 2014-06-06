@@ -1,7 +1,7 @@
 header.home + section[ui-view]{
 
   div.greeting{
-    margin: 100px auto;
+    margin: 160px auto;
     width: 60%;
     max-width: 700px;
 
@@ -48,5 +48,27 @@ header.home + section[ui-view]{
     p#gt4{
       margin-top: 40px;
     }
+  }
+
+  div.sns{
+    a.sns-icon{
+      height: $header-total-height;
+      width: $header-sns-icon-height;
+
+      p{
+        margin-top: ($header-total-height - $header-sns-icon-height) /2;
+        width: $header-sns-icon-height;
+        height: $header-sns-icon-height;
+      }
+    }
+
+    a#github p{ @extend .icons-icons_github_32x32_off; }
+    a#github:hover p{ @extend .icons-icons_github_32x32; }
+    a#twitter p{ @extend .icons-icons_twitter_32x32_off; }
+    a#twitter:hover p{ @extend .icons-icons_twitter_32x32; }
+    a#linkedin p{ @extend .icons-icons_linkedin_32x32_off; }
+    a#linkedin:hover p{ @extend .icons-icons_linkedin_32x32; }
+    a#email p{ @extend .icons-icons_email_32x32_off; }
+    a#email:hover p{ @extend .icons-icons_email_32x32; }
   }
 }

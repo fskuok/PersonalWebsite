@@ -4,6 +4,30 @@
         .controller('header_mainController',
             ['$scope',  'domService', '$rootScope', '$document', '$window',
                 function($scope, $dom, $rootScope, $document, $window){
+                    var foldHeader = (function(){
+
+                        //use to prevent the shake caused by trigger the event in a short time;
+                        var headerFoldable = true,
+                            bodyScrollTop;
+
+                        //Events handler - folding navigation bar
+                        return function(){
+
+                            //firefox place scrollTop at html tag, while others place it at body
+                            bodyScrollTop = $dom.qs('body').scrollTop ||  $dom.qs('html').scrollTop;
+
+                            if(headerFoldable){
+                                if( (bodyScrollTop < 60 && $dom('header').hasClass("folded")) ||
+                                    (bodyScrollTop >= 60 && !$dom('header').hasClass("folded")) ){
+                                    $dom('header').toggleClass("folded");
+                                    headerFoldable = false;
+
+                                    //prevent header fold/unfolded more than once in 300ms
+                                    setTimeout(function(){ headerFoldable = true; }, 300);
+                                }
+                            }
+                        }
+                    })();
 
                     $scope.projectInName = '';
                     $scope.preloadImages = [];
@@ -40,33 +64,7 @@
                                 return url.join(' ');
                             }
                         }
-
                     );
-
-                    var foldHeader = (function(){
-
-                        //use to prevent the shake caused by trigger the event in a short time;
-                        var headerFoldable = true,
-                            bodyScrollTop;
-
-                        //Events handler - folding navigation bar
-                        return function(){
-
-                            //firefox place scrollTop at html tag, while others place it at body
-                            bodyScrollTop = $dom.qs('body').scrollTop ||  $dom.qs('html').scrollTop;
-
-                            if(headerFoldable){
-                                if( (bodyScrollTop < 60 && $dom('header').hasClass("folded")) ||
-                                    (bodyScrollTop >= 60 && !$dom('header').hasClass("folded")) ){
-                                    $dom('header').toggleClass("folded");
-                                    headerFoldable = false;
-
-                                    //prevent header fold/unfolded more than once in 300ms
-                                    setTimeout(function(){ headerFoldable = true; }, 300);
-                                }
-                            }
-                        }
-                    })();
 
                     //Dom ready actions
                     $document.ready(function(){

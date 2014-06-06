@@ -1,16 +1,34 @@
-
-$c-design: #ff5b5b;
-$c-engineering: #5b5bff;
-$c-business: #a0ce40;
-
-$timeline-border-width: 6px;
-$timeline-joint-height: 36px;
-$timeline-inyear-border-width: 3px;
-
-$timeline-background: #6694e2;
-
 $about-svg-width: 100px;
-$about-svg-deb-width: 400px;
+$about-svg-deb-width: 240px;
+
+
+$c-design: #cd875d;
+$c-engineering: #6486ba;
+$c-business: #8faf65;
+
+$about-deb-lr-margin: 60px;
+$about-deb-tb-margin: $about-deb-lr-margin;
+$about-deb-small-margin: 2%;
+
+$timeline-border-width: 2px;
+$timeline-joint-height: 24px;
+$timeline-inyear-border-width: 2px;
+$timeline-border-color: #363538;
+
+
+$timeline-background: white;
+$timeline-text-color: #59595a;
+
+@mixin half-screen-fix-bg($w, $h){
+  background-attachment: fixed;
+  background-size: 51vw;
+
+  @media (max-aspect-ratio: $w * 2/$h){
+    background-size: auto 100vh;
+  }
+}
+
+
 
 
 //**********************************************************
@@ -32,8 +50,9 @@ header.about + section[ui-view]{
     }
 
     g.logo{
-      @include transform-origin(50% 50% 0); //let logo rotate pivot be the center
-      @include transform(translate(0, 0));
+      @include apply-origin(50% 50%, false); //let logo rotate pivot be the center
+      @include transform(translate(0, 0) scale(1));
+
 
       line, polyline{ //white name
         @include transition(all 1s);
@@ -45,25 +64,22 @@ header.about + section[ui-view]{
 
       #topFace, #leftFace, #rightFace{ //hide light&shadow
         @include transition(all 1s);
-
+        @include apply-origin(50% 50%, false);
         opacity: 0;
       }
 
       #hexagon { //transparent white background
-        @include transform-origin(50% 50% 0);
         @include transition(all 0.4s);
-
-
+        @include apply-origin(50% 50%, false);
         fill: rgba(white, 0.7);
       }
-
-
     }
 
-    g.text text[id^=svgYear]{
-      @include transform(translate(19px, 62px));
 
-      fill: $c-main;
+    g.text text[id^=svgYear]{
+      @include transform(translate(19px, 59px));
+
+      fill: $timeline-border-color;
 
       opacity: 0;
     }
@@ -93,7 +109,6 @@ header.about + section[ui-view]{
     }
   }
 
-
   svg.deb{
     width: $about-svg-deb-width;
     height: $about-svg-deb-width;
@@ -102,21 +117,21 @@ header.about + section[ui-view]{
 
     g.logo{
       @include transform(translate($about-svg-deb-width/2- 50px, $about-svg-deb-width/2- 50px));
+      #topFace, #leftFace, #rightFace{
+        opacity: 1;
+      }
 
       #topFace{
         fill: $c-design;
-        opacity: 0.8;
-        @include transform(translate(0, -50px));
+        @include transform(scale(1.2) translate(0, -50px));
       }
       #leftFace{
         fill: $c-business;
-        opacity: 0.8;
-        @include transform(translate(-50px, 0));
+        @include transform(scale(1.2) translate(-50px, 10px));
       }
       #rightFace{
         fill: $c-engineering;
-        opacity: 0.8;
-        @include transform(translate(50px, 0));
+        @include transform(scale(1.2) translate(50px, 10px));
       }
     }
 
@@ -127,24 +142,22 @@ header.about + section[ui-view]{
                               60px + ($about-svg-deb-width - $about-svg-width)/2
               ));
     }
-
   }
 
   // logo in timelines
   svg[class^=timeline20]{
     g.logo{
+      @include transform(translate(0, 0) scale(0.9));
 
-      line, polyline{//do not show name
-        opacity: 0;
-        stroke: white;
 
-      }
-      #topFace, #rightFace{ // hide light face
+      line, polyline, #topFace, #rightFace{ // hide name, light faces
         opacity: 0;
       }
 
       #hexagon{
         fill: white;
+        stroke: $timeline-border-color;
+        stroke-width: $timeline-border-width;
         opacity: 1;
       }
     }
@@ -161,15 +174,17 @@ header.about + section[ui-view]{
   }
 
   //**********************************************************
+  //
   //*********************** DIV STYLES ***********************
+  //
   //**********************************************************
 
-  &>div{
+  &>div{//blocks
     width: 100%;
     overflow: auto;
     position: relative;
 
-    &>h3{
+    &>h3{//block titles
       width: 100%;
       text-align: center;
       margin: 16px 0;
@@ -188,15 +203,24 @@ header.about + section[ui-view]{
     background-position: center center;
   }
 
-
   div.deb{
+
+    .left, .right{
+
+      width: calc( 50% - #{$about-deb-lr-margin*2 + $about-svg-deb-width/2});
+      height: calc( 100% - #{$about-deb-tb-margin} * 2);
+
+      @media all and (max-width: $small-break-point){
+        margin: 14px 2%;
+        width: 96%;
+        height: auto;
+      }
+    }
 
     .left{
       float: left;
       overflow: auto;
-      margin: 80px 140px 80px 60px;
-      width: calc( 50% - 200px);
-      height: calc( 100% - 160px);
+      margin: $about-deb-tb-margin ($about-svg-deb-width/2 + $about-deb-lr-margin) $about-deb-tb-margin $about-deb-lr-margin;
 
       a.resume{
         color: $c-main;
@@ -205,23 +229,25 @@ header.about + section[ui-view]{
     }
 
     .right{
+      margin: $about-deb-tb-margin $about-deb-lr-margin $about-deb-tb-margin ($about-svg-deb-width/2 + $about-deb-lr-margin);
       float: left;
       overflow: auto;
-      margin: 80px 60px 80px 140px;
-      width: calc( 50% - 200px);
-      height: calc( 100% - 160px);
+
 
       h3{
-        margin: 16px 0 10px;
+        margin: 0 0 6px;
+      }
+      p{
+        margin: 0 0 10px;
       }
       h3.design{
-        color: darken($c-design, 0.2);
+        color: $c-design;
       }
       h3.engineering{
-        color: darken($c-engineering, 0.2);
+        color: $c-engineering;
       }
       h3.business{
-        color: darken($c-business, 0.2);
+        color: $c-business;
       }
     }
   }
@@ -229,45 +255,73 @@ header.about + section[ui-view]{
 
   /****************    TIMELINE  ********************/
   div.timelineHeader{
-    border-bottom: $timeline-border-width solid white;
+    border-bottom: $timeline-border-width solid $timeline-border-color;
     color: white;
-    background: $timeline-background;
+    background: $timeline-border-color;
     z-index: 4;
   }
 
-
-
   div[class^=timeline20]{
-    border-bottom: $timeline-border-width white solid;
+    border-bottom: $timeline-border-width $timeline-border-color solid;
     overflow: hidden;
 
     position: relative;
     z-index: 1;
 
-    div.left{
+    div.left, div.right{
       overflow: auto;
       width: 50%;
-      float: left;
       height: 100%;
+      float: left;
+
+      div[class^=description] {
+        overflow: auto;
+        padding: 20px;
+        background: $timeline-background;
+
+        p {
+          color: $timeline-text-color;
+        }
+        h3 {
+          color: $timeline-text-color;
+        }
+      }
+    }
+
+    div.left{
+      //make left same height as the parent container
       position: absolute;
       top: 0;
       bottom: 0;
     }
 
+    div.right{
+      //make up for the left space
+      margin-left: 50%;
+
+      div{
+        background-size: cover;
+        background-position: center center;
+      }
+    }
+
     div.middle{
+      width: 0;
+      height: 100%;
+
+
+      //center it in the middle of the view port
       position: absolute;
       left: 50%;
-      height: 100%;
-      width: 0;
       margin-left: - $timeline-border-width / 2;
-      border-left: $timeline-border-width white solid;
+      border-left: $timeline-border-width $timeline-border-color solid;
 
-
+      //circle at year begin, and year end
       &:after, &:before{
         content:'';
         display: block;
         position: absolute;
-        background: white;
+        background: $timeline-border-color;
         height: $timeline-joint-height/2;
         width: $timeline-joint-height;
         margin-left: (-($timeline-joint-height/2 + $timeline-border-width/2));
@@ -279,37 +333,8 @@ header.about + section[ui-view]{
       }
 
       &:after{
-        @include border-radius($timeline-joint-height/2 $timeline-joint-height/2 0 0);
         bottom: - $timeline-border-width/2;
-      }
-    }
-
-    div.right{
-      overflow: auto;
-      width: 50%;
-      height:100%;
-      float:left;
-      margin-left: 50%;
-
-      div{
-        background-size: cover;
-        background-position: center center;
-      }
-    }
-
-    div.left, div.right{
-      div[class^=description]{
-        overflow: auto;
-        padding: 20px;
-        background: $timeline-background;
-
-        p{
-          color: white;
-        }
-        h3{
-          color: white;
-
-        }
+        @include border-radius($timeline-joint-height/2 $timeline-joint-height/2 0 0);
       }
     }
   }
@@ -328,23 +353,18 @@ header.about + section[ui-view]{
   div.timeline2014{
     .left{
       background-image: url('../img/photo/cmu.jpg');
-      background-attachment: fixed;
-      background-size: auto 100vh;
+      @include half-screen-fix-bg(600, 768);
 
-      @media (max-aspect-ratio: 1/2){
-        background-size: 51vw;
-      }
     }
 
     .right{
-
       .iot{
         background-image: url('../img/photo/iot.jpg');
         height: 40vh
       }
 
       .microsoft{
-        border-top: $timeline-inyear-border-width solid white;
+        border-top: $timeline-inyear-border-width solid $timeline-border-color;
         height: 40vh;
         background-image: url('../img/photo/ms.jpg');
         background-attachment: fixed;
@@ -355,12 +375,14 @@ header.about + section[ui-view]{
       }
     }
   }
-
-  div.timeline2013{
+  div.timeline2013, div.timeline2012, div.timeline2011{
     .left{
       background-image: url('../img/photo/sjtu.jpg');
-      background-attachment: fixed;
+      @include half-screen-fix-bg(900, 975);
     }
+  }
+  div.timeline2013{
+
 
     .right{
       .tti{
@@ -371,36 +393,25 @@ header.about + section[ui-view]{
 
       .bno{
         height: 36vh;
-        border-top: $timeline-inyear-border-width solid white;
+        border-top: $timeline-inyear-border-width solid $timeline-border-color;
         background-image: url('../img/photo/bno.jpg');
       }
 
       .sdc{
         height: 36vh;
-        border-top: $timeline-inyear-border-width solid white;
+        border-top: $timeline-inyear-border-width solid $timeline-border-color;
         background-image: url('../img/project/river_sunvelop_cover.jpg');
       }
     }
   }
 
   div.timeline2012{
-    .left{
-      background-image: url('../img/photo/sjtu.jpg');
-      background-attachment: fixed;
-    }
-
     .right{
 
     }
   }
 
   div.timeline2011{
-
-    .left{
-      background-image: url('../img/photo/sjtu.jpg');
-      background-attachment: fixed;
-
-    }
 
     .right{
 
@@ -415,14 +426,6 @@ header.about + section[ui-view]{
   div.about_this_site{
     width: 60%;
     padding: 60px 20%;
-
-
-    h3, a{
-      text-align: center;
-    }
-
-
-
   }
 
 
