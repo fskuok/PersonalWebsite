@@ -9,11 +9,11 @@ header.home + section[ui-view]{
       width: 90%;
     }
 
-
     p#gt1{
       font-size: 36px;
       font-family: 'Hammersmith One', sans-serif;
     }
+
     p#gt2{
       font-size: 42px;
 
@@ -45,30 +45,32 @@ header.home + section[ui-view]{
       }
     }
 
-    p#gt4{
+    div.sns{
+      margin: 36px 0 24px;
+      overflow: auto;
+
+      a.sns-icon{
+        float: left;
+        display: block;
+        height: 32px;
+        width: 32px;
+        margin: 0 10px 0 0;
+      }
+
+      a#github{ @extend .icons-icons_github_32x32_off; }
+      a#github:hover{ @extend .icons-icons_github_32x32; }
+      a#twitter{ @extend .icons-icons_twitter_32x32_off; }
+      a#twitter:hover{ @extend .icons-icons_twitter_32x32; }
+      a#linkedin{ @extend .icons-icons_linkedin_32x32_off; }
+      a#linkedin:hover{ @extend .icons-icons_linkedin_32x32; }
+      a#email{ @extend .icons-icons_email_32x32_off; }
+      a#email:hover{ @extend .icons-icons_email_32x32; }
+    }
+
+    p#footer{
       margin-top: 40px;
     }
   }
 
-  div.sns{
-    a.sns-icon{
-      height: $header-total-height;
-      width: $header-sns-icon-height;
 
-      p{
-        margin-top: ($header-total-height - $header-sns-icon-height) /2;
-        width: $header-sns-icon-height;
-        height: $header-sns-icon-height;
-      }
-    }
-
-    a#github p{ @extend .icons-icons_github_32x32_off; }
-    a#github:hover p{ @extend .icons-icons_github_32x32; }
-    a#twitter p{ @extend .icons-icons_twitter_32x32_off; }
-    a#twitter:hover p{ @extend .icons-icons_twitter_32x32; }
-    a#linkedin p{ @extend .icons-icons_linkedin_32x32_off; }
-    a#linkedin:hover p{ @extend .icons-icons_linkedin_32x32; }
-    a#email p{ @extend .icons-icons_email_32x32_off; }
-    a#email:hover p{ @extend .icons-icons_email_32x32; }
-  }
 }
