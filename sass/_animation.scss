@@ -1,0 +1,25 @@
+@include keyframes(rotate360_40_50) {
+  0% {
+    @include transform(rotate(0deg));
+  }
+  40% {
+    @include transform(rotate(0deg));
+  }
+  50% {
+    @include transform(rotate(360deg));
+  }
+  100% {
+    @include transform(rotate(360deg));
+  }
+};
+@include keyframes(rotate360) {
+  0% {
+    @include transform(rotate(0deg));
+  }
+  100% {
+    @include transform(rotate(360deg));
+  }
+};
+
+$logo-animation: rotate360_40_50 8s ease-in-out infinite alternate;
+$seed-animation: rotate360 100s none infinite;

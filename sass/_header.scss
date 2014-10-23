@@ -1,0 +1,139 @@
+header{
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  @include transition($header-transition);
+
+
+  //background-image: url("../img/src_header_2400x200.jpg");
+  background: white;
+  width: 100%;
+  padding-top: $header-padding-top;
+  padding-bottom: $header-padding-bottom;
+  border-bottom: $header-border-bottom;
+
+  div.logoContainer{
+
+    position: absolute;
+    top: $header-logo-top;
+    left: $header-logo-left;
+
+    //background-color: white;
+
+    width: $header-logo-width;
+    height: $header-logo-height;
+    @include border-radius($header-logo-height/2);
+    @include transition($header-transition);
+
+
+    svg{
+      width: 100%;
+      height: 100%;
+
+      -moz-animation: $logo-animation;
+      -webkit-animation: $logo-animation;
+      -o-animation: $logo-animation;
+      animation: $logo-animation;
+    }
+  }
+
+
+  nav{
+    float: right;
+
+    line-height: 0; //eliminate unexpected margins
+    padding-right: $header-nav-right-padding;
+
+    @include transition($header-transition);
+
+    a{
+      display: inline-block;
+
+      height: $header-height;
+      width: $header-nav-width;
+      border: 1px solid $c-f-0;
+      line-height: $header-height;
+
+      color: $c-text-regular;
+      text-align: center;
+
+      @include transition($header-transition);
+
+
+      &:hover{
+        color: $c-text-hover;
+        border: 1px solid $c-text-hover;
+        @include border-radius($header-nav-border-radius);
+        @include box-shadow($header-nav-border-shadow);
+      }//header nav a:hover
+    }//header nav a
+  }//header nav
+
+  &.folded{
+    height: $header-folded-height;
+    padding-top: $header-folded-padding-top;
+    padding-bottom: $header-folded-padding-bottom;
+    background: $header-folder-bg;
+
+    div.logoContainer, a.logo,{
+      width: 0;
+      height: 0;
+    }
+
+    nav{
+
+      a{
+        border: $hidden-border-1px;
+        height: $header-folded-height;
+        line-height: $header-folded-height;
+        font-size: 12px;
+
+        &:hover{
+          border: $hidden-border-1px;
+          border-left: 1px solid $c-text-hover;
+          border-right: 1px solid $c-text-hover;
+
+          @include border-radius(0);
+          @include box-shadow(none);
+        }
+      }//header.folded nav a
+    }//header.folded nav
+  }//header.folded
+}//header
+
+.home header{
+  top: 20%;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+
+  nav{
+    float: none;
+    width: 100%;
+
+
+    a{
+      color: #333;
+      display: block;
+      font-size: 40px;
+      border: 1px solid #333;
+      margin: 10px auto;
+      height: $home-header-a-height;
+      width: $home-header-a-width;
+      line-height: $home-header-a-height;
+      font-family: $font-sketches;
+
+      &:hover{
+        background: #333;
+        color: white;
+        @include border-radius(0);
+      }
+    }
+  }
+
+}

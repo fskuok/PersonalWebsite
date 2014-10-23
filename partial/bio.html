@@ -1,0 +1,13 @@
+<div class="introduce">
+    <div class="disciplines">
+        <div class="discipline" ng-repeat="discipline in disciplines">
+            <img src="{{discipline.iconUrl}}" alt=""/>
+            <h4>{{discipline.name}}</h4>
+            <p>{{discipline.text}}</p>
+
+            <div class="disciplineDetail">
+                <p>{{discipline.detail.text}}</p>
+            </div>
+        </div>
+    </div>
+</div>
