@@ -768,8 +768,8 @@ textarea {
 
 /****************************/
 /* import sprites */
-.icons-sprite, .icons-icons_github_32x32, header nav div.contact div.popup a#github, .icons-icons_linkedin_32x32, header nav div.contact div.popup a#linkedin, .icons-icons_twitter_32x32, header nav div.contact div.popup a#twitter, .icons-logo_200x200 {
-  background-image: url('../img/icons-s2871a3692e.png');
+.icons-sprite, .icons-icons_github_32x32, header nav div.contact div.popup a#github, .icons-icons_linkedin_32x32, header nav div.contact div.popup a#linkedin, .icons-icons_twitter_32x32, header nav div.contact div.popup a#twitter, .icons-logo_200x200, .icons-logo_tile {
+  background-image: url('../img/icons-sfb95a173e8.png');
   background-repeat: no-repeat;
 }
 
@@ -786,7 +786,11 @@ textarea {
 }
 
 .icons-logo_200x200 {
-  background-position: 0 -32px;
+  background-position: 0 -87px;
+}
+
+.icons-logo_tile {
+  background-position: -96px 0;
 }
 
 /*****************************

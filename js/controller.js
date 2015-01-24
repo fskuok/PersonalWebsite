@@ -50,10 +50,9 @@
 
                     //if it's in a project detail, set background to the cover of that project
                     if(dom.$('header').hasClass('in')) {
-                        $scope.hoveringProject = $state.current.name.replace('project.', '');
                         $scope.backgroundCSS = {
                             "opacity": 1,
-                            "background-image":  "url('img/project/" + $filter('underscoreSpace')(hoveringProject) + "_cover.jpg')"
+                            "background-image":  "url('img/project/" + $filter('underscoreSpace')($state.current.name.replace('project.', '')) + "_cover.jpg')"
                         };
 
                     //set background according the arguments
