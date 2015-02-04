@@ -14,9 +14,12 @@
 *.mp4
 *.ai
 
+
 .idea
 .sass-cache
 _src
 
 
 
+
+.htaccess
