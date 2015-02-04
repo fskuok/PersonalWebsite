@@ -1,0 +1,79 @@
+$small-break-point: 480px;
+
+/*****************************
+
+  COLORS
+
+*****************************/
+$c-f0: rgba(255,255,255,0);
+$c-f1: rgba(255,255,255,0.1);
+$c-f3: rgba(255,255,255,0.3);
+$c-f5: rgba(255,255,255,0.5);
+$c-f7: rgba(255,255,255,0.7);
+$c-f9: rgba(255,255,255,0.9);
+$c-00: rgba(0, 0, 0, 0);
+$c-01: rgba(0, 0, 0, 0.1);
+$c-03: rgba(0, 0, 0, 0.3);
+$c-05: rgba(0, 0, 0, 0.5);
+$c-07: rgba(0, 0, 0, 0.7);
+$c-09: rgba(0, 0, 0, 0.9);
+
+
+$c-main: #59adeb;
+
+
+$c-main: #2C3E50;
+$c-main-opp: #FC4349;
+$c-main-grey: #D7DADB;
+$c-main-dodge: #6DBCDB;
+
+
+
+$c-text-regular: #333;
+
+/*****************************
+
+  FONTS
+
+*****************************/
+$font-default: 'Open Sans', Helvetica, Arial, sans-serif;
+$font-bold: 'Hammersmith One', Helvetica, sans-serif;
+
+$hidden-border-1px: solid 1px $c-f0;
+
+
+
+@mixin border-between-horizontal($border, $side-borders: false){
+  border-right: $border;
+  border-left: $border;
+  border-left-color: rgba(0,0,0,0);
+  @if $side-borders {
+    &:first-of-type{ border-left: $border };
+  }@else{
+    &:last-of-type{ border-right: none };
+  }
+}
+
+@mixin border-between-vertical($border, $side-borders: false){
+  border-bottom: $border;
+  border-top: $border;
+  border-top-color: rgba(0,0,0,0);
+  @if $side-borders {
+    &:first-of-type{ border-top: $border };
+  }@else{
+    &:last-of-type{ border-bottom: none };
+  }
+}
+
+@function getPorM($total, $inside, $MorP: 0){
+  @return ($total - $inside)/2 - $MorP;
+}
+
+@function getTotal($inside, $PorM, $MorP, $border: 0){
+  @return $inside + $PorM*2 + $MorP*2 + $border*2;
+}
+
+
+
+
+

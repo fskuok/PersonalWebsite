@@ -1,0 +1,21 @@
+$project-main-c: #222222;
+
+header.project.trend + section[ui-view]{
+  div[ui-view]{
+    .block{
+      border-bottom: 1px solid grey;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    div.detail_introduce{
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    div.prototype_develop{
+
+      @include dark;
+    }
+  }
+}

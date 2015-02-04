@@ -1,0 +1,280 @@
+$header-medium-break-point: 960px;
+$header-small-break-point: 660px;
+
+
+$header-total-height: 60px;
+$header-height: 60px;
+$header-padding-tb: getPorM($header-total-height, $header-height);
+$header-border-bottom: 2px solid #ddd;
+
+$header-identification-height: $header-height;
+$header-title-fs: 24px;
+
+$header-logo-height: $header-identification-height;
+$header-logo-width: $header-logo-height;
+
+$header-nav-padding-right: 0;
+$header-nav-border-shadow: 0 0 3px rgba($c-main, 0.4);
+$header-nav-tag-width: 100px;
+$header-nav-tag-padding-lr: 10px;
+$header-nav-popup-padding: 10px;
+$header-nav-border-top-width: 4px;
+
+$header-folded-height: 24px;
+$header-folded-padding-top: 0px;
+$header-folded-line-height: $header-folded-height - $header-nav-border-top-width;
+$header-folded-padding-bottom: $header-folded-padding-top;
+$header-folded-fs: 12px;
+$header-folded-bg: white;
+
+$header-transition-time: 0.15s;
+$header-transition: all $header-transition-time linear;
+
+
+@mixin nav-tag-style($color, $bg-color, $border-top-color){
+  color: $color;
+  background: $bg-color;
+  border-top: $border-top-color $header-nav-border-top-width solid;;
+}
+
+header{
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  @include transition($header-transition);
+
+  width: 100%;
+  padding: $header-padding-tb 0;
+
+  @media print {
+    display: none;
+  }
+  @media all and (max-width: $header-small-break-point) {
+    background: white;
+    @include box-shadow($header-nav-border-shadow);
+  }
+
+  /************************************ identification ************************************/
+  a.identification{
+    display: block;
+    float: left;
+    height: $header-identification-height;
+
+
+    div.logoContainer{
+      display: block;
+      float: left;
+      position: relative;
+      background: url('../img/icons/logo_200x200.png') center no-repeat;
+      background-size: 80%;
+
+      width: $header-logo-width;
+      height: $header-logo-height;
+      margin-left: 10px;
+
+      @include transition($header-transition);
+
+    }
+
+    &:hover div.logoContainer{
+      @include animation(rotate3d360_40_50 6s infinite);
+    }
+
+    p.nameAndTitle{
+      display: block;
+      @media all and (max-width: $header-medium-break-point){
+        display: none;
+      }
+      float: left;
+      font-family: $font-default;
+      font-size: $header-title-fs;
+      line-height: $header-identification-height;
+      color: $c-text-regular;
+      margin-left: 10px;
+
+
+      span.name{
+        font-family: $font-bold;
+      }
+      span.title{
+        font-style: italic;
+        font-size: 16px;
+      }
+    }
+  }
+
+
+
+  /****************************************** navigation bar *************************************/
+  nav{
+    float: right;
+    line-height: 0; //eliminate unexpected margins
+    height: 100%;
+    padding-right: $header-nav-padding-right;
+    @include transition($header-transition);
+
+
+
+    //navigation tags: project, project.in, about, contact
+    & > a, div.contact{
+      display: block;
+      float: left;
+      position: relative;
+      width: $header-nav-tag-width;
+      padding: 0 $header-nav-tag-padding-lr;
+
+      line-height: $header-height;
+      text-align: center;
+
+      @include transition($header-transition);
+      @include nav-tag-style($c-main, none, white);
+
+      &:hover{
+        @include nav-tag-style($c-main, rgba(white, 0.6), $c-main);
+      }
+
+      @media all and (max-width: $header-small-break-point){
+        width: auto;
+      }
+
+    }//header nav a
+
+
+    a.projectIn{
+      width: 0;
+      padding: 0;
+      cursor: pointer;
+
+      @media all and (max-width: $header-small-break-point){
+        display: none;
+      }
+
+      &:before{
+        content: ">";
+        position: absolute;
+        display: none;
+        left: -2px;
+      }
+    }
+
+    div.contact{
+      position: relative;
+      cursor: default;
+
+      div.popup{
+        position: absolute;
+        z-index: 8000;
+        right: 0;
+        display: block;
+        overflow: hidden;
+        padding: 0;
+        width: 160px;
+        height: 0;
+        background: white;
+
+        @include transition(height $header-transition-time ease-out);
+
+        p, a{
+          float: left;
+          width: 128px;
+          margin: 16px 0 0 16px;
+          position: relative;
+          &:hover{ top: -1px; }
+
+          &.sns-icon{
+            width: 32px;
+            height: 32px;
+            margin-bottom: 16px;
+          }
+
+          font-size: 14px;
+          line-height: 16px;
+          text-align: center;
+          color: $c-text-regular;
+
+        }
+
+        a#github{ @extend .icons-icons_github_32x32; }
+        a#twitter{ @extend .icons-icons_twitter_32x32; }
+        a#linkedin{ @extend .icons-icons_linkedin_32x32; }
+      }
+
+      &:hover div, &.on div{
+        height: initial;
+        padding: 10px;
+      }
+    }
+  }//header nav
+
+
+
+  /****************************************** status showing *************************************/
+
+  &.about nav a.about,
+  &.project nav a.project,
+  &.project.in nav a.projectIn{
+    @include nav-tag-style($c-main, white, $c-main-dodge);
+  }
+
+  &.project.in nav {
+    a.project:hover {
+      border-top-color: $c-main;
+    }
+    a.projectIn{
+      width: auto;
+      padding: 0 18px 0 24px;
+      &:before{display: block};
+    }
+  }
+
+
+
+  /****************************************** folded header *************************************/
+
+  &.folded{
+    height: $header-folded-height;
+    padding-top: $header-folded-padding-top;
+    padding-bottom: $header-folded-padding-bottom;
+    background: $header-folded-bg;
+    @include box-shadow($header-nav-border-shadow);
+
+    & + section{
+      margin: $header-folded-height 0 0 0;
+    }
+
+
+    a.identification{
+      div.logoContainer{
+        width: 0;
+        height: 0;
+      }
+
+      p.nameAndTitle{
+        font-size: $header-folded-fs;
+        line-height: $header-folded-height;
+
+        span.name, span.title{
+          font-size: $header-folded-fs;
+          line-height: $header-folded-height;
+        }
+      }
+    }
+
+    nav{
+      &>a, div.contact{
+        font-size: $header-folded-fs;
+        line-height: $header-folded-line-height;
+      }//header.folded nav a
+    }//header.folded nav
+
+  }//header.folded
+
+
+  div.imagePreload{
+    display: none;
+  }
+}//header
+
+

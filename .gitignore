@@ -1,0 +1,23 @@
+# Include your project-specific ignores in this file
+# Read about how to use .gitignore: https://help.github.com/articles/ignoring-files
+
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.jpg
+*.pdf
+*.mov
+*.mp4
+*.ai
+*.png
+
+.idea
+.sass-cache
+_src
+
+
+.htaccess

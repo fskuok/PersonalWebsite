@@ -1,0 +1,101 @@
+//AI Cover: 1960x1300 16:10
+//AI block whole span width:
+//1440 = 1600 * 0.9
+//1440 = 120 * 12
+//120 = 24 + 72 + 24
+
+$col-width: 5%;
+$col-number: 12;
+$gap-width: ( 100% - $col-width * $col-number ) / ( $col-number * 2 );
+$block-width: 90%;
+$block-small-width: 98%;
+
+.block{
+  width: $block-width;
+  display: block;
+  overflow: auto;
+  padding: 0 (100% - $block-width)/2;
+  margin: 0 auto;
+
+  @media all and (max-width: $small-break-point) {
+    width: $block-small-width;
+    padding: 0 (100% - $block-small-width)/2;
+  }
+}
+
+
+.block-full{
+  width: 100%;
+  display: block;
+  padding: 0;
+}
+
+@function spans-width($cols){
+  @return $cols * $col-width +  ( $cols - 1 ) * 2 * $gap-width ;
+}
+
+@mixin span($cols){
+  float: left;
+  display: block;
+  width: spans-width( $cols );
+  padding: 0 $gap-width;
+  min-height: 10px;
+
+  @media all and (max-width: $small-break-point) {
+    min-height: 0;
+    width: 100%;
+    padding: 0;
+    margin: 20px 0;
+  }
+}
+
+@mixin no-gap-span($cols){
+  float: left;
+  display: block;
+  width: spans-width( $cols ) + 2 * $gap-width;
+  padding: 0;
+
+}
+
+@for $i from 1 through $col-number {
+  .span-#{$i}{
+    @include span($i);
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+@for $i from 1 through $col-number {
+  .span-#{$i}-cl{
+    @include span($i);
+    clear: left;
+  }
+}
+@for $i from 1 through $col-number {
+  .span-#{$i}-no-gap{
+    @include span($i);
+    min-height: 10px;
+    margin: 0;
+  }
+}
+@for $i from 1 through $col-number {
+  .span-#{$i}-center{
+    @include span($i);
+    text-align: center;
+    padding: 0 ( $gap-width + ( $col-width + 2 * $gap-width ) * ( $col-number - $i ) / 2 )  ;
+  }
+}
+
+.span-half{
+  width: 50%;
+}
+.span-full{
+  width: 100%;
+}
+.span-return{
+  float: left;
+  display: block;
+  width: spans-width( 12 );
+  padding: 0 $gap-width;
+  margin: 0;
+  height: 1px;
+}

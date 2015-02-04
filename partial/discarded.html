@@ -1,0 +1,55 @@
+<svg>
+
+    <g>
+        <g ng-repeat="year in [2011, 2012, 2013, 2014, 2015]">
+            <line class="line center" ng-repeat= "month in months"
+                  x1="0" ng-attr-y1="{{$index*12*30}}" x2="0" ng-attr-y2="{{($index+1)*12*30}}"></line>
+        </g>
+    </g>
+
+
+    <circle class="now center" cx="0" cy="60" r="30"></circle>
+
+    <!-- on this g element declare the height -->
+    <g class="tag {{event.type}}"
+       ng-repeat="event in events"
+       ng-style="getTagStyle(event, $index)">
+
+
+        <circle class="timePoint center" cx="0" cy="0" r="10" ></circle>
+
+        <!-- on this g element declare the left or right -->
+        <g class="{{$index%2 ? 'right' : 'left'}}">
+            <polygon
+                    ng-attr-points="{{getDialogBoxPoints(300, 150, $index%2 ? 'right' : 'left', 30, 10)}}"
+                    points="">
+            </polygon>
+            <text x="20" y="0" width="150px">{{event.title}}</text>
+        </g>
+    </g>
+
+</svg>
+
+
+
+
+
+
+<!--
+
+
+<div class="introduce">
+
+
+    <div class="disciplines">
+        <div class="discipline" ng-repeat="discipline in disciplines">
+            <img src="{{discipline.iconUrl}}" alt=""/>
+            <h4>{{discipline.name}}</h4>
+            <p>{{discipline.text}}</p>
+
+            <div class="disciplineDetail">
+                <p>{{discipline.detail.text}}</p>
+            </div>
+        </div>
+    </div>
+</div>-->
