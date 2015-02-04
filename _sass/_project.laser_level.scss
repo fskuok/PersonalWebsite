@@ -1,0 +1,25 @@
+$dark-bg: #333;
+$project-main-c: #7aba57;
+
+header.project.laser_level + section[ui-view] div[ui-view]{
+
+  div.initial_research {
+    @include dark;
+  }
+
+  div.ergonomic_study {
+    @include dark;
+  }
+
+  div.render_detail {
+    img {
+      width: 100%;
+    }
+  }
+
+  div.render_with_hands {
+
+  }
+}
+
+

@@ -1,0 +1,27 @@
+<div class="block projectList">
+
+    <div class="background {{showOrHide}}"
+         ng-style="backgroundCSS"></div>
+
+    <div class="span-4 category {{categoryName}}"
+         ng-repeat="category in project">
+
+        <span> {{ category.name }}</span>
+
+        <a ng-repeat="project in category.project"
+           ui-sref=".{{project.name | underscoreSpace}}"
+           class="projectThumb {{project.name | underscoreSpace}}"
+           ng-mouseenter="changeBackground(project.name, 1);"
+           ng-mouseleave="changeBackground(project.name, 0)">
+
+            <span class="description">{{project.description}}</span>
+            <span class="year">{{project.year}}</span>
+            <span class="team">{{project.team}}</span>
+        </a>
+    </div>
+</div>
+
+
+<div class="scrollIndicator"></div>
+
+<div ui-view></div>

@@ -1,0 +1,82 @@
+/*****************************
+
+        Utilities
+
+*****************************/
+@import "normalize";
+@import "h5bp";
+@import "compass/css3";
+/*****************************
+
+        Universal
+
+*****************************/
+@import "var";
+@import "frame";
+/****************************
+
+  Application Styles
+
+/****************************/
+
+/* import sprites */
+@import "compass/utilities/sprites";
+$icons-layout: smart;
+@import "icons/*.png";
+@include all-icons-sprites;
+
+@import "animation";
+
+div, a, h4, h5, h6, p{
+  font-family: $font-default;
+  font-weight: 300;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3{
+  font-family: $font-bold;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul, li{
+  list-style: none;
+  margin: 0;
+}
+
+html{
+  width: 100%;
+  //make y-scroll always there to prevent page jump
+  overflow-y: scroll;
+  overflow-x: auto;
+}
+section[ui-view]{
+  width: 100%;
+}
+
+::selection {
+  background:$c-main;
+  color:$c-main-opp;
+}
+
+@import "header";
+
+/* ui-view styles */
+
+@import "home";
+@import "about";
+
+/* projects */
+@import "project";
+@import "project.laser_level";
+@import "project.responsive_mobile_ui";
+@import "project.birdhouse";
+@import "project.trend";
+@import "project.hicool";
+@import "project.meeting_room";
+@import "project.river_sunvelop";
+@import "project.structure";
+@import "project.creek_on_bridge";

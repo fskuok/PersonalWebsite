@@ -3,158 +3,51 @@
 
     window.angFsk = angular.module( "fsk", ["ui.router"] );
 
-    var i,l;
-
-
-    //Site Configs
-    var siteConfigs = {
-        route :
-            [{
-                state: 'home',
-                controller: 'home_mainController'
-            },{
-                state: 'about',
-                controller: 'about_mainController'
-            },{
-                state: 'project',
-                controller: 'project_mainController'
-            },{
-                state: 'page_not_found'
-            }]
-        };
 
 
     //********************************** CONFIG  **********************************
 
     angFsk
         .config(function( $stateProvider, $urlRouterProvider ) {
+            var page;
 
             $urlRouterProvider.otherwise('/home');
 
-            for( i=0, l = siteConfigs.route.length; i<l; i++ ){
-
+            for(page in siteModel.pages){
+                if(siteModel.pages.hasOwnProperty(page))
                 $stateProvider.state(
-                    siteConfigs.route[i].state,
+                    page,
                     {
-                        url:
-                            '/' + siteConfigs.route[i].state,
-                        templateUrl:
-                            'partial/' + siteConfigs.route[i].state + '.html',
-                        controller:
-                            siteConfigs.route[i].controller
+                        url: '/' + page,
+                        templateUrl:  'partial/' + page + '.html',
+                        controller: page + '_mainController'
                     }
                 );
-
             }
 
-            for(var category in siteModel.pages.project){
-                if(siteModel.pages.project.hasOwnProperty(category)){
-                    siteModel.pages.project[category].forEach(function(v){
-                        var _name = underscoreSpace(v.name)
 
-                        $stateProvider.state(
-                            'project.' + _name,
-                            {
-                                url:
-                                    '/project.' + _name,
-                                templateUrl:
-                                    'partial/project.' + _name + '.html'
-                            }
-                        );
+            siteModel.pages.project.forEach(function(category){
+                category.project.forEach(function(project){
+                    page = underscoreSpace(project.name);
 
-                        siteModel.preloadImages.push('img/project/' + _name + '_cover.jpg');
-                    })
-                }
-            }
+                    $stateProvider.state(
+                        'project.' + page,
+                        {
+                            url:
+                            '/project.' + page,
+                            templateUrl:
+                            'partial/project.' + page + '.html'
+                        }
+                    );
 
+                    siteModel.preloadImages.push('img/project/' + page + '_cover.jpg');
+                })
+            });
 
         });
 
 
-    //********************************** SERVICES **********************************
-    angFsk
-        .factory('timeService', function() {
 
-            //arguments
-            //return:String
-            var getTimePeriod = function() {
-                var time = (new Date()).getHours();
-
-                if( time < 13 && time >= 3){
-                    return "morning"
-                }else if( time >= 13 && time < 18 ){
-                    return "afternoon"
-                }else if( time >= 18 || time < 3){
-                    return "evening"
-                }
-
-            };
-
-            //timeService factory return
-            return {
-                getTimePeriod : getTimePeriod
-            };
-        })
-
-
-        .factory('domService', ['$state', '$rootScope', '$window', '$document',
-            function ( $state, $rootScope, $window, $document ) {
-                var $body = $('body');
-
-                //while changing pages
-                $rootScope.$on('$stateChangeSuccess',
-                    function(event, toState, toParams, fromState, fromParams){
-
-                        document.querySelector('header').setAttribute('class', parseUrl(toState.url));
-
-                        function parseUrl(url){
-                            url = url.slice(1).split('.');
-
-                            //add class 'in' for CSS
-                            if(url.length > 1 && url[0] === 'project') url.push('in');
-
-                            return url.join(' ');
-                        }
-                    }
-
-                );
-
-
-                //Dom ready actions
-                $document.ready(function(){
-                    angular.element($window).on('scroll',
-                        (function(){
-                            //use to prevent the shake caused by trigger the event in a short time;
-                            var headerFoldable = true;
-
-                            //Events handler - folding navigation bar
-                            return function(){
-                                if(headerFoldable){
-                                    if( ($body[0].scrollTop < 60 && $('header').hasClass("folded")) ||
-                                        ($body[0].scrollTop >= 60 && !$('header').hasClass("folded")) ){
-                                        $('header').toggleClass("folded");
-                                        headerFoldable = false;
-                                        setTimeout(function(){ headerFoldable = true; }, 800);
-                                    }
-                                }
-                            }
-                        })()
-                    );
-
-                });
-
-
-                //alias for jQuery like selector
-                function $(selector){
-                    return angular.element(document.querySelector(selector))
-                }
-
-
-                return {
-                    $ : $
-                };
-            }
-        ]);
 
 
     //********************************** FILTERS **********************************
@@ -184,10 +77,59 @@
         })
         .filter('spaceUnderscore', function(){
             return spaceUnderscore;
-        })
+        });
 
 
+    //********************************** DIRECTIVES **********************************
 
+    angFsk
+        .directive('fkScrollPoint', ['$rootScope', '$window', 'domService',
+            function($rootScope, $window, $dom){
+                var where;
+
+                return function(scope, elem, attr){
+                    angular.element($window).on('scroll', function(){
+
+                        where = $dom.elementAtWhere(elem[0]);
+
+
+                        //if the scrollPoint was on top and now not
+                        if($rootScope.onTopScrollPoint === elem && !where.match('top')){
+                            $rootScope.$broadcast('scrollPointLeaveTop', elem, attr["fkScrollPoint"]);
+                        }
+
+                        //if the scrollPoint was on center and now not
+                        if($rootScope.onCenterScrollPoint === elem && !where.match('center')){
+                            $rootScope.$broadcast('scrollPointLeaveCenter', elem, attr["fkScrollPoint"]);
+                        }
+
+                        //if the scrollPoint was on center and now not
+                        if($rootScope.onBottomScrollPoint === elem && !where.match('bottom')){
+                            $rootScope.$broadcast('scrollPointLeaveBottom', elem, attr["fkScrollPoint"]);
+                        }
+
+                        //check if the scrollPoint's scrollPointReachTop event has not been emitted
+                        if($rootScope.onTopScrollPoint !== elem && where.match('top')){
+                            $rootScope.onTopScrollPoint = elem;
+                            $rootScope.$broadcast('scrollPointReachTop', elem, attr["fkScrollPoint"]);
+                        }
+
+                        //check if the scrollPoint's scrollPointReachCenter event has not been emitted
+                        if($rootScope.onCenterScrollPoint !== elem && where.match('center')){
+                            $rootScope.onCenterScrollPoint = elem;
+                            $rootScope.$broadcast('scrollPointReachCenter', elem, attr["fkScrollPoint"]);
+                        }
+
+                        //check if the scrollPoint's scrollPointReachBottom event has not been emitted
+                        if($rootScope.onBottomScrollPoint !== elem && where.match('bottom')){
+                            $rootScope.onBottomScrollPoint = elem;
+                            $rootScope.$broadcast('scrollPointReachBottom', elem, attr["fkScrollPoint"]);
+                        }
+
+                    });
+                }
+            }
+        ]);
 
 })(window);
 

@@ -56,58 +56,82 @@
                 }
             ]
         },
-        "project": {
-            "digital":[
+        "project": [
                 {
-                    "name": "graduate",
-                    "description": "LBS Social App",
-                    "year": "2014"
+                    "name": "DIGITAL",
+                    "project":[
+                            {
+                                "name": "trend",
+                                "description": "How Location-based Social Service Be More Serious",
+                                "year": "2014",
+                                "team": "Personal"
+                            },{
+                                "name": "responsive mobile ui",
+                                "description": "How Big Screen Mobile Phone Screen Caters Ergonomics",
+                                "year": "2013",
+                                "team": "Personal"
+                            },{
+                                "name": "river sunvelop",
+                                "description": "A Website for Architecture",
+                                "year": "2012",
+                                "team": "Personal"
+                            }
+                        ]
                 },{
-                    "name": "big screen interface",
-                    "description": "How Big Screen Mobile Phone Screen can Be more Ergonomic",
-                    "year": "2013"
+                    "name": "CONNECTED",
+                    "project":[
+                            {
+                                "name": "hicool",
+                                "description": "Re-imagine the First-aid-kit for Hikers",
+                                "year": "2014",
+                                "team": "Teamwork"
+                            },{
+                                "name": "meeting room",
+                                "description": "Envision the Smart Meeting Room",
+                                "year": "2014",
+                                "team": "Teamwork"
+                            }/*,{
+                                 "name": "sit down and talk",
+                                 "description": "connection devices",
+                                 "year": "2015",
+                                 "team": "Teamwork"
+                            }*/
+                        ]
                 },{
-                    "name": "river sunvelop",
-                    "description": "A Website for Architecture",
-                    "year": "2012"
+                    "name": "PHYSICAL",
+                    "project": [
+                            {
+                                "name": "birdhouse",
+                                "description": "What Will Birdhouse for Apartment Residents Be Like",
+                                "year": "2014",
+                                "team": "Personal"
+                            },{
+                                "name": "laser level",
+                                "description": "Building The New Generation Laser Level",
+                                "year": "2013",
+                                "team": "Teamwork"
+                            },{
+                                "name": "creek on bridge",
+                                "description": "A Table Design Inspired by Nature",
+                                "year": "2013",
+                                "team": "Personal"
+                            },{
+                                "name": "structure",
+                                "description": "How to Create A Structure That Supports Weight That Is 300x of Its Own Weight",
+                                "year": "2011",
+                                "team": "Teamwork"
+                            }
+                        ]
                 }
             ],
-            "connected":[
-                {
-                    "name": "hicool",
-                    "description": "Re-imagine the first-aid-kit for Hikers",
-                    "year": "2014"
-                },{
-                    "name": "meeting room",
-                    "description": "Envision the Smart Meeting Room",
-                    "year": "2014"
-                }
-            ],
-            "physical": [
-                {
-                    "name": "birdhouse",
-                    "description": "A birdhouse for apartment residents",
-                    "year": "2014"
-                },{
-                    "name": "laser level",
-                    "description": "New generation of laser level",
-                    "year": "2013"
-                },{
-                    "name": "table",
-                    "description": "Getting inspired from the Nature",
-                    "year": "2013"
-                },{
-                    "name": "structure",
-                    "description": "How to create a structure that supports weight that is 300x of its own weight",
-                    "year": "2011"
-                }
-            ]
-        },
         "about": {
 
         }
     };
 
-    siteModel.preloadImages = [];
+    siteModel.preloadImages = [
+        'img/icons/icons_scroll_indicator.png',
+        'img/photo/'
+    ];
 
 })(window);
