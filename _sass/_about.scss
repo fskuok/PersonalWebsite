@@ -1,28 +1,41 @@
-$about-svg-deb-width: 400px;
+
 $c-design: #ff5b5b;
 $c-engineering: #5b5bff;
-$c-business: #53e953;
+$c-business: #a0ce40;
 
+$timeline-border-width: 6px;
+$timeline-joint-height: 36px;
+$timeline-inyear-border-width: 3px;
+
+$timeline-background: #6694e2;
+
+$about-svg-width: 100px;
+$about-svg-deb-width: 400px;
+
+
+//**********************************************************
 header.about + section[ui-view]{
 
   svg{
     z-index: 1000;
     display: block;
     position: fixed;
-    width: 100px;
-    height: 100px;
     top: 50%;
     left: 50%;
-    margin-left: -50px;
-    margin-top: -50px;
+    width: $about-svg-width;
+    height: $about-svg-width;
+    margin-left: -$about-svg-width/2;
+    margin-top: -$about-svg-width/2;
 
     @media all and (max-width: $small-break-point){
       display: none;
     }
 
-    g{
+    g.logo{
+      @include transform-origin(50% 50% 0); //let logo rotate pivot be the center
       @include transform(translate(0, 0));
-      line, polyline{
+
+      line, polyline{ //white name
         @include transition(all 1s);
         stroke: $c-main;
         fill: none;
@@ -30,14 +43,28 @@ header.about + section[ui-view]{
         stroke-miterlimit: 10px;
       }
 
-      #topFace, #leftFace, #rightFace, #hexagon{
+      #topFace, #leftFace, #rightFace{ //hide light&shadow
         @include transition(all 1s);
+
         opacity: 0;
       }
+
+      #hexagon { //transparent white background
+        @include transform-origin(50% 50% 0);
+        @include transition(all 0.4s);
+
+
+        fill: rgba(white, 0.7);
+      }
+
+
     }
 
-    text[id^=svgYear]{
+    g.text text[id^=svgYear]{
+      @include transform(translate(19px, 62px));
+
       fill: $c-main;
+
       opacity: 0;
     }
   }
@@ -59,8 +86,9 @@ header.about + section[ui-view]{
       }
     }
 
-    #svgYear{
 
+    #svgYear{
+      @include transform(translate(20px, 60px));
       opacity: 0;
     }
   }
@@ -72,9 +100,8 @@ header.about + section[ui-view]{
     margin-left: -$about-svg-deb-width/2;
     margin-top: -$about-svg-deb-width/2;
 
-    g{
+    g.logo{
       @include transform(translate($about-svg-deb-width/2- 50px, $about-svg-deb-width/2- 50px));
-
 
       #topFace{
         fill: $c-design;
@@ -93,18 +120,26 @@ header.about + section[ui-view]{
       }
     }
 
+    g.text text[id^=svgYear]{
+      @include transform(
+              translate(
+                              20px + ($about-svg-deb-width - $about-svg-width)/2,
+                              60px + ($about-svg-deb-width - $about-svg-width)/2
+              ));
+    }
+
   }
 
-
+  // logo in timelines
   svg[class^=timeline20]{
-    g{
+    g.logo{
 
-      line, polyline{
+      line, polyline{//do not show name
         opacity: 0;
         stroke: white;
 
       }
-      #topFace, #rightFace{
+      #topFace, #rightFace{ // hide light face
         opacity: 0;
       }
 
@@ -118,43 +153,39 @@ header.about + section[ui-view]{
       &.timeline201#{$i} #svgYear201#{$i}{
         opacity: 1;
       }
+
+      &.timeline201#{$i} g.logo #hexagon{
+        @include transform(rotate(#{-360 + $i*60}deg));
+      }
     }
   }
 
-
-
-
+  //**********************************************************
   //*********************** DIV STYLES ***********************
+  //**********************************************************
+
   &>div{
     width: 100%;
     overflow: auto;
     position: relative;
 
-    h3{
-      margin-bottom: 24px;
+    &>h3{
+      width: 100%;
+      text-align: center;
+      margin: 16px 0;
+      font-family: $font-bold;
     }
 
   }
 
   div.introduce{
+
     z-index: 1;
     height: 80vh;
     background-image: url('../img/photo/about_cover.jpg');
     background-size: cover;
     //background-attachment: fixed;
     background-position: center center;
-
-    a, p{
-      display: block;
-      text-align: center;
-      font-family: $font-bold;
-    }
-
-    a.resume{
-      margin-top: 30vh;
-      color: $c-main;
-    }
-
   }
 
 
@@ -163,22 +194,26 @@ header.about + section[ui-view]{
     .left{
       float: left;
       overflow: auto;
-      margin: 10% 14%;
-      width: 22%;
-      height: 80%;
+      margin: 80px 140px 80px 60px;
+      width: calc( 50% - 200px);
+      height: calc( 100% - 160px);
+
+      a.resume{
+        color: $c-main;
+        font-weight: 500;
+      }
     }
 
     .right{
       float: left;
       overflow: auto;
-      margin: 10% 10%;
-      width: 30%;
-      height: 80%;
+      margin: 80px 60px 80px 140px;
+      width: calc( 50% - 200px);
+      height: calc( 100% - 160px);
 
       h3{
-        font-family: $font-bold;
+        margin: 16px 0 10px;
       }
-
       h3.design{
         color: darken($c-design, 0.2);
       }
@@ -191,29 +226,32 @@ header.about + section[ui-view]{
     }
   }
 
+
+  /****************    TIMELINE  ********************/
   div.timelineHeader{
-    color: $c-main;
+    border-bottom: $timeline-border-width solid white;
+    color: white;
+    background: $timeline-background;
     z-index: 4;
-
-
-    h3{
-      width: 100%;
-      text-align: center;
-    }
   }
 
-  div[class^=timeline20]{
-    border-bottom: 8px white solid;
 
-    height: 100vh;
+
+  div[class^=timeline20]{
+    border-bottom: $timeline-border-width white solid;
+    overflow: hidden;
+
     position: relative;
     z-index: 1;
 
     div.left{
       overflow: auto;
       width: 50%;
-      float:left;
-      height:100%;
+      float: left;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
     }
 
     div.middle{
@@ -221,61 +259,68 @@ header.about + section[ui-view]{
       left: 50%;
       height: 100%;
       width: 0;
-      margin-left: -4px;
-      border-left: 8px white dotted;
+      margin-left: - $timeline-border-width / 2;
+      border-left: $timeline-border-width white solid;
 
-      &:after{
-        $line-dot-height: 36px;
+
+      &:after, &:before{
         content:'';
         display: block;
-        height: $line-dot-height;
-        width: $line-dot-height;
-        @include border-radius($line-dot-height/2);
+        position: absolute;
         background: white;
-        margin: (-($line-dot-height/2 + 4px)) 0  0 (-($line-dot-height/2 + 4px));
+        height: $timeline-joint-height/2;
+        width: $timeline-joint-height;
+        margin-left: (-($timeline-joint-height/2 + $timeline-border-width/2));
+      }
 
+      &:before{
+        top: - $timeline-border-width/2;
+        @include border-radius( 0 0 $timeline-joint-height/2 $timeline-joint-height/2);
+      }
+
+      &:after{
+        @include border-radius($timeline-joint-height/2 $timeline-joint-height/2 0 0);
+        bottom: - $timeline-border-width/2;
       }
     }
-
-
 
     div.right{
       overflow: auto;
       width: 50%;
       height:100%;
       float:left;
+      margin-left: 50%;
 
-
-
+      div{
+        background-size: cover;
+        background-position: center center;
+      }
     }
 
     div.left, div.right{
-      div{
+      div[class^=description]{
         overflow: auto;
-        width: 80%;
-        padding: 0 10%;
-        background-size: cover;
-        background-position: center center;
+        padding: 20px;
+        background: $timeline-background;
 
         p{
-          background: $c-f7;
-          padding: 10px;
+          color: white;
         }
-
         h3{
-          margin-top: 20px;
-          margin-bottom: 0;
-          background: $c-f9;
-          padding: 10px;
+          color: white;
+
         }
       }
     }
   }
 
 
+  /**************** TIMELINE DETAIL********************/
+
   div.timeline2015{
     .left{
       background-image: url('../img/photo/cmu.jpg');
+      background-size: auto 100vh;
       background-attachment: fixed;
     }
   }
@@ -284,20 +329,23 @@ header.about + section[ui-view]{
     .left{
       background-image: url('../img/photo/cmu.jpg');
       background-attachment: fixed;
-      background-size: 50vw;
+      background-size: auto 100vh;
 
-
+      @media (max-aspect-ratio: 1/2){
+        background-size: 51vw;
+      }
     }
 
     .right{
 
       .iot{
-        height: 40%;
         background-image: url('../img/photo/iot.jpg');
+        height: 40vh
       }
 
       .microsoft{
-        height: 60%;
+        border-top: $timeline-inyear-border-width solid white;
+        height: 40vh;
         background-image: url('../img/photo/ms.jpg');
         background-attachment: fixed;
         background-position: 48vw 0;
@@ -309,8 +357,6 @@ header.about + section[ui-view]{
   }
 
   div.timeline2013{
-    height: 140vh;
-
     .left{
       background-image: url('../img/photo/sjtu.jpg');
       background-attachment: fixed;
@@ -318,26 +364,26 @@ header.about + section[ui-view]{
 
     .right{
       .tti{
-        height: 33%;
+        height: 36vh;
         background-image: url('../img/photo/hk.jpg');
       }
 
 
       .bno{
-        height: 34%;
+        height: 36vh;
+        border-top: $timeline-inyear-border-width solid white;
         background-image: url('../img/photo/bno.jpg');
       }
 
       .sdc{
-        height: 33%;
+        height: 36vh;
+        border-top: $timeline-inyear-border-width solid white;
         background-image: url('../img/project/river_sunvelop_cover.jpg');
       }
     }
   }
 
   div.timeline2012{
-    height: 50vh;
-
     .left{
       background-image: url('../img/photo/sjtu.jpg');
       background-attachment: fixed;
@@ -349,18 +395,18 @@ header.about + section[ui-view]{
   }
 
   div.timeline2011{
-    height: 50vh;
 
     .left{
       background-image: url('../img/photo/sjtu.jpg');
       background-attachment: fixed;
+
     }
 
     .right{
-      .structure{
-        height: 100%;
-        background-image: url('../img/photo/structure.jpg');
 
+      .structure{
+        height: 40vh;
+        background-image: url('../img/photo/structure.jpg');
       }
     }
   }

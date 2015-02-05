@@ -102,58 +102,13 @@
                     function(event, toState, toParams, fromState, fromParams){
                         scrollPointStack = $('[fk-scroll-point]');
 
-                        qs('header').setAttribute('class', parseUrl(toState.url));
-
                         //scroll to top of the page
                         $window.scrollTo(0, 0);
 
-                        function parseUrl(url){
-                            url = url.slice(1).split('.');
-
-                            //add class 'in' for CSS
-                            if(url.length > 1 && url[0] === 'project') url.push('in');
-
-                            return url.join(' ');
-                        }
                     }
 
                 );
 
-
-                //Dom ready actions
-                $document.ready(function(){
-
-
-                    angular.element($window).on('scroll',
-                        (function(){
-
-
-                            //use to prevent the shake caused by trigger the event in a short time;
-                            var headerFoldable = true,
-                                bodyScrollTop;
-
-                            //Events handler - folding navigation bar
-                            return function(){
-
-                                //firefox place scrollTop at html tag, while others place it at body
-                                bodyScrollTop = body.scrollTop ||  qs('html').scrollTop;
-
-                                if(headerFoldable){
-                                    if( (bodyScrollTop < 60 && $('header').hasClass("folded")) ||
-                                        (bodyScrollTop >= 60 && !$('header').hasClass("folded")) ){
-                                        $('header').toggleClass("folded");
-                                        headerFoldable = false;
-
-                                        //prevent header fold/unfolded more than once in 300ms
-                                        setTimeout(function(){ headerFoldable = true; }, 300);
-                                    }
-                                }
-
-                            }
-                        })()
-                    );
-
-                });
 
 
                 //alias for jQuery like selector
@@ -179,8 +134,6 @@
 
                 $.qs = qs;
                 $.qsa = qsa;
-
-
                 return $;
             }
         ])

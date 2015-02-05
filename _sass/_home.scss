@@ -40,8 +40,8 @@ header.home + section[ui-view]{
       font-family: 'Hammersmith One', sans-serif;
 
       span{
-        text-decoration: underline;
-
+        font-size: 24px;
+        color: $c-main;
       }
     }
 

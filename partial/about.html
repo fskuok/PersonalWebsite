@@ -1,23 +1,28 @@
 <svg id="logo">
 
     <g>
-        <polygon id="hexagon" fill="#2C3E50" points="8.4,25 51.2,0 93.9,25 93.9,75 51.2,100 8.4,75 	"></polygon>
-        <polygon id="rightFace" fill="#1A1A1A" points="93.9,25 93.9,75 51.2,100 50.9,50 	"></polygon>
-        <polygon id="topFace" fill="#F2F2F2" points="50.9,50 93.9,25 51.2,0 8.4,25 	"></polygon>
-        <polygon id="leftFace" points="8,25 8,75 50.9,100 50.5,50 "></polygon>
-        <line  x1="50.9" y1="50" x2="50.9" y2="91"></line>
-        <line  x1="50.9" y1="50" x2="87" y2="28.8"></line>
-        <line  x1="50.9" y1="50" x2="86.5" y2="70.5"></line>
-        <line  x1="50.9" y1="50" x2="50.9" y2="6"></line>
-        <line  x1="13.4" y1="27.9" x2="44" y2="46.1"></line>
-        <polyline  points="13.2,70.7 13.4,27.9 44.9,9.2 	"></polyline>
+        <g class="logo">
+            <polygon id="hexagon" fill="#2C3E50" points="6,25 50,0 94,25 94,75 50,100 6,75 	"></polygon>
+            <polygon id="rightFace" fill="#1A1A1A" points="94,25 94,75 50,100 50,50 	"></polygon>
+            <polygon id="topFace" fill="#F2F2F2" points="50,50 94,25 50,0 6,25 	"></polygon>
+            <polygon id="leftFace" points="6,25 6,75 50,100 50,50 "></polygon>
+            <line  x1="50" y1="50" x2="50" y2="91"></line>
+            <line  x1="50" y1="50" x2="87" y2="29"></line>
+            <line  x1="50" y1="50" x2="87" y2="70"></line>
+            <line  x1="50" y1="50" x2="50" y2="6"></line>
+            <line  x1="13.4" y1="28" x2="44" y2="46"></line>
+            <polyline  points="13.2,70.7 13.4,27.9 44.9,9.2"></polyline>
+        </g>
 
+        <g class="text">
+            <text id="svgYear2011" font-size="28">2011</text>
+            <text id="svgYear2012" font-size="28">2012</text>
+            <text id="svgYear2013" font-size="28">2013</text>
+            <text id="svgYear2014" font-size="28">2014</text>
+            <text id="svgYear2015" font-size="28">2015</text>
+        </g>
     </g>
-    <text x="20" y="60" id="svgYear2011" font-size="28">2011</text>
-    <text x="20" y="60" id="svgYear2012" font-size="28">2012</text>
-    <text x="20" y="60" id="svgYear2013" font-size="28">2013</text>
-    <text x="20" y="60" id="svgYear2014" font-size="28">2014</text>
-    <text x="20" y="60" id="svgYear2015" font-size="28">2015</text>
+
 </svg>
 
 <div class="introduce" fk-scroll-point="introduce">
@@ -25,15 +30,20 @@
 </div>
 
 <div class="deb" fk-scroll-point="deb">
+    <h3>ABOUT ME</h3>
     <div class="left">
-        <p>a current graduate student at Carnegie Mellon University. With background in industrial design and web development, I create fun, useful and beautiful experiences infused into people's lives, from discover, design to develop</p>
+        <p>I'm a current graduate student in Master of Integrated Innovation for Products & Services (former Master of Product Development) at Carnegie Mellon University. With background in industrial design and web development, I create fun, useful and beautiful experiences that enrich and infuse into people's lives. I work on phases from discover, design to develop</p>
+        <br>
         <a class="resume" href="rsc/Resume_Fan_Sai_Kuok.pdf">Downloadable Resume</a>
     </div>
 
     <div class="right">
         <h3 class="design">DESIGN</h3>
+        <p>While enjoying industrial design and interface design, I focus on user experience design.</p>
         <h3 class="engineering">ENGINEERING</h3>
+        <p>I like to build things that work. I develop web front end for years, and has a fascination with AngularJS. Also, I like building connected devices using Arduino or Spark</p>
         <h3 class="business">BUSINESS</h3>
+
     </div>
 </div>
 
@@ -62,25 +72,36 @@
 
 <div class="timeline2014 block-full" fk-scroll-point="timeline2014">
     <div class="left">
+
         <div class="cmu">
+        <div class="description_cmu">
             <h3>Carnegie Mellon University | Pittsburgh PA, USA</h3>
             <p>Master of Integrated Innovation for Products & Services
                 Former Master of Product Development (MPD), Exp. May 2015</p>
+        </div>
+
+
         </div>
     </div>
     <div class="middle">
 
     </div>
     <div class="right">
-        <div class="iot">
+
+        <div class="iot"></div>
+        <div class="description_iot">
             <h3>Research Project: Iot Meeting Room</h3>
             <p>
                 Designed an Internet of Things system for meeting rooms; Developed an Agenda Board & Device Control Center web application using AngularJS and Google Doc APIs; built connected devices using Spark</p>
         </div>
-        <div class="microsoft">
+
+
+        <div class="microsoft"></div>
+        <div class="description_microsoft">
             <h3>Microsoft | UX Workshop 2013</h3>
             <p>Led designs in a five people team on a wearable social device, which promotes and helps people knowing strange acquaintances; participated in concept generation and user research; designed the user interface; achieved Excellent Design Award</p>
         </div>
+
 
     </div>
 </div>
@@ -93,21 +114,28 @@
 
     </div>
     <div class="right">
-        <div class="tti">
+
+        <div class="tti"></div>
+        <div class="description_tti">
             <h3>Techtronic Industries (TTI) Co. Ltd </h3>
             <p>Main contributor in an aerial-work-platform portable controller project; tasks included product definition, user study, prototyping, communicating with engineers, ergonomic research, detail design, and concept rendering; participated in air-grip laser level, furniture retailer service, and job-site radio design projects, particularly in such areas as user research, ideation and form design</p>
         </div>
 
-        <div class="bno">
+
+        <div class="bno"></div>
+        <div class="description_bno">
             <h3>Bang & Olufsen (B&O) | Conceptual Design & Development of Innovative Products Camp</h3>
             <p>Created an innovative product intended for the Chinese luxury market. Led design in a seven-member team comprising Chinese and Europeans from different disciplines; participated in market research, user interview, concept generation, prototype, and concept finalization</p>
         </div>
 
-        <div class="sdc">
+
+        <div class="sdc"></div>
+        <div class="description_sdc">
             <h3>River Sunvelop | Solar Decathlon China 2013</h3>
             <p>In charge of the official website of River Sunvelop Team. Independently designed, coded,
                 and maintained website</p>
         </div>
+
 
     </div>
 
@@ -136,11 +164,11 @@
 
     </div>
     <div class="right">
-        <div class="structure">
+        <div class="structure"></div>
+        <div class="description_structure">
             <h3>5th China National Structure Design Contest for College Students</h3>
             <p>Designed and build a 1m tall, 106g weight bamboo structure to support more than 30000g load under mock 8.0 magnitude earthquake</p>
         </div>
-
     </div>
 
 </div>
