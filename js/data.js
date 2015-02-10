@@ -1,137 +1,112 @@
 (function(win) {
 
-    var sM = win.siteModel = {};
-
-    siteModel.pages = {
-        "home": {
-            "disciplines": [
-                {
-                    "name": "UX Design",
-                    "iconUrl": "",
-                    "text": "",
-                    "detail": {
-                        "text": "UX Design in blablabla de lda adeat aloa",
-                        "skills": {
-                            "Photoshop": 7,
-                            "Illustrator": 8
-                        }
-                    }
-                },
-                {
-                    "name": "UI Design",
-                    "iconUrl": "",
-                    "text": "",
-                    "detail": {
-                        "text": "",
-                        "skills": {
-                            "Photoshop": 7,
-                            "Illustrator": 8
-                        }
-                    }
-                },
-                {
-                    "name": "Front-end Develop",
-                    "iconUrl": "",
-                    "text": "",
-                    "detail": {
-                        "text": "",
-                        "skills": {
-                            "Photoshop": 7,
-                            "Illustrator": 8
-                        }
-                    }
-                },
-                {
-                    "name": "Industrial Design",
-                    "iconUrl": "",
-                    "detail": {
-                        "text": "",
-                        "skills": {
-                            "Photoshop": 7,
-                            "Illustrator": 8
-                        }
-                    }
-
-
-                }
-            ]
+    var SM = win.siteModel = {
+        pages: {
+            "home": {},
+            "project":{}
         },
-        "project": [
-                {
-                    "name": "DIGITAL",
-                    "project":[
-                            {
-                                "name": "trend",
-                                "description": "How Location-based Social Service Be More Serious",
-                                "year": "2014",
-                                "team": "Personal"
-                            },{
-                                "name": "responsive mobile ui",
-                                "description": "How Big Screen Mobile Phone Screen Caters Ergonomics",
-                                "year": "2013",
-                                "team": "Personal"
-                            },{
-                                "name": "river sunvelop",
-                                "description": "A Website for Architecture",
-                                "year": "2012",
-                                "team": "Personal"
-                            }
-                        ]
-                },{
-                    "name": "CONNECTED",
-                    "project":[
-                            {
-                                "name": "hicool",
-                                "description": "Re-imagine the First-aid-kit for Hikers",
-                                "year": "2014",
-                                "team": "Teamwork"
-                            },{
-                                "name": "meeting room",
-                                "description": "Envision the Smart Meeting Room",
-                                "year": "2014",
-                                "team": "Teamwork"
-                            }/*,{
-                                 "name": "sit down and talk",
-                                 "description": "connection devices",
-                                 "year": "2015",
-                                 "team": "Teamwork"
-                            }*/
-                        ]
-                },{
-                    "name": "PHYSICAL",
-                    "project": [
-                            {
-                                "name": "birdhouse",
-                                "description": "What Will Birdhouse for Apartment Residents Be Like",
-                                "year": "2014",
-                                "team": "Personal"
-                            },{
-                                "name": "laser level",
-                                "description": "Building The New Generation Laser Level",
-                                "year": "2013",
-                                "team": "Teamwork"
-                            },{
-                                "name": "creek on bridge",
-                                "description": "A Table Design Inspired by Nature",
-                                "year": "2013",
-                                "team": "Personal"
-                            },{
-                                "name": "structure",
-                                "description": "How to Create A Structure That Supports Weight That Is 300x of Its Own Weight",
-                                "year": "2011",
-                                "team": "Teamwork"
-                            }
-                        ]
-                }
-            ],
-        "about": {
+        preloadImages : [
+            'img/icons/icons_scroll_indicator.png',
+            'img/photo/about_cover.jpg'
+        ],
+        links : {
+            "Vishal Pallikandi": "http://vishalpallikandi.wix.com/portfolio",
+            "Stamp Siripanich": "http://www.stampsiripanich.com",
+            "Hanyue Hu": "http://hanyue.me"
 
+            //"Behnam Heydari": "http://behnamheydari.com"
         }
     };
 
-    siteModel.preloadImages = [
-        'img/icons/icons_scroll_indicator.png',
-        'img/photo/'
+
+    SM.pages.project.categories = [
+        {
+            "name": "digital",
+            "projects":[
+                {
+                    "name": "trend",
+                    "description": "How Location-based Social Service Be More Serious ?",
+                    "year": "2014",
+                    "duration": "3 Months",
+                    "type": "Mobile App Design",
+                    "process": ["Interviews", "Questionnaires", "Wireframing", "Prototyping", "UI Design", "HTML App Developing", "Market Analysis"]
+                },{
+                    "name": "responsive mobile ui",
+                    "description": "How Big Screen Mobile Phone Interface Caters Ergonomics ?",
+                    "year": "2013",
+                    "duration": "2 Months",
+                    "type": "UI Study & Design",
+                    "process": ["Ergonomics Research", "UI Design"]
+                },{
+                    "name": "river sunvelop",
+                    "description": "A Website for Architecture",
+                    "year": "2012",
+                    "duration": "6 Months",
+                    "type": "Website Design & Development",
+                    "process": ["UI Design", "Front End Development", "Website Management"]
+                }
+            ]
+        },{
+            "name": "connected",
+            "projects":[
+                {
+                    "name": "hicool",
+                    "description": "Re-imagine the First-aid-kit for Hikers",
+                    "year": "2014",
+                    "duration": "3 Weeks",
+                    "type": "Product & App Design",
+                    "team": ["Behnam Heydari", "Wei-Hsun Chen"]
+                },{
+                    "name": "meeting room",
+                    "description": "Envision the Smart Meeting Room",
+                    "year": "2014",
+                    "duration": "2 Months",
+                    "type": "Internet of Things Design",
+                    "team": ["Behnam Heydari", "Hanyue Hu", "Stamp Siripanich", "Vishal Pallikandi"]
+                }/*,{
+                 "name": "sit down and talk",
+                 "description": "connection devices",
+                 "year": "2015",
+                 "team": "Teamwork"
+                 }*/
+            ]
+        },{
+            "name": "physical",
+            "projects": [
+                {
+                    "name": "birdhouse",
+                    "description": "What Will Birdhouse for Apartment Residents Be Like ?",
+                    "year": "2014",
+                    "duration": "2 weeks",
+                    "type": "Product Design",
+                    "process": ["User Research", "Market Research", "Concept Developing", "Prototyping", "Detail Design", "Design Illustration"]
+
+                },{
+                    "name": "laser level",
+                    "description": "Building The New Generation Laser Level",
+                    "type": "Product Design",
+                    "year": "2013",
+                    "duration": "2 weeks",
+                    "team": ["Supported by two Industrial Designers"],
+                    "role": "Individually finished prototyping, ergonomics study, and 3D model building; Contributed partially in concept generation and form design.",
+                    "process": ["User Research", "Prototyping", "Ergonomics Study", "Form Design", "Design Illustration"]
+                },{
+                    "name": "creek on bridge",
+                    "description": "A Table Design Inspired by Nature",
+                    "type": "Furniture Design",
+                    "year": "2013",
+                    "duration": "1 Month",
+                    "process": ["Form Design", "Model Making"]
+                },{
+                    "name": "structure",
+                    "description": "Creating A Structure That Supports Weight That Is 300x of Its Own Weight",
+                    "year": "2011",
+                    "duration": "2 Month",
+                    "type": "Structure Design",
+                    "team": ["Dong Peng", "Hailin Wang"]
+                }
+            ]
+        }
     ];
 
 })(window);

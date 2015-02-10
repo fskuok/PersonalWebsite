@@ -4,24 +4,53 @@
          ng-style="backgroundCSS"></div>
 
     <div class="span-4 category {{categoryName}}"
-         ng-repeat="category in project">
+         ng-repeat="category in categories">
 
-        <span> {{ category.name }}</span>
+        <span> {{ category.name | uppercase }}</span>
 
-        <a ng-repeat="project in category.project"
+        <a ng-repeat="project in category.projects"
            ui-sref=".{{project.name | underscoreSpace}}"
            class="projectThumb {{project.name | underscoreSpace}}"
-           ng-mouseenter="changeBackground(project.name, 1);"
+           ng-mouseenter="changeBackground(project.name, 1)"
            ng-mouseleave="changeBackground(project.name, 0)">
 
             <span class="description">{{project.description}}</span>
             <span class="year">{{project.year}}</span>
-            <span class="team">{{project.team}}</span>
+            <span class="team">{{project.team ? "Teamwork" : "Individual"}}</span>
+            <span class="type">{{project.type}}</span>
         </a>
     </div>
 </div>
 
 
 <div class="scrollIndicator"></div>
+
+<div class="block project_introduction" ng-controller="project_introductionController" ng-show="projectDetail">
+
+    <!-- 2 | 2 | 2 | 2 | 2 | 2 -->
+    <div class="span-3" ng-hide="projectDetail.team"></div>
+    <div class="basic span-3">
+        <h2>OVERVIEW</h2>
+        <p>{{projectDetail.year}}</p>
+        <p>{{projectDetail.duration}}</p>
+        <p>{{projectDetail.team ? "Team Project" : "Individual Project"}}</p>
+        <p>{{projectDetail.type}}</p>
+    </div>
+
+    <div class="process span-3">
+        <h2>TASKS/METHODS</h2>
+        <p ng-repeat="process in projectDetail.process">{{process}}</p>
+    </div>
+
+    <div class="role span-3" ng-show="projectDetail.team">
+        <h2>MY ROLE</h2>
+        <p>{{projectDetail.role}}</p>
+    </div>
+
+    <div class="team span-3" ng-show="projectDetail.team">
+        <h2>COOPERATORS</h2>
+        <a ng-repeat="teammate in projectDetail.team" ng-href="{{links[teammate]}}">{{teammate}}</a>
+    </div>
+</div>
 
 <div ui-view></div>

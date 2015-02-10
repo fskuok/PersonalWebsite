@@ -10,53 +10,54 @@ $gap-width: ( 100% - $col-width * $col-number ) / ( $col-number * 2 );
 $block-width: 90%;
 $block-small-width: 98%;
 
-.block{
-  width: $block-width;
-  display: block;
-  overflow: auto;
-  padding: 0 (100% - $block-width)/2;
-  margin: 0 auto;
+@function spans-width($cols){
+    @return $cols * $col-width +  ( $cols - 1 ) * 2 * $gap-width ;
+}
+@mixin no-gap-span($cols){
+    float: left;
+    display: block;
+    width: spans-width( $cols ) + 2 * $gap-width;
+    padding: 0;
+}
+@mixin span($cols){
+    float: left;
+    display: block;
+    width: spans-width( $cols );
+    padding: 0 $gap-width;
+    min-height: 10px;
 
-  @media all and (max-width: $small-break-point) {
-    width: $block-small-width;
-    padding: 0 (100% - $block-small-width)/2;
-  }
+    @media all and (max-width: $small-break-point) {
+        min-height: 0;
+        width: 100%;
+        padding: 0;
+        margin: 20px 0;
+    }
 }
 
+
+[class^=block]{
+    display: block;
+    overflow: auto;
+}
+
+.block{
+    /* Box Model */
+    width: $block-width;
+    padding: 0 (100% - $block-width)/2;
+    margin: 0 auto;
+
+    @media all and (max-width: $small-break-point) {
+        width: $block-small-width;
+        padding: 0 (100% - $block-small-width)/2;
+    }
+}
 
 .block-full{
   width: 100%;
-  display: block;
   padding: 0;
 }
 
-@function spans-width($cols){
-  @return $cols * $col-width +  ( $cols - 1 ) * 2 * $gap-width ;
-}
-
-@mixin span($cols){
-  float: left;
-  display: block;
-  width: spans-width( $cols );
-  padding: 0 $gap-width;
-  min-height: 10px;
-
-  @media all and (max-width: $small-break-point) {
-    min-height: 0;
-    width: 100%;
-    padding: 0;
-    margin: 20px 0;
-  }
-}
-
-@mixin no-gap-span($cols){
-  float: left;
-  display: block;
-  width: spans-width( $cols ) + 2 * $gap-width;
-  padding: 0;
-
-}
-
+//span-n-cl: span with clear left
 @for $i from 1 through $col-number {
   .span-#{$i}{
     @include span($i);
@@ -64,12 +65,14 @@ $block-small-width: 98%;
     margin-bottom: 20px;
   }
 }
+//span-n-cl: span with clear left
 @for $i from 1 through $col-number {
   .span-#{$i}-cl{
     @include span($i);
     clear: left;
   }
 }
+//span-n-no-gap: span without gap
 @for $i from 1 through $col-number {
   .span-#{$i}-no-gap{
     @include span($i);
@@ -77,6 +80,7 @@ $block-small-width: 98%;
     margin: 0;
   }
 }
+//span-n-center: centered span
 @for $i from 1 through $col-number {
   .span-#{$i}-center{
     @include span($i);
@@ -84,7 +88,6 @@ $block-small-width: 98%;
     padding: 0 ( $gap-width + ( $col-width + 2 * $gap-width ) * ( $col-number - $i ) / 2 )  ;
   }
 }
-
 .span-half{
   width: 50%;
 }

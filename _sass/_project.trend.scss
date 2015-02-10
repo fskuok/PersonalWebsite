@@ -11,6 +11,7 @@ header.project.trend + section[ui-view]{
       padding-bottom: 60px;
     }
 
+
     div.final{
 
       padding-bottom: 0;
@@ -19,6 +20,12 @@ header.project.trend + section[ui-view]{
       div.span-return{
         border-bottom: 1px solid #ccc;
       }
+    }
+
+    div.low_fi_prototype{
+      background: #343434;
+
+      color: white;
     }
 
     div.prototype_develop{

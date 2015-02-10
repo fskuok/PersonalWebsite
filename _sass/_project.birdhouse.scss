@@ -1,7 +1,110 @@
+$bob-color: #1ec9ff;
+$me-color: #d3559f;
+$dialogue-border-width: 6px;
+
 header.project.birdhouse + section[ui-view] div[ui-view] {
 
-  div{
-    height: 100vh;
-  }
+    [class^=span] img{
+        width: 100%;
+    }
 
+    div[class*=dialogue]{
+        width: calc(100% - #{$dialogue-border-width*2});
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        img{
+
+        }
+
+        p{
+            /* Position */
+            position: relative;
+
+            /*  Type Face */
+            font-family: $font-bold;
+            font-size: 24px;
+
+            &:before, &:after{
+                content: '"';
+
+                /* Position */
+                position: absolute;
+                top: -10px;
+
+                /* Typeface */
+                font-size: 60px;
+            }
+
+            &:before{
+                left: -10px;
+            }
+
+            &:after{
+                right: -10px;
+            }
+
+        }
+
+        &.dialogue_bob{
+            /* Typeface */
+            color: $bob-color;
+            /* Visual */
+            background: lighten($bob-color, 40);
+            border-left: $dialogue-border-width solid $bob-color;
+            border-right: $dialogue-border-width solid $bob-color;
+        }
+
+        &.dialogue_me{
+            /* Typeface */
+            color: $me-color;
+
+            /* Visual */
+            background: lighten($me-color, 40);
+            border-left: $dialogue-border-width solid $me_color;
+            border-right: $dialogue-border-width solid $me_color;
+
+            &>*{
+                /* Position */
+                float: right;
+            }
+        }
+    }
+
+    div.monologue{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+
+        p{
+            margin-top: 80px;
+            margin-bottom: 0; //cancel bottom margin
+            font-size: 24px;
+            font-style: italic;
+            text-align: center;
+        }
+    }
+
+
+    div.door{
+        background: linear-gradient(45deg, #009000, #007b21);
+        padding-bottom: 0;
+        color: white;
+
+        img{
+            margin-bottom: 0;
+        }
+    }
+    div.window{
+        background: linear-gradient(45deg, #009000, #007b21);
+
+        div img{
+            @include box-shadow(2px 12px 12px black);
+        }
+    }
+
+    img.ipod{
+
+        margin-top: 30vh; // don't let the ipod show up so soon.
+    }
 }

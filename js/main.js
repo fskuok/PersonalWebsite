@@ -26,8 +26,8 @@
             }
 
 
-            siteModel.pages.project.forEach(function(category){
-                category.project.forEach(function(project){
+            siteModel.pages.project.categories.forEach(function(category){
+                category.projects.forEach(function(project){
                     page = underscoreSpace(project.name);
 
                     $stateProvider.state(
