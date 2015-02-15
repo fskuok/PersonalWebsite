@@ -19,6 +19,7 @@
     };
 
 
+
     SM.pages.project.categories = [
         {
             "name": "digital",
@@ -49,20 +50,22 @@
         },{
             "name": "connected",
             "projects":[
-                {
+                /*{
                     "name": "hicool",
                     "description": "Re-imagine the First-aid-kit for Hikers",
                     "year": "2014",
                     "duration": "3 Weeks",
                     "type": "Product & App Design",
                     "team": ["Behnam Heydari", "Wei-Hsun Chen"]
-                },{
+                },*/{
                     "name": "meeting room",
                     "description": "Envision the Smart Meeting Room",
                     "year": "2014",
                     "duration": "2 Months",
                     "type": "Internet of Things Design",
-                    "team": ["Behnam Heydari", "Hanyue Hu", "Stamp Siripanich", "Vishal Pallikandi"]
+                    "process": ["Research", "Concept Generation", "Prototyping", "IoT System Developing", "Web Developing"],
+                    "team": ["Behnam Heydari", "Hanyue Hu", "Stamp Siripanich", "Vishal Pallikandi"],
+                    "role": "Research; Concept generation; Designed and developed Agenda Board; Presentable illustrations"
                 }/*,{
                  "name": "sit down and talk",
                  "description": "connection devices",

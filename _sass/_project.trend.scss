@@ -2,35 +2,56 @@ $project-main-c: #222222;
 
 header.project.trend + section[ui-view]{
 
-  div[ui-view]{
+    div[ui-view]{
 
 
-    .block{
-      border-bottom: 1px solid grey;
-      padding-top: 60px;
-      padding-bottom: 60px;
+        .block{
+            border-bottom: 1px solid grey;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        div.intro{
+            div{
+                img{
+                    display: block;
+                    width: 108px;
+                    margin: 0 auto;
+                }
+
+                h2, h4{
+                    display: block;
+                    text-align: center;
+                }
+                h2{
+                    font-size: 36px;
+                    font-family: $font-default;
+                    font-weight: 300;
+                }
+                h4{
+                    font-size: 18px;
+                }
+            }
+
+        }
+
+        div.final{
+
+            padding-bottom: 0;
+            border-bottom: none;
+
+            div.span-return{
+                border-bottom: 1px solid #ccc;
+            }
+        }
+
+        div.low_fi_prototype{
+            background: #343434;
+            color: white;
+        }
+
+        div.prototype_develop{
+            @include dark;
+        }
     }
-
-
-    div.final{
-
-      padding-bottom: 0;
-      border-bottom: none;
-
-      div.span-return{
-        border-bottom: 1px solid #ccc;
-      }
-    }
-
-    div.low_fi_prototype{
-      background: #343434;
-
-      color: white;
-    }
-
-    div.prototype_develop{
-
-      @include dark;
-    }
-  }
 }
