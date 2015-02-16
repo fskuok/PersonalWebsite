@@ -10,7 +10,6 @@ header.project.meeting_room + section[ui-view] div[ui-view] {
         color:white;
     }
 
-
     h3{
         color: #67b9f3;
     }
@@ -20,10 +19,6 @@ header.project.meeting_room + section[ui-view] div[ui-view] {
         background: $meeting-room-color;
     }
 
-    div.storyboard{
-
-    }
-
     div.how_to_improve{
         background: url("../img/project/meeting_room_how_to_improve.jpg") no-repeat bottom left / auto 90%,
                     $meeting-room-color;
@@ -31,15 +26,4 @@ header.project.meeting_room + section[ui-view] div[ui-view] {
         color: white;
     }
 
-    div.connectivity_diagram{
-
-    }
-
-    div.agenda{
-
-    }
-
-    div.whiteboard{
-
-    }
 }

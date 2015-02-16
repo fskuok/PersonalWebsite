@@ -26,7 +26,7 @@
             "projects":[
                 {
                     "name": "trend",
-                    "description": "How Location-based Social Service Be More Serious ?",
+                    "description": "How Location-based Social Service Be More Personalized ?",
                     "year": "2014",
                     "duration": "3 Months",
                     "type": "Mobile App Design",

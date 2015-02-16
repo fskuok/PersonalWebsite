@@ -96,11 +96,17 @@ $block-small-width: 98%;
 .span-full{
   width: 100%;
 }
+
+/*
+   span-return is used to create some space between two rows of spans
+   if just want this span to be on a new row, use span-n-cl
+*/
+
 .span-return{
   float: left;
   display: block;
   width: spans-width( 12 );
-  padding: 0 $gap-width;
+  padding: 29px $gap-width;
   margin: 0;
-  height: 1px;
+  height: 2px;
 }

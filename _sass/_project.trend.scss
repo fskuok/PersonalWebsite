@@ -4,14 +4,9 @@ header.project.trend + section[ui-view]{
 
     div[ui-view]{
 
-
-        .block{
-            border-bottom: 1px solid grey;
-            padding-top: 60px;
-            padding-bottom: 60px;
-        }
-
         div.intro{
+            background: #f0f0ef;
+
             div{
                 img{
                     display: block;
@@ -35,23 +30,5 @@ header.project.trend + section[ui-view]{
 
         }
 
-        div.final{
-
-            padding-bottom: 0;
-            border-bottom: none;
-
-            div.span-return{
-                border-bottom: 1px solid #ccc;
-            }
-        }
-
-        div.low_fi_prototype{
-            background: #343434;
-            color: white;
-        }
-
-        div.prototype_develop{
-            @include dark;
-        }
     }
 }

@@ -4,9 +4,6 @@ $dialogue-border-width: 6px;
 
 header.project.birdhouse + section[ui-view] div[ui-view] {
 
-    [class^=span] img{
-        width: 100%;
-    }
 
     div[class*=dialogue]{
         width: calc(100% - #{$dialogue-border-width*2});

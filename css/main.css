@@ -1174,13 +1174,17 @@ textarea {
   width: 100%;
 }
 
+/*
+   span-return is used to create some space between two rows of spans
+   if just want this span to be on a new row, use span-n-cl
+*/
 .span-return {
   float: left;
   display: block;
   width: 96.66667%;
-  padding: 0 1.66667%;
+  padding: 29px 1.66667%;
   margin: 0;
-  height: 1px;
+  height: 2px;
 }
 
 /****************************
@@ -2320,6 +2324,28 @@ header.project.in + section[ui-view] div[ui-view] h3 {
   font-family: "Hammersmith One", Helvetica, sans-serif;
   font-size: 24px;
 }
+header.project.in + section[ui-view] div[ui-view] h3.span-12-center {
+  position: relative;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+header.project.in + section[ui-view] div[ui-view] h3.span-12-center:before, header.project.in + section[ui-view] div[ui-view] h3.span-12-center:after {
+  content: '';
+  width: 60%;
+  height: 1px;
+  background: #777;
+  position: absolute;
+  top: 50%;
+}
+header.project.in + section[ui-view] div[ui-view] h3.span-12-center:before {
+  margin-left: -62%;
+}
+header.project.in + section[ui-view] div[ui-view] h3.span-12-center:after {
+  margin-left: 2%;
+}
+header.project.in + section[ui-view] div[ui-view] div[class^=span] > img {
+  width: 100%;
+}
 header.project.in + section[ui-view] div[ui-view] h4 {
   /* Typeface */
   font-size: 20px;
@@ -2327,6 +2353,7 @@ header.project.in + section[ui-view] div[ui-view] h4 {
 }
 header.project.in + section[ui-view] div[ui-view] p {
   /* Box Model */
+  padding: 8px 0;
   /* Typeface */
   font-size: 14px;
 }
@@ -2338,9 +2365,6 @@ header.project.laser_level + section[ui-view] div[ui-view] div.initial_research 
 header.project.laser_level + section[ui-view] div[ui-view] div.ergonomic_study {
   background: #333333;
   color: white;
-}
-header.project.laser_level + section[ui-view] div[ui-view] div.render_detail img {
-  width: 100%;
 }
 
 header.project.responsive_mobile_ui + section[ui-view] div[ui-view] h3 {
@@ -2356,9 +2380,6 @@ header.project.responsive_mobile_ui + section[ui-view] div[ui-view] h3.green, he
 }
 header.project.responsive_mobile_ui + section[ui-view] div[ui-view] div.problem img {
   margin: 40px 0;
-}
-header.project.responsive_mobile_ui + section[ui-view] div[ui-view] div.sensor div img {
-  width: 100%;
 }
 header.project.responsive_mobile_ui + section[ui-view] div[ui-view] div.concept {
   background: #333;
@@ -2396,9 +2417,6 @@ header.project.responsive_mobile_ui + section[ui-view] div[ui-view] img.interfac
   margin: 60px 0;
 }
 
-header.project.birdhouse + section[ui-view] div[ui-view] [class^=span] img {
-  width: 100%;
-}
 header.project.birdhouse + section[ui-view] div[ui-view] div[class*=dialogue] {
   width: calc(100% - 12px);
   padding-top: 20px;
@@ -2477,10 +2495,8 @@ header.project.birdhouse + section[ui-view] div[ui-view] img.ipod {
   margin-top: 30vh;
 }
 
-header.project.trend + section[ui-view] div[ui-view] .block {
-  border-bottom: 1px solid grey;
-  padding-top: 60px;
-  padding-bottom: 60px;
+header.project.trend + section[ui-view] div[ui-view] div.intro {
+  background: #f0f0ef;
 }
 header.project.trend + section[ui-view] div[ui-view] div.intro div img {
   display: block;
@@ -2498,21 +2514,6 @@ header.project.trend + section[ui-view] div[ui-view] div.intro div h2 {
 }
 header.project.trend + section[ui-view] div[ui-view] div.intro div h4 {
   font-size: 18px;
-}
-header.project.trend + section[ui-view] div[ui-view] div.final {
-  padding-bottom: 0;
-  border-bottom: none;
-}
-header.project.trend + section[ui-view] div[ui-view] div.final div.span-return {
-  border-bottom: 1px solid #ccc;
-}
-header.project.trend + section[ui-view] div[ui-view] div.low_fi_prototype {
-  background: #343434;
-  color: white;
-}
-header.project.trend + section[ui-view] div[ui-view] div.prototype_develop {
-  background: #333333;
-  color: white;
 }
 
 header.project.hicool + section[ui-view] div[ui-view] div {
@@ -2544,9 +2545,6 @@ header.project.structure + section[ui-view] div[ui-view] div.design_keys {
   background: #276b3f;
 }
 
-header.project.creek_on_bridge + section[ui-view] div[ui-view] h3, header.project.creek_on_bridge + section[ui-view] div[ui-view] h4 {
-  text-align: center;
-}
 header.project.creek_on_bridge + section[ui-view] div[ui-view] .block {
   background: #262626;
   color: white;

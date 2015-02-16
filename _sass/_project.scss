@@ -197,6 +197,31 @@ header.project + section[ui-view]{
             font-size: $project-in-h3-font-size;
         }
 
+        h3.span-12-center{
+            position: relative;
+            margin-bottom: 40px; // create space for block like
+            overflow: hidden; //in case
+
+            &:before, &:after{
+                content: '';
+                width: 60%;
+                height: 1px;
+                background: #777;
+                position: absolute;
+                top: 50%
+            }
+            &:before{
+                margin-left: -62%;
+            }
+            &:after{
+                margin-left: 2%;
+            }
+        }
+
+        div[class^=span] > img{
+            width: 100%;
+        }
+
         h4{
             /* Typeface */
             font-size: $project-in-h4-font-size;
@@ -205,6 +230,7 @@ header.project + section[ui-view]{
 
         p{
             /* Box Model */
+            padding: 8px 0;
             /* Typeface */
             font-size: $project-in-p-font-size;
         }
