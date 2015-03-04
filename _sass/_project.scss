@@ -15,10 +15,19 @@ $category-margin-top: 40px;
 header.project + section[ui-view]{
 
     div.projectList{
-    position: relative;
-    overflow: auto;
-    padding-top: 12vh;
-    height: 88vh;
+        position: relative;
+        overflow: auto;
+        padding-top: 12vh;
+        height: 88vh;
+        /*vh fix for ipad*/
+        @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+            padding-top: 1024*0.12px;
+            height: 1024*0.88px;
+        }
+        @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+            padding-top: 768*0.12px;
+            height: 768*0.88px;
+        }
 
         div.background{
             /* Position */
@@ -35,12 +44,23 @@ header.project + section[ui-view]{
             opacity: 0;
             background-color: $c-main-grey;
             background-position: center 100vh;
+            /*vh fix for ipad*/
+
             background-size: cover;
             background-attachment: fixed;
             @include transition(opacity 0.4s);
 
             @media all and (max-width: $small-break-point){
                 display: none;
+            }
+            /*vh fix for ipad*/
+            @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+                height: 1024px;
+                background-position: center 1024px;
+            }
+            @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+                height: 768px;
+                background-position: center 768px;
             }
         }
 
@@ -123,26 +143,26 @@ header.project + section[ui-view]{
 
 
     header.project.in + section[ui-view]{
-    div.projectList{
-        div.category{ @include transform(rotateX(90deg)); }
+        div.projectList{
+            div.category{ @include transform(rotateX(90deg)); }
 
-        //hide project list on small viewports
-        @media (max-width: $small-break-point){
-            display: none;
+                //hide project list on small viewports
+                @media (max-width: $small-break-point){
+                display: none;
+            }
         }
-    }
 
-    div.scroll_indicator{
-        z-index: 12;
-        /* Box Model */
-        height: $project-scroll-indicator-height;
-        margin-top: -$project-scroll-indicator-height;
+        div.scroll_indicator{
+            z-index: 12;
+                /* Box Model */
+                height: $project-scroll-indicator-height;
+                margin-top: -$project-scroll-indicator-height;
 
-        //hide scroll indicator on small viewports
-        @media (max-width: $small-break-point){
-          display: none;
+                //hide scroll indicator on small viewports
+                @media (max-width: $small-break-point){
+                    display: none;
+            }
         }
-    }
 
     div.project_introduction{
         /* Position */
@@ -199,7 +219,12 @@ header.project + section[ui-view]{
 
         h3.span-12-center{
             position: relative;
+            // use margin instead of padding as left/right gut
+            // for making the start and end align to contents
+            margin-left: $gap-width;
+            margin-right: $gap-width;
             margin-bottom: 40px; // create space for block like
+            padding: 0;
             overflow: hidden; //in case
 
             &:before, &:after{
@@ -230,9 +255,19 @@ header.project + section[ui-view]{
 
         p{
             /* Box Model */
-            padding: 8px 0;
+            padding-top: 8px;
+            padding-bottom: 8px;
             /* Typeface */
             font-size: $project-in-p-font-size;
         }
+
+        div[class^=span]{
+            p{
+                &:first-child{ padding-top: 0; }
+
+                &:last-child{ padding-bottom: 0; }
+            }
+        }
+
     }
 }

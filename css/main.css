@@ -740,6 +740,8 @@ textarea {
   width: 5%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -758,6 +760,8 @@ textarea {
   width: 13.33333%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -776,6 +780,8 @@ textarea {
   width: 21.66667%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -794,6 +800,8 @@ textarea {
   width: 30%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -812,6 +820,8 @@ textarea {
   width: 38.33333%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -830,6 +840,8 @@ textarea {
   width: 46.66667%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -848,6 +860,8 @@ textarea {
   width: 55%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -866,6 +880,8 @@ textarea {
   width: 63.33333%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -884,6 +900,8 @@ textarea {
   width: 71.66667%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -902,6 +920,8 @@ textarea {
   width: 80%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -920,6 +940,8 @@ textarea {
   width: 88.33333%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -938,6 +960,8 @@ textarea {
   width: 96.66667%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   min-height: 10px;
   margin: 0;
 }
@@ -956,6 +980,8 @@ textarea {
   width: 5%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 47.5%;
 }
@@ -974,6 +1000,8 @@ textarea {
   width: 13.33333%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 43.33333%;
 }
@@ -992,6 +1020,8 @@ textarea {
   width: 21.66667%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 39.16667%;
 }
@@ -1010,6 +1040,8 @@ textarea {
   width: 30%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 35%;
 }
@@ -1028,6 +1060,8 @@ textarea {
   width: 38.33333%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 30.83333%;
 }
@@ -1046,6 +1080,8 @@ textarea {
   width: 46.66667%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 26.66667%;
 }
@@ -1064,6 +1100,8 @@ textarea {
   width: 55%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 22.5%;
 }
@@ -1082,6 +1120,8 @@ textarea {
   width: 63.33333%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 18.33333%;
 }
@@ -1100,6 +1140,8 @@ textarea {
   width: 71.66667%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 14.16667%;
 }
@@ -1118,6 +1160,8 @@ textarea {
   width: 80%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 10%;
 }
@@ -1136,6 +1180,8 @@ textarea {
   width: 88.33333%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 5.83333%;
 }
@@ -1154,6 +1200,8 @@ textarea {
   width: 96.66667%;
   padding: 0 1.66667%;
   min-height: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   padding: 0 1.66667%;
 }
@@ -1517,6 +1565,10 @@ div, a, h4, h5, h6, p {
   margin: 0;
 }
 
+a {
+  color: black;
+}
+
 h1, h2, h3 {
   font-family: "Hammersmith One", Helvetica, sans-serif;
   text-decoration: none;
@@ -1738,6 +1790,7 @@ header.home + section[ui-view] svg {
   height: 100px;
   margin-left: -50px;
   margin-top: -50px;
+  opacity: 0;
 }
 @media all and (max-width: 480px) {
   header.home + section[ui-view] svg {
@@ -1745,10 +1798,10 @@ header.home + section[ui-view] svg {
   }
 }
 header.home + section[ui-view] svg g.logo {
-  -moz-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  -webkit-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
+  -moz-transform-origin: 50px 50px;
+  -ms-transform-origin: 50px 50px;
+  -webkit-transform-origin: 50px 50px;
+  transform-origin: 50px 50px;
   -moz-transform: translate(0, 0) scale(1);
   -ms-transform: translate(0, 0) scale(1);
   -webkit-transform: translate(0, 0) scale(1);
@@ -1780,10 +1833,10 @@ header.home + section[ui-view] svg g.logo #hexagon {
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  -moz-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  -webkit-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
+  -moz-transform-origin: 50px 50px;
+  -ms-transform-origin: 50px 50px;
+  -webkit-transform-origin: 50px 50px;
+  transform-origin: 50px 50px;
   fill: rgba(255, 255, 255, 0.7);
 }
 header.home + section[ui-view] svg g.text text[id^=svgYear] {
@@ -1793,6 +1846,9 @@ header.home + section[ui-view] svg g.text text[id^=svgYear] {
   transform: translate(19px, 59px);
   fill: #363538;
   opacity: 0;
+}
+header.home + section[ui-view] svg.normal {
+  opacity: 1;
 }
 header.home + section[ui-view] svg.normal g line, header.home + section[ui-view] svg.normal g polyline {
   opacity: 0;
@@ -1816,6 +1872,7 @@ header.home + section[ui-view] svg.deb {
   height: 240px;
   margin-left: -120px;
   margin-top: -120px;
+  opacity: 1;
 }
 header.home + section[ui-view] svg.deb g.logo {
   -moz-transform: translate(70px, 70px);
@@ -1852,6 +1909,9 @@ header.home + section[ui-view] svg.deb g.text text[id^=svgYear] {
   -ms-transform: translate(90px, 130px);
   -webkit-transform: translate(90px, 130px);
   transform: translate(90px, 130px);
+}
+header.home + section[ui-view] svg[class^=timeline20] {
+  opacity: 1;
 }
 header.home + section[ui-view] svg[class^=timeline20] g.logo {
   -moz-transform: translate(0, 0) scale(0.9);
@@ -1913,7 +1973,7 @@ header.home + section[ui-view] svg[class^=timeline20].timeline2015 g.logo #hexag
   -webkit-transform: rotate(-60deg);
   transform: rotate(-60deg);
 }
-header.home + section[ui-view] svg.about_this_site {
+header.home + section[ui-view] svg.about_this_site, header.home + section[ui-view] svg.contact_me, header.home + section[ui-view] svg.introduce {
   opacity: 0;
 }
 header.home + section[ui-view] > div {
@@ -1929,13 +1989,35 @@ header.home + section[ui-view] > div > h3 {
 }
 header.home + section[ui-view] div.introduce {
   padding: 15vh 20%;
+  /*vh fix for ipad*/
   width: 60%;
   z-index: 1;
   height: 60vh;
+  /*vh fix for ipad*/
   min-height: 400px;
-  background-image: url("../img/photo/about_cover.jpg");
+  background-image: url("../img/photo/coverphoto.jpg");
   background-size: cover;
   background-position: center center;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.introduce {
+    padding: 153.6px 20%;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.introduce {
+    padding: 115.2px 20%;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.introduce {
+    height: 614.4px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.introduce {
+    height: 460.8px;
+  }
 }
 @media all and (max-width: 480px) {
   header.home + section[ui-view] div.introduce {
@@ -2094,7 +2176,18 @@ header.home + section[ui-view] div[class^=timeline20] div.middle:after {
 header.home + section[ui-view] div.timeline2015 .left {
   background-image: url("../img/photo/cmu.jpg");
   background-size: auto 100vh;
+  /*vh fix for ipad*/
   background-attachment: fixed;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.timeline2015 .left {
+    background-size: auto 1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.timeline2015 .left {
+    background-size: auto 768px;
+  }
 }
 header.home + section[ui-view] div.timeline2014 .left {
   background-image: url("../img/photo/cmu.jpg");
@@ -2110,6 +2203,16 @@ header.home + section[ui-view] div.timeline2014 .right .iot {
   background-image: url("../img/photo/iot.jpg");
   height: 40vh;
 }
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.timeline2014 .right .iot {
+    height: 409.6px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.timeline2014 .right .iot {
+    height: 307.2px;
+  }
+}
 header.home + section[ui-view] div.timeline2014 .right .microsoft {
   border-top: 2px solid #363538;
   height: 40vh;
@@ -2118,6 +2221,16 @@ header.home + section[ui-view] div.timeline2014 .right .microsoft {
   background-position: 48vw 0;
   background-size: 52vw auto;
   background-repeat: no-repeat;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.timeline2014 .right .microsoft {
+    height: 409.6px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.timeline2014 .right .microsoft {
+    height: 307.2px;
+  }
 }
 header.home + section[ui-view] div.timeline2013 .left, header.home + section[ui-view] div.timeline2012 .left, header.home + section[ui-view] div.timeline2011 .left {
   background-image: url("../img/photo/sjtu.jpg");
@@ -2133,21 +2246,51 @@ header.home + section[ui-view] div.timeline2013 .right .tti {
   height: 36vh;
   background-image: url("../img/photo/hk.jpg");
 }
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.timeline2013 .right .tti {
+    height: 368.64px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.timeline2013 .right .tti {
+    height: 276.48px;
+  }
+}
 header.home + section[ui-view] div.timeline2013 .right .bno {
   height: 36vh;
   border-top: 2px solid #363538;
   background-image: url("../img/photo/bno.jpg");
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.timeline2013 .right .bno {
+    height: 368.64px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.timeline2013 .right .bno {
+    height: 276.48px;
+  }
 }
 header.home + section[ui-view] div.timeline2013 .right .sdc {
   height: 36vh;
   border-top: 2px solid #363538;
   background-image: url("../img/project/river_sunvelop_cover.jpg");
 }
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.timeline2013 .right .sdc {
+    height: 368.64px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.timeline2013 .right .sdc {
+    height: 276.48px;
+  }
+}
 header.home + section[ui-view] div.timeline2011 .right .structure {
   height: 40vh;
   background-image: url("../img/photo/structure.jpg");
 }
-header.home + section[ui-view] div.about_this_site {
+header.home + section[ui-view] div.about_this_site, header.home + section[ui-view] div.contact_me {
   width: 60%;
   padding: 60px 20%;
 }
@@ -2158,6 +2301,19 @@ header.project + section[ui-view] div.projectList {
   overflow: auto;
   padding-top: 12vh;
   height: 88vh;
+  /*vh fix for ipad*/
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.project + section[ui-view] div.projectList {
+    padding-top: 122.88px;
+    height: 901.12px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.project + section[ui-view] div.projectList {
+    padding-top: 92.16px;
+    height: 675.84px;
+  }
 }
 header.project + section[ui-view] div.projectList div.background {
   /* Position */
@@ -2172,16 +2328,30 @@ header.project + section[ui-view] div.projectList div.background {
   opacity: 0;
   background-color: #d7dadb;
   background-position: center 100vh;
+  /*vh fix for ipad*/
   background-size: cover;
   background-attachment: fixed;
   -moz-transition: opacity 0.4s;
   -o-transition: opacity 0.4s;
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
+  /*vh fix for ipad*/
 }
 @media all and (max-width: 480px) {
   header.project + section[ui-view] div.projectList div.background {
     display: none;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.project + section[ui-view] div.projectList div.background {
+    height: 1024px;
+    background-position: center 1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.project + section[ui-view] div.projectList div.background {
+    height: 768px;
+    background-position: center 768px;
   }
 }
 header.project + section[ui-view] div.projectList div.category {
@@ -2326,7 +2496,10 @@ header.project.in + section[ui-view] div[ui-view] h3 {
 }
 header.project.in + section[ui-view] div[ui-view] h3.span-12-center {
   position: relative;
+  margin-left: 1.66667%;
+  margin-right: 1.66667%;
   margin-bottom: 40px;
+  padding: 0;
   overflow: hidden;
 }
 header.project.in + section[ui-view] div[ui-view] h3.span-12-center:before, header.project.in + section[ui-view] div[ui-view] h3.span-12-center:after {
@@ -2353,9 +2526,16 @@ header.project.in + section[ui-view] div[ui-view] h4 {
 }
 header.project.in + section[ui-view] div[ui-view] p {
   /* Box Model */
-  padding: 8px 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
   /* Typeface */
   font-size: 14px;
+}
+header.project.in + section[ui-view] div[ui-view] div[class^=span] p:first-child {
+  padding-top: 0;
+}
+header.project.in + section[ui-view] div[ui-view] div[class^=span] p:last-child {
+  padding-bottom: 0;
 }
 
 header.project.laser_level + section[ui-view] div[ui-view] div.initial_research {
@@ -2495,29 +2675,48 @@ header.project.birdhouse + section[ui-view] div[ui-view] img.ipod {
   margin-top: 30vh;
 }
 
-header.project.trend + section[ui-view] div[ui-view] div.intro {
+header.project.triends + section[ui-view] div[ui-view] div.intro {
   background: #f0f0ef;
 }
-header.project.trend + section[ui-view] div[ui-view] div.intro div img {
+header.project.triends + section[ui-view] div[ui-view] div.intro div img {
   display: block;
   width: 108px;
   margin: 0 auto;
 }
-header.project.trend + section[ui-view] div[ui-view] div.intro div h2, header.project.trend + section[ui-view] div[ui-view] div.intro div h4 {
+header.project.triends + section[ui-view] div[ui-view] div.intro div h2, header.project.triends + section[ui-view] div[ui-view] div.intro div h4 {
   display: block;
   text-align: center;
 }
-header.project.trend + section[ui-view] div[ui-view] div.intro div h2 {
+header.project.triends + section[ui-view] div[ui-view] div.intro div h2 {
   font-size: 36px;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
-header.project.trend + section[ui-view] div[ui-view] div.intro div h4 {
+header.project.triends + section[ui-view] div[ui-view] div.intro div h4 {
   font-size: 18px;
 }
+header.project.triends + section[ui-view] div[ui-view] div.persona div.persona2_description {
+  text-align: right;
+  margin-top: 20px;
+}
 
-header.project.hicool + section[ui-view] div[ui-view] div {
-  height: 100vh;
+header.project.hicool + section[ui-view] div[ui-view] div.product_definition h3, header.project.hicool + section[ui-view] div[ui-view] div.product_definition h4, header.project.hicool + section[ui-view] div[ui-view] div.product_definition p {
+  text-align: center;
+}
+header.project.hicool + section[ui-view] div[ui-view] div.product_definition span.red {
+  color: #fc5d60;
+}
+header.project.hicool + section[ui-view] div[ui-view] div.product_definition span.green {
+  color: #52a421;
+}
+header.project.hicool + section[ui-view] div[ui-view] div.product_definition span.blue {
+  color: #34a4bd;
+}
+header.project.hicool + section[ui-view] div[ui-view] div.information2 {
+  background: #bbc9d1;
+  -moz-box-shadow: inset 0px 8px 8px -8px rgba(33, 33, 33, 0.7), inset 0px -8px 8px -8px rgba(33, 33, 33, 0.7);
+  -webkit-box-shadow: inset 0px 8px 8px -8px rgba(33, 33, 33, 0.7), inset 0px -8px 8px -8px rgba(33, 33, 33, 0.7);
+  box-shadow: inset 0px 8px 8px -8px rgba(33, 33, 33, 0.7), inset 0px -8px 8px -8px rgba(33, 33, 33, 0.7);
 }
 
 header.project.meeting_room + section[ui-view] div[ui-view] .dark {
@@ -2528,12 +2727,16 @@ header.project.meeting_room + section[ui-view] div[ui-view] h3 {
   color: #67b9f3;
 }
 header.project.meeting_room + section[ui-view] div[ui-view] div.research {
-  color: white;
   background: #f06f66;
+}
+header.project.meeting_room + section[ui-view] div[ui-view] div.research h3, header.project.meeting_room + section[ui-view] div[ui-view] div.research h4 {
+  color: white;
 }
 header.project.meeting_room + section[ui-view] div[ui-view] div.how_to_improve {
   background: url("../img/project/meeting_room_how_to_improve.jpg") no-repeat bottom left/auto 90%, #f06f66;
   height: 400px;
+}
+header.project.meeting_room + section[ui-view] div[ui-view] div.how_to_improve h3, header.project.meeting_room + section[ui-view] div[ui-view] div.how_to_improve h4 {
   color: white;
 }
 

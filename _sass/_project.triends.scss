@@ -1,6 +1,6 @@
 $project-main-c: #222222;
 
-header.project.trend + section[ui-view]{
+header.project.triends + section[ui-view]{
 
     div[ui-view]{
 
@@ -28,6 +28,13 @@ header.project.trend + section[ui-view]{
                 }
             }
 
+        }
+
+        div.persona{
+            div.persona2_description{
+                text-align: right;
+                margin-top: 20px;
+            }
         }
 
     }

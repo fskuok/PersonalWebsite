@@ -36,6 +36,10 @@ div, a, h4, h5, h6, p{
   margin: 0;
 }
 
+a{
+    color: black;
+}
+
 h1, h2, h3{
   font-family: $font-bold;
   text-decoration: none;
@@ -75,7 +79,7 @@ section[ui-view]{
 @import "project.laser_level";
 @import "project.responsive_mobile_ui";
 @import "project.birdhouse";
-@import "project.trend";
+@import "project.triends";
 @import "project.hicool";
 @import "project.meeting_room";
 @import "project.river_sunvelop";

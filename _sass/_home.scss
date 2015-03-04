@@ -43,13 +43,15 @@ header.home + section[ui-view]{
     height: $about-svg-width;
     margin-left: -$about-svg-width/2;
     margin-top: -$about-svg-width/2;
+      opacity: 0;
 
     @media all and (max-width: $small-break-point){
       display: none;
     }
 
     g.logo{
-      @include apply-origin(50% 50%, false); //let logo rotate pivot be the center
+
+      @include apply-origin(50px 50px, false); //let logo rotate pivot be the center
       @include transform(translate(0, 0) scale(1));
 
 
@@ -69,7 +71,7 @@ header.home + section[ui-view]{
 
       #hexagon { //transparent white background
         @include transition(all 0.4s);
-        @include apply-origin(50% 50%, false);
+        @include apply-origin(50px 50px, false);
         fill: rgba(white, 0.7);
       }
     }
@@ -85,6 +87,7 @@ header.home + section[ui-view]{
   }
 
   svg.normal{
+      opacity: 1;
     g{
 
       line, polyline{
@@ -113,6 +116,7 @@ header.home + section[ui-view]{
     height: $about-svg-deb-width;
     margin-left: -$about-svg-deb-width/2;
     margin-top: -$about-svg-deb-width/2;
+      opacity: 1;
 
     g.logo{
       @include transform(translate($about-svg-deb-width/2- 50px, $about-svg-deb-width/2- 50px));
@@ -145,6 +149,7 @@ header.home + section[ui-view]{
 
   // logo in timelines
   svg[class^=timeline20]{
+      opacity: 1;
     g.logo{
       @include transform(translate(0, 0) scale(0.9));
 
@@ -172,7 +177,8 @@ header.home + section[ui-view]{
     }
   }
 
-  svg.about_this_site{
+    //hide logo sections
+  svg.about_this_site, svg.contact_me, svg.introduce{
     opacity: 0;
   }
 
@@ -196,20 +202,35 @@ header.home + section[ui-view]{
 
   }
 
-  div.introduce{
+div.introduce{
     padding: 15vh 20%;
+
+    /*vh fix for ipad*/
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+        padding: 1024*0.15px 20%;
+    }
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+        padding: 768*0.15px 20%;
+    }
     width: 60%;
     z-index: 1;
     height: 60vh;
+    /*vh fix for ipad*/
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+        height: 1024*0.6px;
+    }
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+        height: 768*0.6px;
+    }
     min-height: 400px;
-    background-image: url('../img/photo/about_cover.jpg');
+    background-image: url('../img/photo/coverphoto.jpg');
     background-size: cover;
     background-position: center center;
 
     @media all and (max-width: $small-break-point){
-      padding: 15vh 2%;
-      width: 96%;
-    }
+    padding: 15vh 2%;
+    width: 96%;
+        }
 
 
     p#gt1{
@@ -412,13 +433,21 @@ header.home + section[ui-view]{
 
   /**************** TIMELINE DETAIL********************/
 
-  div.timeline2015{
-    .left{
-      background-image: url('../img/photo/cmu.jpg');
-      background-size: auto 100vh;
-      background-attachment: fixed;
+    div.timeline2015{
+        .left{
+            background-image: url('../img/photo/cmu.jpg');
+            background-size: auto 100vh;
+            /*vh fix for ipad*/
+            @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+                background-size: auto 1024px;
+            }
+            @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+                background-size: auto 768px;
+            }
+
+            background-attachment: fixed;
+        }
     }
-  }
 
   div.timeline2014{
     .left{
@@ -428,14 +457,27 @@ header.home + section[ui-view]{
     }
 
     .right{
-      .iot{
-        background-image: url('../img/photo/iot.jpg');
-        height: 40vh
-      }
+        .iot{
+            background-image: url('../img/photo/iot.jpg');
+            height: 40vh;
+            @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+              height: 0.4*1024px;
+            }
+            @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+              height: 0.4*768px;
+            }
+
+        }
 
       .microsoft{
         border-top: $timeline-inyear-border-width solid $timeline-border-color;
         height: 40vh;
+          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+              height: 0.4*1024px;
+          }
+          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+              height: 0.4*768px;
+          }
         background-image: url('../img/photo/ms.jpg');
         background-attachment: fixed;
         background-position: 48vw 0;
@@ -457,18 +499,37 @@ header.home + section[ui-view]{
     .right{
       .tti{
         height: 36vh;
+          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+              height: 0.36*1024px;
+          }
+          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+              height: 0.36*768px;
+          }
         background-image: url('../img/photo/hk.jpg');
+
       }
 
 
       .bno{
         height: 36vh;
+          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+              height: 0.36*1024px;
+          }
+          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+              height: 0.36*768px;
+          }
         border-top: $timeline-inyear-border-width solid $timeline-border-color;
         background-image: url('../img/photo/bno.jpg');
       }
 
       .sdc{
         height: 36vh;
+          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+              height: 0.36*1024px;
+          }
+          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+              height: 0.36*768px;
+          }
         border-top: $timeline-inyear-border-width solid $timeline-border-color;
         background-image: url('../img/project/river_sunvelop_cover.jpg');
       }
@@ -493,8 +554,8 @@ header.home + section[ui-view]{
   }
 
 
-  div.about_this_site{
-    width: 60%;
-    padding: 60px 20%;
-  }
+    div.about_this_site, div.contact_me{
+        width: 60%;
+        padding: 60px 20%;
+    }
 }

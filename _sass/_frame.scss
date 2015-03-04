@@ -26,6 +26,9 @@ $block-small-width: 98%;
     width: spans-width( $cols );
     padding: 0 $gap-width;
     min-height: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
 
     @media all and (max-width: $small-break-point) {
         min-height: 0;
@@ -63,8 +66,6 @@ $block-small-width: 98%;
 @for $i from 1 through $col-number {
     .span-#{$i}{
         @include span($i);
-        margin-top: 20px;
-        margin-bottom: 20px;
     }
 }
 //span-n-cl: span with clear left

@@ -6,15 +6,14 @@
             "project":{}
         },
         preloadImages : [
-            'img/icons/icons_scroll_indicator.png',
-            'img/photo/about_cover.jpg'
+            'img/icons/icons_scroll_indicator.png'
         ],
         links : {
             "Vishal Pallikandi": "http://vishalpallikandi.wix.com/portfolio",
             "Stamp Siripanich": "http://www.stampsiripanich.com",
-            "Hanyue Hu": "http://hanyue.me"
-
-            //"Behnam Heydari": "http://behnamheydari.com"
+            "Hanyue Hu": "http://hanyue.me",
+            "Behnam Heydari": "http://behnamheydari.com",
+            "Wei-Hsun Chen": "http://www.weihsunchen.com"
         }
     };
 
@@ -25,7 +24,7 @@
             "name": "digital",
             "projects":[
                 {
-                    "name": "trend",
+                    "name": "triends",
                     "description": "How Location-based Social Service Be More Personalized ?",
                     "year": "2014",
                     "duration": "3 Months",
@@ -50,14 +49,16 @@
         },{
             "name": "connected",
             "projects":[
-                /*{
+                {
                     "name": "hicool",
                     "description": "Re-imagine the First-aid-kit for Hikers",
                     "year": "2014",
                     "duration": "3 Weeks",
                     "type": "Product & App Design",
-                    "team": ["Behnam Heydari", "Wei-Hsun Chen"]
-                },*/{
+                    "process": ["Research", "Concept Generation", "Prototyping", "Interface Design"],
+                    "team": ["Behnam Heydari", "Wei-Hsun Chen"],
+                    "role": "Shared work in research, concept generation; Fully designed graphics, mobile app interfaces, built 3D Models;"
+                },{
                     "name": "meeting room",
                     "description": "Envision the Smart Meeting Room",
                     "year": "2014",
@@ -65,7 +66,7 @@
                     "type": "Internet of Things Design",
                     "process": ["Research", "Concept Generation", "Prototyping", "IoT System Developing", "Web Developing"],
                     "team": ["Behnam Heydari", "Hanyue Hu", "Stamp Siripanich", "Vishal Pallikandi"],
-                    "role": "Research; Concept generation; Designed and developed Agenda Board; Presentable illustrations"
+                    "role": "Shared work in research, concept generation; Fully designed and developed Agenda Board; Presentable illustrations"
                 }/*,{
                  "name": "sit down and talk",
                  "description": "connection devices",
@@ -91,7 +92,7 @@
                     "year": "2013",
                     "duration": "2 weeks",
                     "team": ["Supported by two Industrial Designers"],
-                    "role": "Individually finished prototyping, ergonomics study, and 3D model building; Contributed partially in concept generation and form design.",
+                    "role": "Individually worked on prototyping, ergonomics study, and 3D model building; Shared works in concept generation and form design.",
                     "process": ["User Research", "Prototyping", "Ergonomics Study", "Form Design", "Design Illustration"]
                 },{
                     "name": "creek on bridge",

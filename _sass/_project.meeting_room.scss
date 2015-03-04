@@ -15,15 +15,16 @@ header.project.meeting_room + section[ui-view] div[ui-view] {
     }
 
     div.research{
-        color: white;
+        h3, h4{ color: white; }
         background: $meeting-room-color;
     }
 
     div.how_to_improve{
+        h3, h4{ color: white; }
+
         background: url("../img/project/meeting_room_how_to_improve.jpg") no-repeat bottom left / auto 90%,
                     $meeting-room-color;
         height: 400px;
-        color: white;
     }
 
 }

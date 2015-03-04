@@ -1,7 +1,6 @@
 $header-medium-break-point: 960px;
 $header-small-break-point: 660px;
 
-
 $header-total-height: 60px;
 $header-height: 60px;
 $header-padding-tb: getPorM($header-total-height, $header-height);
@@ -26,7 +25,6 @@ $header-folded-line-height: $header-folded-height - $header-nav-border-top-width
 $header-folded-padding-bottom: $header-folded-padding-top;
 $header-folded-fs: 12px;
 $header-folded-bg: white;
-
 
 $header-transition-time: 0.15s;
 $header-transition: all $header-transition-time linear;
@@ -204,7 +202,6 @@ header{
     & + section{
       margin: $header-folded-height 0 0 0;
     }
-
 
     a.identification{
       div.logoContainer{
