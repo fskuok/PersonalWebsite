@@ -55,3 +55,10 @@
 </div>
 
 <div ui-view></div>
+
+<footer ng-controller="project_footerController">
+    <p>{{projectDetail.name | titleCase}} :  {{projectDetail.description}}</p>
+    <a ng-click="goToTop()">Go to top</a>
+    <a ui-sref="project">Back to project list</a>
+
+</footer>

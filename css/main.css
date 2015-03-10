@@ -239,198 +239,6 @@ th {
   padding: 0;
 }
 
-html,
-button,
-input,
-select,
-textarea {
-  color: #222;
-}
-
-html {
-  font-size: 1em;
-  line-height: 1.4;
-}
-
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-}
-
-audio,
-canvas,
-img,
-video {
-  vertical-align: middle;
-}
-
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-textarea {
-  resize: vertical;
-}
-
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
-.ir {
-  background-color: transparent;
-  border: 0;
-  overflow: hidden;
-  /* IE 6/7 fallback */
-  *text-indent: -9999px;
-}
-
-.ir:before {
-  content: "";
-  display: block;
-  width: 0;
-  height: 150%;
-}
-
-.hidden {
-  display: none !important;
-  visibility: hidden;
-}
-
-.visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  width: auto;
-}
-
-.invisible {
-  visibility: hidden;
-}
-
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  /* 1 */
-  display: table;
-  /* 2 */
-}
-
-.clearfix:after {
-  clear: both;
-}
-
-.clearfix {
-  *zoom: 1;
-}
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
-}
-@media print, (-o-min-device-pixel-ratio: 5 / 4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
-}
-@media print {
-  * {
-    background: transparent !important;
-    color: #000 !important;
-    /* Black prints faster: h5bp.com/s */
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-
-  /*
-   * Don't show links for images, or javascript/internal links
-   */
-  .ir a:after,
-  a[href^="javascript:"]:after,
-  a[href^="#"]:after {
-    content: "";
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  thead {
-    display: table-header-group;
-    /* h5bp.com/t */
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  img {
-    max-width: 100% !important;
-  }
-
-  @page {
-    margin: 0.5cm;
-  }
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
-}
 /*****************************
 
         Universal
@@ -1568,6 +1376,9 @@ div, a, h4, h5, h6, p {
 a {
   color: black;
 }
+a:hover {
+  opacity: 0.8;
+}
 
 h1, h2, h3 {
   font-family: "Hammersmith One", Helvetica, sans-serif;
@@ -1749,9 +1560,6 @@ header.folded {
   -webkit-box-shadow: 0 0 3px rgba(44, 62, 80, 0.4);
   box-shadow: 0 0 3px rgba(44, 62, 80, 0.4);
 }
-header.folded + section {
-  margin: 24px 0 0 0;
-}
 header.folded a.identification div.logoContainer {
   width: 0;
   height: 0;
@@ -1776,21 +1584,94 @@ header div.imagePreload {
 }
 
 /* ui-view styles */
-header.home + section[ui-view] {
-  /****************    TIMELINE  ********************/
-  /**************** TIMELINE DETAIL********************/
+@-moz-keyframes arrow-animation {
+  0% {
+    -moz-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+
+  20% {
+    -moz-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+
+  80% {
+    -moz-transform: translateY(15px);
+    transform: translateY(15px);
+  }
+
+  100% {
+    -moz-transform: translateY(15px);
+    transform: translateY(15px);
+  }
+}
+@-webkit-keyframes arrow-animation {
+  0% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+
+  20% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+
+  80% {
+    -webkit-transform: translateY(15px);
+    transform: translateY(15px);
+  }
+
+  100% {
+    -webkit-transform: translateY(15px);
+    transform: translateY(15px);
+  }
+}
+@keyframes arrow-animation {
+  0% {
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+
+  20% {
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px);
+  }
+
+  80% {
+    -moz-transform: translateY(15px);
+    -ms-transform: translateY(15px);
+    -webkit-transform: translateY(15px);
+    transform: translateY(15px);
+  }
+
+  100% {
+    -moz-transform: translateY(15px);
+    -ms-transform: translateY(15px);
+    -webkit-transform: translateY(15px);
+    transform: translateY(15px);
+  }
 }
 header.home + section[ui-view] svg {
+  /* Position */
   z-index: 1000;
-  display: block;
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 100px;
-  height: 100px;
   margin-left: -50px;
   margin-top: -50px;
-  opacity: 0;
+  /* Box Model */
+  display: block;
+  width: 100px;
+  height: 100px;
+  /* Visual*/
+  -moz-transition: top 1s;
+  -o-transition: top 1s;
+  -webkit-transition: top 1s;
+  transition: top 1s;
 }
 @media all and (max-width: 480px) {
   header.home + section[ui-view] svg {
@@ -1808,6 +1689,7 @@ header.home + section[ui-view] svg g.logo {
   transform: translate(0, 0) scale(1);
 }
 header.home + section[ui-view] svg g.logo line, header.home + section[ui-view] svg g.logo polyline {
+  opacity: 0;
   -moz-transition: all 1s;
   -o-transition: all 1s;
   -webkit-transition: all 1s;
@@ -1828,7 +1710,17 @@ header.home + section[ui-view] svg g.logo #topFace, header.home + section[ui-vie
   transform-origin: 50% 50%;
   opacity: 0;
 }
+header.home + section[ui-view] svg g.logo #topFace {
+  fill: #f2f2f2;
+}
+header.home + section[ui-view] svg g.logo #rightFace {
+  fill: #1a1a1a;
+}
+header.home + section[ui-view] svg g.logo #leftFace {
+  fill: #979797;
+}
 header.home + section[ui-view] svg g.logo #hexagon {
+  opacity: 0;
   -moz-transition: all 0.4s;
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
@@ -1839,160 +1731,207 @@ header.home + section[ui-view] svg g.logo #hexagon {
   transform-origin: 50px 50px;
   fill: rgba(255, 255, 255, 0.7);
 }
+header.home + section[ui-view] svg polyline.arrow {
+  stroke: #2c3e50;
+  fill: none;
+  stroke-width: 1px;
+  opacity: 0;
+}
 header.home + section[ui-view] svg g.text text[id^=svgYear] {
   -moz-transform: translate(19px, 59px);
   -ms-transform: translate(19px, 59px);
   -webkit-transform: translate(19px, 59px);
   transform: translate(19px, 59px);
-  fill: #363538;
+  fill: #3d3e40;
   opacity: 0;
 }
-header.home + section[ui-view] svg.normal {
+header.home + section[ui-view] svg.introduce {
+  top: 80%;
+}
+header.home + section[ui-view] svg.introduce g.logo #hexagon, header.home + section[ui-view] svg.introduce polyline.arrow {
   opacity: 1;
 }
-header.home + section[ui-view] svg.normal g line, header.home + section[ui-view] svg.normal g polyline {
-  opacity: 0;
-  stroke: white;
+header.home + section[ui-view] svg.introduce g.logo #hexagon {
+  fill: none;
+  stroke: #2c3e50;
+  stroke-width: 1px;
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
-header.home + section[ui-view] svg.normal g #topFace, header.home + section[ui-view] svg.normal g #rightFace {
-  opacity: 0.3;
+header.home + section[ui-view] svg.introduce polyline.arrow {
+  -moz-animation: arrow-animation 2s ease-in-out infinite;
+  -webkit-animation: arrow-animation 2s ease-in-out infinite;
+  animation: arrow-animation 2s ease-in-out infinite;
 }
-header.home + section[ui-view] svg.normal g #hexagon {
-  opacity: 1;
-}
-header.home + section[ui-view] svg.normal #svgYear {
-  -moz-transform: translate(20px, 60px);
-  -ms-transform: translate(20px, 60px);
-  -webkit-transform: translate(20px, 60px);
-  transform: translate(20px, 60px);
-  opacity: 0;
-}
-header.home + section[ui-view] svg.deb {
+header.home + section[ui-view] svg.about-me-header, header.home + section[ui-view] svg.deb {
   width: 240px;
   height: 240px;
   margin-left: -120px;
   margin-top: -120px;
-  opacity: 1;
+  /*
+  g.text text[id^=svgYear]{
+      @include transform(
+            translate(
+                20px + ($about-svg-deb-width - $about-svg-width)/2 ,
+                60px + ($about-svg-deb-width - $about-svg-width)/2
+            ));
+  }*/
 }
-header.home + section[ui-view] svg.deb g.logo {
+header.home + section[ui-view] svg.about-me-header g.logo, header.home + section[ui-view] svg.deb g.logo {
   -moz-transform: translate(70px, 70px);
   -ms-transform: translate(70px, 70px);
   -webkit-transform: translate(70px, 70px);
   transform: translate(70px, 70px);
 }
-header.home + section[ui-view] svg.deb g.logo #topFace, header.home + section[ui-view] svg.deb g.logo #leftFace, header.home + section[ui-view] svg.deb g.logo #rightFace {
+header.home + section[ui-view] svg.about-me-header g.logo #topFace, header.home + section[ui-view] svg.about-me-header g.logo #leftFace, header.home + section[ui-view] svg.about-me-header g.logo #rightFace, header.home + section[ui-view] svg.about-me-header g.logo #hexagon, header.home + section[ui-view] svg.deb g.logo #topFace, header.home + section[ui-view] svg.deb g.logo #leftFace, header.home + section[ui-view] svg.deb g.logo #rightFace, header.home + section[ui-view] svg.deb g.logo #hexagon {
   opacity: 1;
 }
-header.home + section[ui-view] svg.deb g.logo #topFace {
-  fill: #cd875d;
-  -moz-transform: scale(1.2) translate(0, -50px);
-  -ms-transform: scale(1.2) translate(0, -50px);
-  -webkit-transform: scale(1.2) translate(0, -50px);
-  transform: scale(1.2) translate(0, -50px);
+header.home + section[ui-view] svg.about-me-header g.logo #topFace, header.home + section[ui-view] svg.deb g.logo #topFace {
+  fill: #f3864d;
+  -moz-transform: scale(1.2) translate(0, -30px);
+  -ms-transform: scale(1.2) translate(0, -30px);
+  -webkit-transform: scale(1.2) translate(0, -30px);
+  transform: scale(1.2) translate(0, -30px);
 }
-header.home + section[ui-view] svg.deb g.logo #leftFace {
-  fill: #8faf65;
-  -moz-transform: scale(1.2) translate(-50px, 10px);
-  -ms-transform: scale(1.2) translate(-50px, 10px);
-  -webkit-transform: scale(1.2) translate(-50px, 10px);
-  transform: scale(1.2) translate(-50px, 10px);
+header.home + section[ui-view] svg.about-me-header g.logo #leftFace, header.home + section[ui-view] svg.deb g.logo #leftFace {
+  fill: #b1d87d;
+  -moz-transform: scale(1.2) translate(-30px, 10px);
+  -ms-transform: scale(1.2) translate(-30px, 10px);
+  -webkit-transform: scale(1.2) translate(-30px, 10px);
+  transform: scale(1.2) translate(-30px, 10px);
 }
-header.home + section[ui-view] svg.deb g.logo #rightFace {
-  fill: #6486ba;
-  -moz-transform: scale(1.2) translate(50px, 10px);
-  -ms-transform: scale(1.2) translate(50px, 10px);
-  -webkit-transform: scale(1.2) translate(50px, 10px);
-  transform: scale(1.2) translate(50px, 10px);
+header.home + section[ui-view] svg.about-me-header g.logo #rightFace, header.home + section[ui-view] svg.deb g.logo #rightFace {
+  fill: #769edc;
+  -moz-transform: scale(1.2) translate(30px, 10px);
+  -ms-transform: scale(1.2) translate(30px, 10px);
+  -webkit-transform: scale(1.2) translate(30px, 10px);
+  transform: scale(1.2) translate(30px, 10px);
 }
-header.home + section[ui-view] svg.deb g.text text[id^=svgYear] {
-  -moz-transform: translate(90px, 130px);
-  -ms-transform: translate(90px, 130px);
-  -webkit-transform: translate(90px, 130px);
-  transform: translate(90px, 130px);
+header.home + section[ui-view] svg.about-me-header g.logo #hexagon, header.home + section[ui-view] svg.deb g.logo #hexagon {
+  fill: rgba(0, 0, 0, 0.1);
 }
-header.home + section[ui-view] svg[class^=timeline20] {
+header.home + section[ui-view] svg.project g.logo #topFace, header.home + section[ui-view] svg.project g.logo #rightFace, header.home + section[ui-view] svg.project g.logo #leftFace {
+  opacity: 0.4;
+}
+header.home + section[ui-view] svg[class^=timeline] {
   opacity: 1;
 }
-header.home + section[ui-view] svg[class^=timeline20] g.logo {
+header.home + section[ui-view] svg[class^=timeline] g.logo {
   -moz-transform: translate(0, 0) scale(0.9);
   -ms-transform: translate(0, 0) scale(0.9);
   -webkit-transform: translate(0, 0) scale(0.9);
   transform: translate(0, 0) scale(0.9);
 }
-header.home + section[ui-view] svg[class^=timeline20] g.logo line, header.home + section[ui-view] svg[class^=timeline20] g.logo polyline, header.home + section[ui-view] svg[class^=timeline20] g.logo #topFace, header.home + section[ui-view] svg[class^=timeline20] g.logo #rightFace {
-  opacity: 0;
-}
-header.home + section[ui-view] svg[class^=timeline20] g.logo #hexagon {
+header.home + section[ui-view] svg[class^=timeline] g.logo #hexagon {
   fill: white;
-  stroke: #363538;
-  stroke-width: 2px;
+  stroke: #3d3e40;
+  stroke-width: 1px;
   opacity: 1;
 }
-header.home + section[ui-view] svg[class^=timeline20].timeline2011 #svgYear2011 {
+header.home + section[ui-view] svg.timeline2011 #svgYear2011 {
   opacity: 1;
 }
-header.home + section[ui-view] svg[class^=timeline20].timeline2011 g.logo #hexagon {
+header.home + section[ui-view] svg.timeline2011 g.logo #hexagon {
   -moz-transform: rotate(-300deg);
   -ms-transform: rotate(-300deg);
   -webkit-transform: rotate(-300deg);
   transform: rotate(-300deg);
 }
-header.home + section[ui-view] svg[class^=timeline20].timeline2012 #svgYear2012 {
+header.home + section[ui-view] svg.timeline2012 #svgYear2012 {
   opacity: 1;
 }
-header.home + section[ui-view] svg[class^=timeline20].timeline2012 g.logo #hexagon {
+header.home + section[ui-view] svg.timeline2012 g.logo #hexagon {
   -moz-transform: rotate(-240deg);
   -ms-transform: rotate(-240deg);
   -webkit-transform: rotate(-240deg);
   transform: rotate(-240deg);
 }
-header.home + section[ui-view] svg[class^=timeline20].timeline2013 #svgYear2013 {
+header.home + section[ui-view] svg.timeline2013 #svgYear2013 {
   opacity: 1;
 }
-header.home + section[ui-view] svg[class^=timeline20].timeline2013 g.logo #hexagon {
+header.home + section[ui-view] svg.timeline2013 g.logo #hexagon {
   -moz-transform: rotate(-180deg);
   -ms-transform: rotate(-180deg);
   -webkit-transform: rotate(-180deg);
   transform: rotate(-180deg);
 }
-header.home + section[ui-view] svg[class^=timeline20].timeline2014 #svgYear2014 {
+header.home + section[ui-view] svg.timeline2014 #svgYear2014 {
   opacity: 1;
 }
-header.home + section[ui-view] svg[class^=timeline20].timeline2014 g.logo #hexagon {
+header.home + section[ui-view] svg.timeline2014 g.logo #hexagon {
   -moz-transform: rotate(-120deg);
   -ms-transform: rotate(-120deg);
   -webkit-transform: rotate(-120deg);
   transform: rotate(-120deg);
 }
-header.home + section[ui-view] svg[class^=timeline20].timeline2015 #svgYear2015 {
+header.home + section[ui-view] svg.timeline2015 #svgYear2015 {
   opacity: 1;
 }
-header.home + section[ui-view] svg[class^=timeline20].timeline2015 g.logo #hexagon {
+header.home + section[ui-view] svg.timeline2015 g.logo #hexagon {
   -moz-transform: rotate(-60deg);
   -ms-transform: rotate(-60deg);
   -webkit-transform: rotate(-60deg);
   transform: rotate(-60deg);
 }
-header.home + section[ui-view] svg.about_this_site, header.home + section[ui-view] svg.contact_me, header.home + section[ui-view] svg.introduce {
-  opacity: 0;
+header.home + section[ui-view] svg.about-this-site g.logo #hexagon,
+header.home + section[ui-view] svg.about-this-site-header g.logo #hexagon,
+header.home + section[ui-view] svg.contact-me g.logo #hexagon,
+header.home + section[ui-view] svg.contact-me-header g.logo #hexagon {
+  opacity: 1;
+  fill: #2c3e50;
+}
+header.home + section[ui-view] svg.about-this-site g.logo polyline, header.home + section[ui-view] svg.about-this-site g.logo line,
+header.home + section[ui-view] svg.about-this-site-header g.logo polyline,
+header.home + section[ui-view] svg.about-this-site-header g.logo line,
+header.home + section[ui-view] svg.contact-me g.logo polyline,
+header.home + section[ui-view] svg.contact-me g.logo line,
+header.home + section[ui-view] svg.contact-me-header g.logo polyline,
+header.home + section[ui-view] svg.contact-me-header g.logo line {
+  opacity: 1;
+  stroke: white;
+  stroke-width: 2px;
+}
+header.home + section[ui-view] svg.about-this-site g.logo #leftFace, header.home + section[ui-view] svg.about-this-site g.logo #rightFace, header.home + section[ui-view] svg.about-this-site g.logo #leftFace,
+header.home + section[ui-view] svg.about-this-site-header g.logo #leftFace,
+header.home + section[ui-view] svg.about-this-site-header g.logo #rightFace,
+header.home + section[ui-view] svg.about-this-site-header g.logo #leftFace,
+header.home + section[ui-view] svg.contact-me g.logo #leftFace,
+header.home + section[ui-view] svg.contact-me g.logo #rightFace,
+header.home + section[ui-view] svg.contact-me g.logo #leftFace,
+header.home + section[ui-view] svg.contact-me-header g.logo #leftFace,
+header.home + section[ui-view] svg.contact-me-header g.logo #rightFace,
+header.home + section[ui-view] svg.contact-me-header g.logo #leftFace {
+  opacity: 0.4;
 }
 header.home + section[ui-view] > div {
   width: 100%;
   overflow: auto;
   position: relative;
+  margin-bottom: 80px;
 }
-header.home + section[ui-view] > div > h3 {
-  width: 100%;
-  text-align: center;
-  margin: 16px 0;
+header.home + section[ui-view] > div a {
+  color: #2c3e50;
+  font-weight: 500;
+}
+header.home + section[ui-view] > h3 {
+  margin: 60px 80px 24px;
+  font-size: 48px;
+  color: rgba(0, 0, 0, 0.1);
   font-family: "Hammersmith One", Helvetica, sans-serif;
+  font-style: italic;
 }
 header.home + section[ui-view] div.introduce {
-  padding: 15vh 20%;
+  padding-top: 15vh;
   /*vh fix for ipad*/
+  padding-bottom: 15vh;
+  /*vh fix for ipad*/
+  padding-left: 20%;
+  padding-right: 20%;
   width: 60%;
   z-index: 1;
-  height: 60vh;
+  height: 70vh;
   /*vh fix for ipad*/
   min-height: 400px;
   background-image: url("../img/photo/coverphoto.jpg");
@@ -2001,54 +1940,90 @@ header.home + section[ui-view] div.introduce {
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.introduce {
-    padding: 153.6px 20%;
+    padding-top: 153.6 px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.introduce {
-    padding: 115.2px 20%;
+    padding-top: 115.2 px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.introduce {
-    height: 614.4px;
+    padding-bottom: 153.6 px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.introduce {
-    height: 460.8px;
+    padding-bottom: 115.2 px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.introduce {
+    height: 716.8 px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.introduce {
+    height: 537.6 px;
   }
 }
 @media all and (max-width: 480px) {
   header.home + section[ui-view] div.introduce {
-    padding: 15vh 2%;
+    padding-top: 15vh;
+    /*vh fix for ipad*/
+    padding-bottom: 15vh;
+    /*vh fix for ipad*/
+    padding-left: 2%;
+    padding-right: 22%;
     width: 96%;
   }
 }
-header.home + section[ui-view] div.introduce p#gt1 {
+@media all and (max-width: 480px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.introduce {
+    padding-top: 153.6 px;
+  }
+}
+@media all and (max-width: 480px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.introduce {
+    padding-top: 115.2 px;
+  }
+}
+@media all and (max-width: 480px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.introduce {
+    padding-bottom: 153.6 px;
+  }
+}
+@media all and (max-width: 480px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.introduce {
+    padding-bottom: 115.2 px;
+  }
+}
+
+header.home + section[ui-view] div.introduce p#greeting {
   font-size: 36px;
   font-family: 'Hammersmith One', sans-serif;
 }
-header.home + section[ui-view] div.introduce p#gt2 {
+header.home + section[ui-view] div.introduce p#intro1 {
   font-size: 42px;
   font-family: 'Hammersmith One', sans-serif;
 }
-header.home + section[ui-view] div.introduce p#gt2 span.cn {
+header.home + section[ui-view] div.introduce p#intro1 span.cn {
   display: none;
   font-weight: 800;
 }
-header.home + section[ui-view] div.introduce p#gt2:hover span.en {
+header.home + section[ui-view] div.introduce p#intro1:hover span.en {
   display: none;
 }
-header.home + section[ui-view] div.introduce p#gt2:hover span.cn {
+header.home + section[ui-view] div.introduce p#intro1:hover span.cn {
   display: inline;
 }
-header.home + section[ui-view] div.introduce p#gt3 {
+header.home + section[ui-view] div.introduce p#intro2 {
   color: #555;
   font-size: 20px;
   font-family: 'Hammersmith One', sans-serif;
 }
-header.home + section[ui-view] div.introduce p#gt3 span {
+header.home + section[ui-view] div.introduce p#intro2 span {
   font-size: 24px;
   color: #2c3e50;
 }
@@ -2064,6 +2039,7 @@ header.home + section[ui-view] div.introduce div.sns a.sns-icon {
   margin: 0 10px 0 0;
 }
 header.home + section[ui-view] div.deb .left, header.home + section[ui-view] div.deb .right {
+  text-align: justify;
   width: calc( 50% - 280px);
   height: calc( 100% - 80px * 2);
 }
@@ -2077,40 +2053,78 @@ header.home + section[ui-view] div.deb .left, header.home + section[ui-view] div
 header.home + section[ui-view] div.deb .left {
   float: left;
   overflow: auto;
-  margin: 80px 200px 80px 80px;
-}
-header.home + section[ui-view] div.deb .left a.resume {
-  color: #2c3e50;
-  font-weight: 500;
+  margin: 0 200px 0 80px;
 }
 header.home + section[ui-view] div.deb .right {
-  margin: 80px 80px 80px 200px;
+  margin: 0 80px 0 200px;
   float: left;
   overflow: auto;
 }
 header.home + section[ui-view] div.deb .right h3 {
-  margin: 0 0 6px;
+  margin: 0 0 4px;
 }
 header.home + section[ui-view] div.deb .right p {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 header.home + section[ui-view] div.deb .right h3.design {
-  color: #cd875d;
+  color: #f3864d;
 }
 header.home + section[ui-view] div.deb .right h3.engineering {
-  color: #6486ba;
+  color: #769edc;
 }
 header.home + section[ui-view] div.deb .right h3.business {
-  color: #8faf65;
+  color: #b1d87d;
 }
-header.home + section[ui-view] div.timelineHeader {
-  border-bottom: 2px solid #363538;
+header.home + section[ui-view] div.project {
+  /* Visual */
+  background: linear-gradient(30deg, rgba(44, 62, 80, 0.3) 0%, rgba(44, 62, 80, 0.1) 100%);
+  -moz-box-shadow: inset 0 6px 6px -6px rgba(0, 0, 0, 0.5), inset 0 -6px 6px -6px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 6px 6px -6px rgba(0, 0, 0, 0.5), inset 0 -6px 6px -6px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 6px 6px -6px rgba(0, 0, 0, 0.5), inset 0 -6px 6px -6px rgba(0, 0, 0, 0.5);
+}
+header.home + section[ui-view] div.project p {
+  margin-top: 80px;
+  text-align: center;
+}
+header.home + section[ui-view] div.project a {
+  /* Position */
+  position: relative;
+  left: 50%;
+  margin: 20px 0 80px -91px;
+  /* Box Mode */
+  display: block;
+  width: 180px;
+  height: 40px;
+  /* Visual */
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #2c3e50;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  /* Typeface */
+  font-family: "Hammersmith One", Helvetica, sans-serif;
+  color: #2c3e50;
+  text-align: center;
+  font-size: 28px;
+  line-height: 44px;
+}
+header.home + section[ui-view] div.project a:hover {
+  border: 1px solid rgba(255, 255, 255, 0);
+  background: #2c3e50;
   color: white;
-  background: #363538;
+}
+header.home + section[ui-view] h3.timeline-header {
   z-index: 4;
 }
 header.home + section[ui-view] div[class^=timeline20] {
-  border-bottom: 2px #363538 solid;
+  margin-bottom: 0;
+  border-bottom: 1px #3d3e40 solid;
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -2127,10 +2141,10 @@ header.home + section[ui-view] div[class^=timeline20] div.left div[class^=descri
   background: white;
 }
 header.home + section[ui-view] div[class^=timeline20] div.left div[class^=description] p, header.home + section[ui-view] div[class^=timeline20] div.right div[class^=description] p {
-  color: #59595a;
+  color: #3d3e40;
 }
 header.home + section[ui-view] div[class^=timeline20] div.left div[class^=description] h3, header.home + section[ui-view] div[class^=timeline20] div.right div[class^=description] h3 {
-  color: #59595a;
+  color: #3d3e40;
 }
 header.home + section[ui-view] div[class^=timeline20] div.left {
   position: absolute;
@@ -2149,26 +2163,30 @@ header.home + section[ui-view] div[class^=timeline20] div.middle {
   height: 100%;
   position: absolute;
   left: 50%;
-  margin-left: -1px;
-  border-left: 2px #363538 solid;
+  margin-left: -0.5px;
+  border-left: 1px #3d3e40 solid;
 }
 header.home + section[ui-view] div[class^=timeline20] div.middle:after, header.home + section[ui-view] div[class^=timeline20] div.middle:before {
   content: '';
   display: block;
   position: absolute;
-  background: #363538;
-  height: 12px;
-  width: 24px;
-  margin-left: -13px;
+  background: white;
+  border-left: 1px solid #3d3e40;
+  border-right: 1px solid #3d3e40;
+  height: 11px;
+  width: 22px;
+  margin-left: -12.5px;
 }
 header.home + section[ui-view] div[class^=timeline20] div.middle:before {
-  top: -1px;
+  top: -0.5px;
+  border-bottom: 1px solid #3d3e40;
   -moz-border-radius: 0 0 12px 12px;
   -webkit-border-radius: 0;
   border-radius: 0 0 12px 12px;
 }
 header.home + section[ui-view] div[class^=timeline20] div.middle:after {
-  bottom: -1px;
+  bottom: -0.5px;
+  border-top: 1px solid #3d3e40;
   -moz-border-radius: 12px 12px 0 0;
   -webkit-border-radius: 12px;
   border-radius: 12px 12px 0 0;
@@ -2189,6 +2207,9 @@ header.home + section[ui-view] div.timeline2015 .left {
     background-size: auto 768px;
   }
 }
+header.home + section[ui-view] div.timeline2014 {
+  border-top: 1px solid #3d3e40;
+}
 header.home + section[ui-view] div.timeline2014 .left {
   background-image: url("../img/photo/cmu.jpg");
   background-attachment: fixed;
@@ -2202,20 +2223,22 @@ header.home + section[ui-view] div.timeline2014 .left {
 header.home + section[ui-view] div.timeline2014 .right .iot {
   background-image: url("../img/photo/iot.jpg");
   height: 40vh;
+  /*vh fix for ipad*/
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.timeline2014 .right .iot {
-    height: 409.6px;
+    height: 409.6 px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.timeline2014 .right .iot {
-    height: 307.2px;
+    height: 307.2 px;
   }
 }
 header.home + section[ui-view] div.timeline2014 .right .microsoft {
-  border-top: 2px solid #363538;
+  border-top: 2px solid #3d3e40;
   height: 40vh;
+  /*vh fix for ipad*/
   background-image: url("../img/photo/ms.jpg");
   background-attachment: fixed;
   background-position: 48vw 0;
@@ -2224,12 +2247,12 @@ header.home + section[ui-view] div.timeline2014 .right .microsoft {
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.timeline2014 .right .microsoft {
-    height: 409.6px;
+    height: 409.6 px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.timeline2014 .right .microsoft {
-    height: 307.2px;
+    height: 307.2 px;
   }
 }
 header.home + section[ui-view] div.timeline2013 .left, header.home + section[ui-view] div.timeline2012 .left, header.home + section[ui-view] div.timeline2011 .left {
@@ -2244,55 +2267,63 @@ header.home + section[ui-view] div.timeline2013 .left, header.home + section[ui-
 }
 header.home + section[ui-view] div.timeline2013 .right .tti {
   height: 36vh;
+  /*vh fix for ipad*/
   background-image: url("../img/photo/hk.jpg");
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.timeline2013 .right .tti {
-    height: 368.64px;
+    height: 368.64 px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.timeline2013 .right .tti {
-    height: 276.48px;
+    height: 276.48 px;
   }
 }
 header.home + section[ui-view] div.timeline2013 .right .bno {
   height: 36vh;
-  border-top: 2px solid #363538;
+  /*vh fix for ipad*/
+  border-top: 2px solid #3d3e40;
   background-image: url("../img/photo/bno.jpg");
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.timeline2013 .right .bno {
-    height: 368.64px;
+    height: 368.64 px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.timeline2013 .right .bno {
-    height: 276.48px;
+    height: 276.48 px;
   }
 }
 header.home + section[ui-view] div.timeline2013 .right .sdc {
   height: 36vh;
-  border-top: 2px solid #363538;
+  /*vh fix for ipad*/
+  border-top: 2px solid #3d3e40;
   background-image: url("../img/project/river_sunvelop_cover.jpg");
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.timeline2013 .right .sdc {
-    height: 368.64px;
+    height: 368.64 px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.timeline2013 .right .sdc {
-    height: 276.48px;
+    height: 276.48 px;
   }
 }
 header.home + section[ui-view] div.timeline2011 .right .structure {
   height: 40vh;
   background-image: url("../img/photo/structure.jpg");
 }
-header.home + section[ui-view] div.about_this_site, header.home + section[ui-view] div.contact_me {
-  width: 60%;
-  padding: 60px 20%;
+header.home + section[ui-view] div.about-this-site p, header.home + section[ui-view] div.contact-me p {
+  margin-left: 80px;
+  margin-right: 80px;
+}
+header.home + section[ui-view] footer {
+  width: 100%;
+  height: 15px;
+  background: linear-gradient(90deg, #2c3e50 0%, #fc4349 100%);
 }
 
 /* projects */
@@ -2484,7 +2515,6 @@ header.project.in + section[ui-view] div[ui-view] .block {
   /* Box Model */
   padding-top: 60px;
   padding-bottom: 60px;
-  /* Visual */
 }
 header.project.in + section[ui-view] div[ui-view] h3 {
   /* Box Model */
@@ -2536,6 +2566,27 @@ header.project.in + section[ui-view] div[ui-view] div[class^=span] p:first-child
 }
 header.project.in + section[ui-view] div[ui-view] div[class^=span] p:last-child {
   padding-bottom: 0;
+}
+header.project.in + section[ui-view] footer {
+  max-width: calc(1600px - 20%);
+  -moz-box-shadow: inset 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+  padding-top: 30px;
+  padding-bottom: 50px;
+  background: white;
+}
+header.project.in + section[ui-view] footer p, header.project.in + section[ui-view] footer a {
+  text-align: center;
+}
+header.project.in + section[ui-view] footer p {
+  font-size: 16px;
+  font-weight: 700;
+}
+header.project.in + section[ui-view] footer a {
+  display: block;
+  color: #2c3e50;
+  cursor: pointer;
 }
 
 header.project.laser_level + section[ui-view] div[ui-view] div.initial_research {
@@ -2754,10 +2805,11 @@ header.project.creek_on_bridge + section[ui-view] div[ui-view] .block {
   border: none;
 }
 header.project.creek_on_bridge + section[ui-view] div[ui-view] div.inspirations h4 {
-  margin: 10px 0;
+  margin: 0;
+  text-align: center;
 }
 header.project.creek_on_bridge + section[ui-view] div[ui-view] div.design {
-  background: #252757;
+  background: #262956;
 }
 
 /*# sourceMappingURL=main.css.map */

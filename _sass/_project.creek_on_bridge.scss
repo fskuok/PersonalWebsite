@@ -8,11 +8,12 @@ header.project.creek_on_bridge + section[ui-view] div[ui-view] {
 
   div.inspirations{
     h4{
-      margin: 10px 0;
+        margin: 0;
+        text-align: center;
     }
   }
 
   div.design{
-    background: #252757;
+    background: #262956;
   }
 }

@@ -1,441 +1,555 @@
+$about-lr-margin: 80px;
 $about-svg-width: 100px;
 $about-svg-deb-width: 240px;
 
-$c-design: #cd875d;
-$c-engineering: #6486ba;
-$c-business: #8faf65;
+$c-design: #f3864d;
+$c-engineering: #769edc;
+$c-business: #b1d87d;
 
-$about-deb-lr-margin: 80px;
-$about-deb-tb-margin: $about-deb-lr-margin;
+$project-margin-tb: 80px;
+$project-button-width: 180px;
+$project-button-border-width: 1px;
+$c-project: $c-main;
+
+$about-deb-tb-margin: $about-lr-margin;
 $about-deb-small-margin: 2%;
 
-$timeline-border-width: 2px;
+$timeline-border-width: 1px;
 $timeline-joint-height: 24px;
 $timeline-inyear-border-width: 2px;
-$timeline-border-color: #363538;
+$timeline-border-color: #3d3e40;
 
 
-$timeline-background: white;
-$timeline-text-color: #59595a;
+$timeline-background: #fff;
+$timeline-text-color: #3d3e40;
 
 @mixin half-screen-fix-bg($w, $h){
-  background-attachment: fixed;
-  background-size: 51vw;
+    background-attachment: fixed;
+    background-size: 51vw;
 
-  @media (max-aspect-ratio: $w * 2/$h){
-    background-size: auto 100vh;
-  }
+    @media (max-aspect-ratio: $w * 2/$h){
+        background-size: auto 100vh;
+    }
 }
 
+@include keyframes(arrow-animation){
+    0%{
+        @include transform( translateY(-15px) );
+    }
+    20%{
+        @include transform( translateY(-15px) );
+    }
+    80%{
+        @include transform( translateY(15px) );
+    }
 
+    100%{
+        @include transform( translateY(15px) );
+    }
+};
 
+@mixin vh($name, $h){
+    #{$name}: $h*1vh;
+    /*vh fix for ipad*/
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+        #{$name}: 1024*($h / 100)px;
+    }
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+        #{$name}: 768*($h / 100)px;
+    }
+}
 
-//**********************************************************
+@mixin vw($name, $w){
+    #{$name}: $w*1vw;
+    /*vh fix for ipad*/
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+        #{$name}: 768*($w / 100)px;
+    }
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+        #{$name}: 1024*($w / 100)px;
+    }
+}
+
 header.home + section[ui-view]{
 
-  svg{
-    z-index: 1000;
-    display: block;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: $about-svg-width;
-    height: $about-svg-width;
-    margin-left: -$about-svg-width/2;
-    margin-top: -$about-svg-width/2;
-      opacity: 0;
+//********************************************************************************************************
+//********************************************************************************************************
+//********************************************* LOGO STYLES **********************************************
+//********************************************************************************************************
+//********************************************************************************************************
 
-    @media all and (max-width: $small-break-point){
-      display: none;
+    svg{
+        /* Position */
+        // forced center in the screen
+        z-index: 1000;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-left: -$about-svg-width/2;
+        margin-top: -$about-svg-width/2;
+
+        /* Box Model */
+        display: block;
+        width: $about-svg-width;
+        height: $about-svg-width;
+
+        /* Visual*/
+        @include transition(top 1s);
+
+
+        @media all and (max-width: $small-break-point){
+            display: none;
+        }
+
+        g.logo{
+
+            @include apply-origin(50px 50px, false); //let logo rotate pivot be the center
+            @include transform(translate(0, 0) scale(1));
+
+
+            line, polyline{ //white name
+                opacity: 0;
+                @include transition(all 1s);
+                stroke: $c-main;
+                fill: none;
+                stroke-width: 2px;
+                stroke-miterlimit: 10px;
+            }
+
+            #topFace, #leftFace, #rightFace{ //hide light&shadow
+                @include transition(all 1s);
+                @include apply-origin(50% 50%, false);
+                opacity: 0;
+            }
+
+            #topFace{ fill:#F2F2F2 }
+            #rightFace{ fill: #1A1A1A }
+            #leftFace{ fill: #979797 }
+
+            #hexagon { //transparent white background
+                opacity: 0;
+                @include transition(all 0.4s);
+                @include apply-origin(50px 50px, false);
+                fill: rgba(white, 0.7);
+            }
+        }
+
+        polyline.arrow{
+            stroke: $c-main;
+            fill: none;
+            stroke-width: 1px;
+            opacity: 0;
+        }
+
+        g.text text[id^=svgYear]{
+            @include transform(translate(19px, 59px));
+            fill: $timeline-border-color;
+            opacity: 0;
+        }
     }
 
-    g.logo{
+    svg.introduce{
+        top: 80%;
 
-      @include apply-origin(50px 50px, false); //let logo rotate pivot be the center
-      @include transform(translate(0, 0) scale(1));
+        g.logo #hexagon, polyline.arrow{
+            opacity: 1;
+        }
 
+        g.logo #hexagon{
+            fill: none;
+            stroke: $c-main;
+            stroke-width: 1px;
+            @include transform( rotate( 0deg ) );
+        }
 
-      line, polyline{ //white name
-        @include transition(all 1s);
-        stroke: $c-main;
-        fill: none;
-        stroke-width: 2px;
-        stroke-miterlimit: 10px;
-      }
+        polyline.arrow{
+            @include animation(arrow-animation 2s ease-in-out infinite);
+        }
 
-      #topFace, #leftFace, #rightFace{ //hide light&shadow
-        @include transition(all 1s);
-        @include apply-origin(50% 50%, false);
-        opacity: 0;
-      }
-
-      #hexagon { //transparent white background
-        @include transition(all 0.4s);
-        @include apply-origin(50px 50px, false);
-        fill: rgba(white, 0.7);
-      }
     }
 
+    svg.about-me-header, svg.deb{
+        width: $about-svg-deb-width;
+        height: $about-svg-deb-width;
+        margin-left: -$about-svg-deb-width/2;
+        margin-top: -$about-svg-deb-width/2;
 
-    g.text text[id^=svgYear]{
-      @include transform(translate(19px, 59px));
+        g.logo{
+            @include transform(translate($about-svg-deb-width/2- 50px, $about-svg-deb-width/2- 50px));
 
-      fill: $timeline-border-color;
+            #topFace, #leftFace, #rightFace, #hexagon{ opacity: 1; }
 
-      opacity: 0;
+            #topFace{
+                fill: $c-design;
+                @include transform(scale(1.2) translate(0, -30px));
+
+            }
+            #leftFace{
+                fill: $c-business;
+                @include transform(scale(1.2) translate(-30px, 10px));
+            }
+            #rightFace{
+                fill: $c-engineering;
+                @include transform(scale(1.2) translate(30px, 10px));
+            }
+            #hexagon{
+                fill: rgba(0,0,0,.1);
+            }
+        }
+
+        /*
+        g.text text[id^=svgYear]{
+            @include transform(
+                  translate(
+                      20px + ($about-svg-deb-width - $about-svg-width)/2 ,
+                      60px + ($about-svg-deb-width - $about-svg-width)/2
+                  ));
+        }*/
     }
-  }
 
-  svg.normal{
-      opacity: 1;
-    g{
+    svg.project{
+        g.logo{
+            #topFace, #rightFace, #leftFace{
+                opacity: 0.4;
+            }
+        }
+    }
 
-      line, polyline{
-        opacity: 0;
-        stroke: white;
+    svg.timeline-header{
 
-      }
-      #topFace, #rightFace{
-        opacity: 0.3;
-      }
+    }
 
-      #hexagon{
+    // logo in timelines
+    svg[class^=timeline]{
         opacity: 1;
-      }
-    }
 
+        g.logo{
+            @include transform(translate(0, 0) scale(0.9));
 
-    #svgYear{
-      @include transform(translate(20px, 60px));
-      opacity: 0;
-    }
-  }
-
-  svg.deb{
-    width: $about-svg-deb-width;
-    height: $about-svg-deb-width;
-    margin-left: -$about-svg-deb-width/2;
-    margin-top: -$about-svg-deb-width/2;
-      opacity: 1;
-
-    g.logo{
-      @include transform(translate($about-svg-deb-width/2- 50px, $about-svg-deb-width/2- 50px));
-      #topFace, #leftFace, #rightFace{
-        opacity: 1;
-      }
-
-      #topFace{
-        fill: $c-design;
-        @include transform(scale(1.2) translate(0, -50px));
-      }
-      #leftFace{
-        fill: $c-business;
-        @include transform(scale(1.2) translate(-50px, 10px));
-      }
-      #rightFace{
-        fill: $c-engineering;
-        @include transform(scale(1.2) translate(50px, 10px));
-      }
-    }
-
-    g.text text[id^=svgYear]{
-      @include transform(
-              translate(
-                              20px + ($about-svg-deb-width - $about-svg-width)/2,
-                              60px + ($about-svg-deb-width - $about-svg-width)/2
-              ));
-    }
-  }
-
-  // logo in timelines
-  svg[class^=timeline20]{
-      opacity: 1;
-    g.logo{
-      @include transform(translate(0, 0) scale(0.9));
-
-
-      line, polyline, #topFace, #rightFace{ // hide name, light faces
-        opacity: 0;
-      }
-
-      #hexagon{
-        fill: white;
-        stroke: $timeline-border-color;
-        stroke-width: $timeline-border-width;
-        opacity: 1;
-      }
+            #hexagon{
+                fill: white;
+                stroke: $timeline-border-color;
+                stroke-width: $timeline-border-width;
+                opacity: 1;
+            }
+        }
     }
 
     @for $i from 1 through 5{
-      &.timeline201#{$i} #svgYear201#{$i}{
-        opacity: 1;
-      }
+        svg.timeline201#{$i} #svgYear201#{$i}{
+            opacity: 1;
+        }
 
-      &.timeline201#{$i} g.logo #hexagon{
-        @include transform(rotate(#{-360 + $i*60}deg));
-      }
+        svg.timeline201#{$i} g.logo #hexagon{
+            @include transform( rotate( #{-360 + $i*60}deg ) );
+        }
     }
-  }
 
     //hide logo sections
-  svg.about_this_site, svg.contact_me, svg.introduce{
-    opacity: 0;
-  }
-
-  //**********************************************************
-  //
-  //*********************** DIV STYLES ***********************
-  //
-  //**********************************************************
-
-  &>div{//blocks
-    width: 100%;
-    overflow: auto;
-    position: relative;
-
-    &>h3{//block titles
-      width: 100%;
-      text-align: center;
-      margin: 16px 0;
-      font-family: $font-bold;
-    }
-
-  }
-
-div.introduce{
-    padding: 15vh 20%;
-
-    /*vh fix for ipad*/
-    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
-        padding: 1024*0.15px 20%;
-    }
-    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
-        padding: 768*0.15px 20%;
-    }
-    width: 60%;
-    z-index: 1;
-    height: 60vh;
-    /*vh fix for ipad*/
-    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
-        height: 1024*0.6px;
-    }
-    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
-        height: 768*0.6px;
-    }
-    min-height: 400px;
-    background-image: url('../img/photo/coverphoto.jpg');
-    background-size: cover;
-    background-position: center center;
-
-    @media all and (max-width: $small-break-point){
-    padding: 15vh 2%;
-    width: 96%;
+    svg.about-this-site,
+    svg.about-this-site-header,
+    svg.contact-me,
+    svg.contact-me-header{
+        g.logo{
+            #hexagon{
+                opacity: 1;
+                fill: $c-main
+            }
+            polyline, line{
+                opacity: 1;
+                stroke: white;
+                stroke-width: 2px;
+            }
+            #leftFace, #rightFace, #leftFace{
+                opacity: 0.4;
+            }
         }
 
-
-    p#gt1{
-      font-size: 36px;
-      font-family: 'Hammersmith One', sans-serif;
     }
 
-    p#gt2{
-      font-size: 42px;
 
-      font-family: 'Hammersmith One', sans-serif;
+//********************************************************************************************************
+//********************************************************************************************************
+//********************************************** DIV STYLES **********************************************
+//********************************************************************************************************
+//********************************************************************************************************
 
-
-      span.cn{
-        display: none;
-        font-weight: 800;
-      }
-
-      &:hover{
-        span.en{
-          display: none;
-        }
-        span.cn{
-          display: inline;
-        }
-      }
-    }
-
-    p#gt3{
-      color: #555;
-      font-size: 20px;
-      font-family: 'Hammersmith One', sans-serif;
-
-      span{
-        font-size: 24px;
-        color: $c-main;
-      }
-    }
-
-    div.sns{
-      margin: 36px 0 24px;
-      overflow: auto;
-
-      a.sns-icon{
-        float: left;
-        display: block;
-        height: 50px;
-        width: 44px;
-        margin: 0 10px 0 0;
-
-      }
-
-      a#github{ @extend .icons-icons_github_44x50_off; }
-      a#github:hover{ @extend .icons-icons_github_44x50; }
-      a#twitter{ @extend .icons-icons_twitter_44x50_off; }
-      a#twitter:hover{ @extend .icons-icons_twitter_44x50; }
-      a#linkedin{ @extend .icons-icons_linkedin_44x50_off; }
-      a#linkedin:hover{ @extend .icons-icons_linkedin_44x50; }
-      a#email{ @extend .icons-icons_email_44x50_off; }
-      a#email:hover{ @extend .icons-icons_email_44x50; }
-    }
-  }
-
-  div.deb{
-
-    .left, .right{
-
-      width: calc( 50% - #{$about-deb-lr-margin*2 + $about-svg-deb-width/2});
-      height: calc( 100% - #{$about-deb-tb-margin} * 2);
-
-      @media all and (max-width: $small-break-point){
-        margin: 14px 2%;
-        width: 96%;
-        height: auto;
-      }
-    }
-
-    .left{
-      float: left;
-      overflow: auto;
-      margin: $about-deb-tb-margin ($about-svg-deb-width/2 + $about-deb-lr-margin) $about-deb-tb-margin $about-deb-lr-margin;
-
-      a.resume{
-        color: $c-main;
-        font-weight: 500;
-      }
-    }
-
-    .right{
-      margin: $about-deb-tb-margin $about-deb-lr-margin $about-deb-tb-margin ($about-svg-deb-width/2 + $about-deb-lr-margin);
-      float: left;
-      overflow: auto;
-
-
-      h3{
-        margin: 0 0 6px;
-      }
-      p{
-        margin: 0 0 10px;
-      }
-      h3.design{
-        color: $c-design;
-      }
-      h3.engineering{
-        color: $c-engineering;
-      }
-      h3.business{
-        color: $c-business;
-      }
-    }
-  }
-
-
-  /****************    TIMELINE  ********************/
-  div.timelineHeader{
-    border-bottom: $timeline-border-width solid $timeline-border-color;
-    color: white;
-    background: $timeline-border-color;
-    z-index: 4;
-  }
-
-  div[class^=timeline20]{
-    border-bottom: $timeline-border-width $timeline-border-color solid;
-    overflow: hidden;
-
-    position: relative;
-    z-index: 1;
-
-    div.left, div.right{
-      overflow: auto;
-      width: 50%;
-      height: 100%;
-      float: left;
-
-      div[class^=description] {
+    &>div{
+        width: 100%;
         overflow: auto;
-        padding: 20px;
-        background: $timeline-background;
+        position: relative;
+        margin-bottom: $about-deb-tb-margin;
 
-        p {
-          color: $timeline-text-color;
+
+        a{
+            color: $c-main;
+            font-weight: 500;
         }
-        h3 {
-          color: $timeline-text-color;
-        }
-      }
     }
 
-    div.left{
-      //make left same height as the parent container
-      position: absolute;
-      top: 0;
-      bottom: 0;
+    &>h3{
+        margin: 60px $about-deb-tb-margin 24px;
+        font-size: 48px;
+        color: rgba(black, 0.1);
+        font-family: $font-bold;
+        font-style: italic;
     }
 
-    div.right{
-      //make up for the left space
-      margin-left: 50%;
+    div.introduce{
+        @include vh(padding-top, 15);
+        @include vh(padding-bottom, 15);
+        padding-left: 20%;
+        padding-right: 20%;
 
-      div{
+        width: 60%;
+        z-index: 1;
+        @include vh(height, 70);
+        min-height: 400px;
+        background-image: url('../img/photo/coverphoto.jpg');
         background-size: cover;
         background-position: center center;
-      }
+
+        @media all and (max-width: $small-break-point){
+            @include vh(padding-top, 15);
+            @include vh(padding-bottom, 15);
+            padding-left: 2%;
+            padding-right: 22%;
+            width: 96%;
+        }
+
+
+        p#greeting{
+            font-size: 36px;
+            font-family: 'Hammersmith One', sans-serif;
+        }
+
+        p#intro1{
+            font-size: 42px;
+            font-family: 'Hammersmith One', sans-serif;
+
+
+            span.cn{
+                display: none;
+                font-weight: 800;
+            }
+
+            &:hover{
+                span.en{
+                    display: none;
+                }
+                span.cn{
+                    display: inline;
+                }
+            }
+        }
+
+        p#intro2{
+            color: #555;
+            font-size: 20px;
+            font-family: 'Hammersmith One', sans-serif;
+
+            span{
+                font-size: 24px;
+                color: $c-main;
+            }
+        }
+
+        div.sns{
+            margin: 36px 0 24px;
+            overflow: auto;
+
+            a.sns-icon{
+                float: left;
+                display: block;
+                height: 50px;
+                width: 44px;
+                margin: 0 10px 0 0;
+
+            }
+
+            a#github{ @extend .icons-icons_github_44x50_off; }
+            a#github:hover{ @extend .icons-icons_github_44x50; }
+            a#twitter{ @extend .icons-icons_twitter_44x50_off; }
+            a#twitter:hover{ @extend .icons-icons_twitter_44x50; }
+            a#linkedin{ @extend .icons-icons_linkedin_44x50_off; }
+            a#linkedin:hover{ @extend .icons-icons_linkedin_44x50; }
+            a#email{ @extend .icons-icons_email_44x50_off; }
+            a#email:hover{ @extend .icons-icons_email_44x50; }
+        }
     }
 
-    div.middle{
-      width: 0;
-      height: 100%;
+    div.deb{
 
+        .left, .right{
+            text-align: justify;
+            width: calc( 50% - #{$about-lr-margin*2 + $about-svg-deb-width/2});
+            height: calc( 100% - #{$about-deb-tb-margin} * 2);
 
-      //center it in the middle of the view port
-      position: absolute;
-      left: 50%;
-      margin-left: - $timeline-border-width / 2;
-      border-left: $timeline-border-width $timeline-border-color solid;
+            @media all and (max-width: $small-break-point){
+                margin: 14px 2%;
+                width: 96%;
+                height: auto;
+            }
+        }
 
-      //circle at year begin, and year end
-      &:after, &:before{
-        content:'';
-        display: block;
-        position: absolute;
-        background: $timeline-border-color;
-        height: $timeline-joint-height/2;
-        width: $timeline-joint-height;
-        margin-left: (-($timeline-joint-height/2 + $timeline-border-width/2));
-      }
+        .left{
+            float: left;
+            overflow: auto;
+            margin: 0 ($about-svg-deb-width/2 + $about-lr-margin) 0 $about-lr-margin;
+        }
 
-      &:before{
-        top: - $timeline-border-width/2;
-        @include border-radius( 0 0 $timeline-joint-height/2 $timeline-joint-height/2);
-      }
+        .right{
+            margin: 0 $about-lr-margin 0 ($about-svg-deb-width/2 + $about-lr-margin);
+            float: left;
+            overflow: auto;
 
-      &:after{
-        bottom: - $timeline-border-width/2;
-        @include border-radius($timeline-joint-height/2 $timeline-joint-height/2 0 0);
-      }
+            h3{
+                margin: 0 0 4px;
+            }
+            p{
+                margin: 0 0 12px;
+            }
+            h3.design{ color: $c-design; }
+            h3.engineering{ color: $c-engineering;}
+            h3.business{ color: $c-business; }
+        }
     }
-  }
+
+    div.project{
+        /* Visual */
+        background: linear-gradient(30deg, rgba($c-project, .3) 0%, rgba($c-project, .1) 100%);
+        @include box-shadow(
+            inset 0 6px 6px -6px $c-05,
+            inset 0 -6px 6px -6px $c-05
+        );
+
+        p{
+            margin-top: $project-margin-tb;
+            text-align: center;
+        }
+
+        a{
+            /* Position */
+            position: relative;
+            left: 50%;
+            margin: 20px 0 $project-margin-tb  (-($project-button-width/2 + $project-button-border-width));
+
+            /* Box Mode */
+            display: block;
+            width: $project-button-width;
+            height: 40px;
+
+            /* Visual */
+            @include border-radius(6px);
+            border: $project-button-border-width solid $c-project;
+            @include transition(all 0.4s);
+            @include box-shadow(0 0 4px $c-05);
+
+            /* Typeface */
+            font-family: $font-bold;
+            color: $c-project;
+            text-align: center;
+            font-size: 28px;
+            line-height: 40px + 4px;
 
 
-  /**************** TIMELINE DETAIL********************/
+            &:hover{
+                border: 1px solid rgba(255,255,255,0);
+                background: $c-project;
+                color: white;
+            }
+        }
+    }
+
+    h3.timeline-header{
+
+        z-index: 4;
+    }
+
+    div[class^=timeline20]{
+        margin-bottom: 0;
+        border-bottom: $timeline-border-width $timeline-border-color solid;
+        overflow: hidden;
+
+        position: relative;
+        z-index: 1;
+
+        div.left, div.right{
+            overflow: auto;
+            width: 50%;
+            height: 100%;
+            float: left;
+
+            div[class^=description] {
+                overflow: auto;
+                padding: 20px;
+                background: $timeline-background;
+
+                p { color: $timeline-text-color; }
+                h3 { color: $timeline-text-color; }
+            }
+        }
+
+        div.left{
+            //make left same height as the parent container
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+
+        div.right{
+            //make up for the left space
+            margin-left: 50%;
+
+            div{
+                background-size: cover;
+                background-position: center center;
+            }
+        }
+
+        div.middle{
+            width: 0;
+            height: 100%;
+
+
+            //center it in the middle of the view port
+            position: absolute;
+            left: 50%;
+            margin-left: - $timeline-border-width / 2;
+            border-left: $timeline-border-width $timeline-border-color solid;
+
+            //circle at year begin, and year end
+            &:after, &:before{
+                content:'';
+                display: block;
+                position: absolute;
+                background: white;
+                border-left: $timeline-border-width solid $timeline-border-color;
+                border-right: $timeline-border-width solid $timeline-border-color;
+                height: $timeline-joint-height/2 - $timeline-border-width;
+                width: $timeline-joint-height - 2*$timeline-border-width;
+                margin-left: (-($timeline-joint-height/2 + $timeline-border-width/2));
+            }
+
+            &:before{
+                top: - $timeline-border-width/2;
+                border-bottom: 1px solid $timeline-border-color;
+                @include border-radius( 0 0 $timeline-joint-height/2 $timeline-joint-height/2);
+            }
+
+            &:after{
+                bottom: - $timeline-border-width/2;
+                border-top: 1px solid $timeline-border-color;
+                @include border-radius($timeline-joint-height/2 $timeline-joint-height/2 0 0);
+            }
+        }
+    }
 
     div.timeline2015{
         .left{
             background-image: url('../img/photo/cmu.jpg');
+
+
             background-size: auto 100vh;
             /*vh fix for ipad*/
             @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
@@ -449,113 +563,93 @@ div.introduce{
         }
     }
 
-  div.timeline2014{
-    .left{
-      background-image: url('../img/photo/cmu.jpg');
-      @include half-screen-fix-bg(600, 768);
+    div.timeline2014{
+        border-top: $timeline-border-width solid $timeline-border-color;
 
-    }
-
-    .right{
-        .iot{
-            background-image: url('../img/photo/iot.jpg');
-            height: 40vh;
-            @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
-              height: 0.4*1024px;
-            }
-            @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
-              height: 0.4*768px;
-            }
+        .left{
+            background-image: url('../img/photo/cmu.jpg');
+            @include half-screen-fix-bg(600, 768);
 
         }
 
-      .microsoft{
-        border-top: $timeline-inyear-border-width solid $timeline-border-color;
-        height: 40vh;
-          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
-              height: 0.4*1024px;
-          }
-          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
-              height: 0.4*768px;
-          }
-        background-image: url('../img/photo/ms.jpg');
-        background-attachment: fixed;
-        background-position: 48vw 0;
-        background-size: 52vw auto;
-        background-repeat: no-repeat;
+        .right{
+            .iot {
+                background-image: url('../img/photo/iot.jpg');
+                @include vh(height, 40);
+            }
 
-      }
+            .microsoft{
+                border-top: $timeline-inyear-border-width solid $timeline-border-color;
+                @include vh(height, 40);
+                background-image: url('../img/photo/ms.jpg');
+                background-attachment: fixed;
+                background-position: 48vw 0;
+                background-size: 52vw auto;
+                background-repeat: no-repeat;
+
+            }
+        }
     }
-  }
-  div.timeline2013, div.timeline2012, div.timeline2011{
-    .left{
-      background-image: url('../img/photo/sjtu.jpg');
-      @include half-screen-fix-bg(900, 975);
+
+    //sjtu pic
+    div.timeline2013, div.timeline2012, div.timeline2011{
+        .left{
+            background-image: url('../img/photo/sjtu.jpg');
+            @include half-screen-fix-bg(900, 975);
+        }
     }
-  }
-  div.timeline2013{
 
+    div.timeline2013{
 
-    .right{
-      .tti{
-        height: 36vh;
-          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
-              height: 0.36*1024px;
-          }
-          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
-              height: 0.36*768px;
-          }
-        background-image: url('../img/photo/hk.jpg');
+        .right{
+            .tti{
+                @include vh(height, 36);
+                background-image: url('../img/photo/hk.jpg');
+            }
 
-      }
+            .bno{
+                @include vh(height, 36);
+                border-top: $timeline-inyear-border-width solid $timeline-border-color;
+                background-image: url('../img/photo/bno.jpg');
+            }
 
-
-      .bno{
-        height: 36vh;
-          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
-              height: 0.36*1024px;
-          }
-          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
-              height: 0.36*768px;
-          }
-        border-top: $timeline-inyear-border-width solid $timeline-border-color;
-        background-image: url('../img/photo/bno.jpg');
-      }
-
-      .sdc{
-        height: 36vh;
-          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
-              height: 0.36*1024px;
-          }
-          @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
-              height: 0.36*768px;
-          }
-        border-top: $timeline-inyear-border-width solid $timeline-border-color;
-        background-image: url('../img/project/river_sunvelop_cover.jpg');
-      }
+            .sdc{
+                @include vh(height, 36);
+                border-top: $timeline-inyear-border-width solid $timeline-border-color;
+                background-image: url('../img/project/river_sunvelop_cover.jpg');
+            }
+        }
     }
-  }
 
-  div.timeline2012{
-    .right{
+    div.timeline2012{
+        .right{
+
+        }
+    }
+
+    div.timeline2011{
+
+        .right{
+
+            .structure{
+                height: 40vh;
+                background-image: url('../img/photo/structure.jpg');
+            }
+        }
+    }
+
+
+    div.about-this-site, div.contact-me{
+        p{
+            margin-left: $about-lr-margin;
+            margin-right: $about-lr-margin;
+        }
 
     }
-  }
-
-  div.timeline2011{
-
-    .right{
-
-      .structure{
-        height: 40vh;
-        background-image: url('../img/photo/structure.jpg');
-      }
-    }
-  }
-
-
-    div.about_this_site, div.contact_me{
-        width: 60%;
-        padding: 60px 20%;
+    
+    footer{
+        width: 100%;
+        height: 15px;
+        background: linear-gradient(90deg, $c-main 0%, $c-main-opp 100%);
     }
 }

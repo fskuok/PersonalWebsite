@@ -4,7 +4,6 @@
 
 *****************************/
 @import "normalize";
-@import "h5bp";
 @import "compass/css3";
 /*****************************
 
@@ -29,38 +28,43 @@ $icons-layout: smart;
 
 
 div, a, h4, h5, h6, p{
-  font-family: $font-default;
-  font-weight: 300;
-  text-decoration: none;
-  padding: 0;
-  margin: 0;
+    font-family: $font-default;
+    font-weight: 300;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
 }
 
 a{
     color: black;
+
+    &:hover{
+        opacity: 0.8;
+    }
 }
 
 h1, h2, h3{
-  font-family: $font-bold;
-  text-decoration: none;
-  padding: 0;
-  margin: 0;
+    font-family: $font-bold;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
 }
 
 ul, li{
-  list-style: none;
-  margin: 0;
+    list-style: none;
+    margin: 0;
 }
 
 html{
-  width: 100%;
+    width: 100%;
 
-  //make y-scroll always there to prevent page jump
-  overflow-y: scroll;
-  overflow-x: auto;
+    //make y-scroll always there to prevent page jump
+    overflow-y: scroll;
+    overflow-x: auto;
 }
+
 section[ui-view]{
-  width: 100%;
+    width: 100%;
 }
 
 ::selection {

@@ -118,34 +118,34 @@
 
 
                         //if the scrollPoint was on top and now not
-                        if($rootScope.onTopScrollPoint === elem && !where.match('top')){
+                        if($rootScope.onTopScrollPoint === elem && where.indexOf('top') === -1){
                             $rootScope.$broadcast('scrollPointLeaveTop', elem, attr["fkScrollPoint"]);
                         }
 
                         //if the scrollPoint was on center and now not
-                        if($rootScope.onCenterScrollPoint === elem && !where.match('center')){
+                        if($rootScope.onCenterScrollPoint === elem && where.indexOf('center') === -1){
                             $rootScope.$broadcast('scrollPointLeaveCenter', elem, attr["fkScrollPoint"]);
                         }
 
                         //if the scrollPoint was on center and now not
-                        if($rootScope.onBottomScrollPoint === elem && !where.match('bottom')){
+                        if($rootScope.onBottomScrollPoint === elem && where.indexOf('bottom') === -1){
                             $rootScope.$broadcast('scrollPointLeaveBottom', elem, attr["fkScrollPoint"]);
                         }
 
                         //check if the scrollPoint's scrollPointReachTop event has not been emitted
-                        if($rootScope.onTopScrollPoint !== elem && where.match('top')){
+                        if($rootScope.onTopScrollPoint !== elem && where.indexOf('top') !== -1){
                             $rootScope.onTopScrollPoint = elem;
                             $rootScope.$broadcast('scrollPointReachTop', elem, attr["fkScrollPoint"]);
                         }
 
                         //check if the scrollPoint's scrollPointReachCenter event has not been emitted
-                        if($rootScope.onCenterScrollPoint !== elem && where.match('center')){
+                        if($rootScope.onCenterScrollPoint !== elem && where.indexOf('center') !== -1){
                             $rootScope.onCenterScrollPoint = elem;
                             $rootScope.$broadcast('scrollPointReachCenter', elem, attr["fkScrollPoint"]);
                         }
 
                         //check if the scrollPoint's scrollPointReachBottom event has not been emitted
-                        if($rootScope.onBottomScrollPoint !== elem && where.match('bottom')){
+                        if($rootScope.onBottomScrollPoint !== elem && where.indexOf('bottom') !== -1){
                             $rootScope.onBottomScrollPoint = elem;
                             $rootScope.$broadcast('scrollPointReachBottom', elem, attr["fkScrollPoint"]);
                         }
@@ -269,8 +269,8 @@
         })
 
 
-        .factory('domService', ['$state', '$rootScope', '$window', '$document', 'compatibilityService',
-            function ( $state, $rootScope, $window, $document, compatibilityService ) {
+        .factory('domService', ['$state', '$rootScope', '$window', '$filter', 'compatibilityService',
+            function ( $state, $rootScope, $window, $filter, compatibilityService ) {
                 var $ = function (selector){
                         return angular.element(document.querySelectorAll(selector))
                     },
@@ -281,45 +281,64 @@
                         return document.querySelectorAll(selector);
                     },
                     body = qs('body'),
-                    scrollPointStack = [];
+
+                    findProjectDetail = function(){
+                        var projectName, foundProject;
+
+                        // if goes in a project
+                        if ($state.current.name.match('project.')) {
+
+                            projectName = $state.current.name.replace('project.', '');
+
+                            siteModel.pages.project.categories.forEach(function(category){
+                                category.projects.forEach(function(project){
+                                    if($filter('underscoreSpace')(project.name) === projectName){
+                                        foundProject =  project;
+                                    }
+                                })
+                            });
+                        }
+
+                        // if is in projects list
+                        return foundProject;
+                    },
+
+                    elementAtWhere = function(elem){
+                        var result = '',
+                        //firefox place scrollTop at html tag, while others place it at body
+                            bodyTop = body.scrollTop || qs('html').scrollTop,
+                            elemTop = elem.offsetTop,
+                            elemH = elem.offsetHeight,
+                            winH  = window.innerHeight;
+
+
+                        if(bodyTop > elemTop + elemH) return 'above';
+                        if(bodyTop >= elemTop && bodyTop <  elemTop + elemH) result += 'top';
+                        if(bodyTop + winH / 2 >= elemTop && bodyTop + winH / 2 <  elemTop + elemH) result += 'center';
+                        if(bodyTop + winH >= elemTop && bodyTop + winH <  elemTop + elemH) result += 'bottom';
+                        if(bodyTop + winH < elemTop) return 'below';
+
+                        return result;
+                    };
+
+                $.qs = qs;
+                $.qsa = qsa;
+                $.elementAtWhere = elementAtWhere;
+                $.scrollPointStack = [];
+                $.nowInProject = findProjectDetail();
 
                 //while changing pages
                 $rootScope.$on('$stateChangeSuccess',
                     function(event, toState, toParams, fromState, fromParams){
-                        scrollPointStack = $('[fk-scroll-point]');
+                        $.scrollPointStack = $('[fk-scroll-point]');
+                        $.nowInProject = findProjectDetail();
 
                         //scroll to top of the page
                         $window.scrollTo(0, 0);
-
                     }
-
                 );
 
 
-
-                //alias for jQuery like selector
-
-
-                $.elementAtWhere = function elementAtWhere(elem){
-                    var result = '',
-                    //firefox place scrollTop at html tag, while others place it at body
-                        bodyTop = body.scrollTop || qs('html').scrollTop,
-                        elemTop = elem.offsetTop,
-                        elemH = elem.offsetHeight,
-                        winH  = window.innerHeight;
-
-
-                    if(bodyTop > elemTop + elemH) return 'above';
-                    if(bodyTop >= elemTop && bodyTop <  elemTop + elemH) result += 'top';
-                    if(bodyTop + winH / 2 >= elemTop && bodyTop + winH / 2 <  elemTop + elemH) result += 'center';
-                    if(bodyTop + winH >= elemTop && bodyTop + winH <  elemTop + elemH) result += 'bottom';
-                    if(bodyTop + winH < elemTop) return 'below';
-
-                    return result;
-                };
-
-                $.qs = qs;
-                $.qsa = qsa;
                 return $;
             }
         ])
@@ -353,6 +372,8 @@
                 getDialogBoxPoints : getDialogBoxPoints
             }
         });
+
+
 
 
 
@@ -448,12 +469,11 @@
 
 
         .controller('home_mainController',
-        [ '$scope', 'timeService', '$rootScope', 'domService',
-            function($scope, timeService, $rootScope, $dom){
+        [ '$scope', 'timeService', '$rootScope', 'domService', '$window',
+            function($scope, timeService, $rootScope, $dom, $window){
 
                 /********* Scope data *********/
                 $scope.greeting = timeService.greeting();
-
 
                 /********* Event Register *********/
                 $rootScope.$on('scrollPointReachCenter',
@@ -467,82 +487,78 @@
 
 
         .controller('project_mainController',
-        ['$scope', 'domService', '$window', '$state', '$filter',
-            function($scope, $dom, $window, $state, $filter){
+            ['$scope', 'domService', '$window', '$state', '$filter',
+                function($scope, $dom, $window, $state, $filter){
 
-                var changeBackground = function(name, opacity){
-                    // if it's in a project's detail, set background to the cover of that project
-                    if ($dom('header').hasClass('in')) {
-                        $scope.backgroundCSS = {
-                            "opacity": 1,
-                            "background-image":
-                            "url('img/project/" + $filter('underscoreSpace')($state.current.name.replace('project.', '')) + "_cover.jpg')"
-                        };
+                    var changeBackground = function(name, opacity){
+                        // if it's in a project's detail, set background to the cover of that project
+                        if ($dom('header').hasClass('in')) {
+                            $scope.backgroundCSS = {
+                                "opacity": 1,
+                                "background-image":
+                                "url('img/project/" + $filter('underscoreSpace')($state.current.name.replace('project.', '')) + "_cover.jpg')"
+                            };
 
-                        // set background according the arguments
-                    } else {
-                        $scope.backgroundCSS = {
-                            "opacity": opacity || 0,
-                            "background-image":  name ?
-                            "url('img/project/" + $filter('underscoreSpace')(name) + "_cover.jpg')" :
-                                "none"
-                        };
-                    }
-                };
+                            // set background according the arguments
+                        } else {
+                            $scope.backgroundCSS = {
+                                "opacity": opacity || 0,
+                                "background-image":  name ?
+                                "url('img/project/" + $filter('underscoreSpace')(name) + "_cover.jpg')" :
+                                    "none"
+                            };
+                        }
+                    };
 
-                /********* Scope data *********/
-                $scope.categories = siteModel.pages.project.categories;
-                $scope.changeBackground = changeBackground;
-
-
-                /********* Initializing *********/
-                changeBackground();
-            }
-        ]
-    )
+                    /********* Scope data *********/
+                    $scope.categories = siteModel.pages.project.categories;
+                    $scope.changeBackground = changeBackground;
 
 
-        .controller('project_introductionController', ['$scope', '$rootScope', '$state', '$filter',
-            function($scope, $rootScope, $state, $filter){
+                    /********* Initializing *********/
+                    changeBackground();
+                }
+            ]
+        )
 
-                var findProjectDetail = function(){
-                    var projectName;
 
-                    // if goes in a project
-                    if ($state.current.name.match('project.')) {
+        .controller('project_introductionController', ['$scope', '$rootScope', 'domService',
+            function($scope, $rootScope, $dom){
 
-                        projectName = $state.current.name.replace('project.', '');
-
-                        siteModel.pages.project.categories.forEach(function(category){
-                            category.projects.forEach(function(project){
-                                if($filter('underscoreSpace')(project.name) === projectName){
-                                    $scope.projectDetail =  project;
-                                }
-                            })
-                        });
-
-                        // if is in projects list
-                    } else {
-                        $scope.projectDetail = undefined;
-                    }
-                };
 
                 /********* Scope data *********/
                 $scope.links = siteModel.links;
-                $scope.projectDetail = undefined;
 
 
                 /********* Event Register *********/
-                $rootScope.$on('$stateChangeSuccess',findProjectDetail);
+                $rootScope.$on('$stateChangeSuccess',function(){
+                    $scope.projectDetail = $dom.nowInProject;
+                });
 
 
                 /********* Initializing *********/
-                findProjectDetail();
+                $scope.projectDetail = $dom.nowInProject;
+            }]
+        )
+
+
+        .controller('project_footerController', ['$scope', '$rootScope', 'domService', '$window',
+            function($scope, $rootScope, $dom, $window){
+
+                $scope.goToTop = function(){
+                    $window.scrollTo(0);
+                };
+
+                /********* Event Register *********/
+                $rootScope.$on('$stateChangeSuccess',function(){
+                    $scope.projectDetail = $dom.nowInProject;
+                });
+
+
+                /********* Initializing *********/
+                $scope.projectDetail = $dom.nowInProject;
             }]
     )
-
-
-        .controller('projectIn_mainController', ['$scope', function($scope){}])
 
 })(window);
 

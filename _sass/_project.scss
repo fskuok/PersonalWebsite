@@ -189,6 +189,9 @@ header.project + section[ui-view]{
     }
 
 
+
+
+
     div[ui-view]{
         /* Position */
         position: relative;
@@ -200,16 +203,14 @@ header.project + section[ui-view]{
         background: white;
 
         .block{
-          /* Box Model */
-          padding-top: 60px;
-          padding-bottom: 60px;
-          /* Visual */
+            /* Box Model */
+            padding-top: 60px;
+            padding-bottom: 60px;
         }
 
 
         h3{
             /* Box Model */
-
             margin-bottom: 14px;
             display: block;
             /* Typeface */
@@ -264,10 +265,34 @@ header.project + section[ui-view]{
         div[class^=span]{
             p{
                 &:first-child{ padding-top: 0; }
-
                 &:last-child{ padding-bottom: 0; }
             }
         }
 
+    }
+
+    footer{
+        max-width: calc(#{$project-max-width} - 20%);
+        @include box-shadow(inset 0 5px 5px -5px $c-05);
+        padding-top: 30px;
+        padding-bottom: 50px;
+        background: white;
+
+
+        p,a{
+            text-align: center;
+        }
+
+        p{
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        a{
+            display: block;
+            color: $c-main;
+            cursor: pointer;
+
+        }
     }
 }
