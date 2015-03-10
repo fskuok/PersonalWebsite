@@ -1398,6 +1398,10 @@ html {
   overflow-x: auto;
 }
 
+body {
+  font-size: 14px;
+}
+
 section[ui-view] {
   width: 100%;
 }
@@ -1909,7 +1913,7 @@ header.home + section[ui-view] > div {
   width: 100%;
   overflow: auto;
   position: relative;
-  margin-bottom: 80px;
+  margin-bottom: 120px;
 }
 header.home + section[ui-view] > div a {
   color: #2c3e50;
@@ -1923,16 +1927,13 @@ header.home + section[ui-view] > h3 {
   font-style: italic;
 }
 header.home + section[ui-view] div.introduce {
-  padding-top: 15vh;
-  /*vh fix for ipad*/
-  padding-bottom: 15vh;
-  /*vh fix for ipad*/
+  padding-top:  15vh;
+  padding-bottom:  15vh;
   padding-left: 20%;
   padding-right: 20%;
   width: 60%;
   z-index: 1;
-  height: 70vh;
-  /*vh fix for ipad*/
+  height:  70vh;
   min-height: 400px;
   background-image: url("../img/photo/coverphoto.jpg");
   background-size: cover;
@@ -1940,40 +1941,38 @@ header.home + section[ui-view] div.introduce {
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.introduce {
-    padding-top: 153.6 px;
+    padding-top:  153.6px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.introduce {
-    padding-top: 115.2 px;
+    padding-top:  115.2px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.introduce {
-    padding-bottom: 153.6 px;
+    padding-bottom:  153.6px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.introduce {
-    padding-bottom: 115.2 px;
+    padding-bottom:  115.2px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.introduce {
-    height: 716.8 px;
+    height:  716.8px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.introduce {
-    height: 537.6 px;
+    height:  537.6px;
   }
 }
 @media all and (max-width: 480px) {
   header.home + section[ui-view] div.introduce {
-    padding-top: 15vh;
-    /*vh fix for ipad*/
-    padding-bottom: 15vh;
-    /*vh fix for ipad*/
+    padding-top:  15vh;
+    padding-bottom:  15vh;
     padding-left: 2%;
     padding-right: 22%;
     width: 96%;
@@ -1981,22 +1980,22 @@ header.home + section[ui-view] div.introduce {
 }
 @media all and (max-width: 480px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.introduce {
-    padding-top: 153.6 px;
+    padding-top:  153.6px;
   }
 }
 @media all and (max-width: 480px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.introduce {
-    padding-top: 115.2 px;
+    padding-top:  115.2px;
   }
 }
 @media all and (max-width: 480px) and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.introduce {
-    padding-bottom: 153.6 px;
+    padding-bottom:  153.6px;
   }
 }
 @media all and (max-width: 480px) and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.introduce {
-    padding-bottom: 115.2 px;
+    padding-bottom:  115.2px;
   }
 }
 
@@ -2222,23 +2221,21 @@ header.home + section[ui-view] div.timeline2014 .left {
 }
 header.home + section[ui-view] div.timeline2014 .right .iot {
   background-image: url("../img/photo/iot.jpg");
-  height: 40vh;
-  /*vh fix for ipad*/
+  height:  40vh;
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.timeline2014 .right .iot {
-    height: 409.6 px;
+    height:  409.6px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.timeline2014 .right .iot {
-    height: 307.2 px;
+    height:  307.2px;
   }
 }
 header.home + section[ui-view] div.timeline2014 .right .microsoft {
   border-top: 2px solid #3d3e40;
-  height: 40vh;
-  /*vh fix for ipad*/
+  height:  40vh;
   background-image: url("../img/photo/ms.jpg");
   background-attachment: fixed;
   background-position: 48vw 0;
@@ -2247,12 +2244,12 @@ header.home + section[ui-view] div.timeline2014 .right .microsoft {
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.timeline2014 .right .microsoft {
-    height: 409.6 px;
+    height:  409.6px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.timeline2014 .right .microsoft {
-    height: 307.2 px;
+    height:  307.2px;
   }
 }
 header.home + section[ui-view] div.timeline2013 .left, header.home + section[ui-view] div.timeline2012 .left, header.home + section[ui-view] div.timeline2011 .left {
@@ -2266,50 +2263,47 @@ header.home + section[ui-view] div.timeline2013 .left, header.home + section[ui-
   }
 }
 header.home + section[ui-view] div.timeline2013 .right .tti {
-  height: 36vh;
-  /*vh fix for ipad*/
+  height:  36vh;
   background-image: url("../img/photo/hk.jpg");
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.timeline2013 .right .tti {
-    height: 368.64 px;
+    height:  368.64px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.timeline2013 .right .tti {
-    height: 276.48 px;
+    height:  276.48px;
   }
 }
 header.home + section[ui-view] div.timeline2013 .right .bno {
-  height: 36vh;
-  /*vh fix for ipad*/
+  height:  36vh;
   border-top: 2px solid #3d3e40;
   background-image: url("../img/photo/bno.jpg");
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.timeline2013 .right .bno {
-    height: 368.64 px;
+    height:  368.64px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.timeline2013 .right .bno {
-    height: 276.48 px;
+    height:  276.48px;
   }
 }
 header.home + section[ui-view] div.timeline2013 .right .sdc {
-  height: 36vh;
-  /*vh fix for ipad*/
+  height:  36vh;
   border-top: 2px solid #3d3e40;
   background-image: url("../img/project/river_sunvelop_cover.jpg");
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
   header.home + section[ui-view] div.timeline2013 .right .sdc {
-    height: 368.64 px;
+    height:  368.64px;
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
   header.home + section[ui-view] div.timeline2013 .right .sdc {
-    height: 276.48 px;
+    height:  276.48px;
   }
 }
 header.home + section[ui-view] div.timeline2011 .right .structure {
@@ -2354,12 +2348,11 @@ header.project + section[ui-view] div.projectList div.background {
   left: 0;
   /* Box Model */
   width: 100%;
-  height: 100vh;
+  height:  100vh;
   /* Visual */
   opacity: 0;
   background-color: #d7dadb;
-  background-position: center 100vh;
-  /*vh fix for ipad*/
+  background-position:  center 100vh;
   background-size: cover;
   background-attachment: fixed;
   -moz-transition: opacity 0.4s;
@@ -2367,6 +2360,26 @@ header.project + section[ui-view] div.projectList div.background {
   -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
   /*vh fix for ipad*/
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.project + section[ui-view] div.projectList div.background {
+    height:  1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.project + section[ui-view] div.projectList div.background {
+    height:  768px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.project + section[ui-view] div.projectList div.background {
+    background-position:  center 1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.project + section[ui-view] div.projectList div.background {
+    background-position:  center 768px;
+  }
 }
 @media all and (max-width: 480px) {
   header.project + section[ui-view] div.projectList div.background {
@@ -2395,13 +2408,13 @@ header.project + section[ui-view] div.projectList div.category {
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  -moz-perspective: 900;
-  -webkit-perspective: 900;
-  perspective: 900;
-  -moz-transform-origin: center top -300px 50%;
-  -ms-transform-origin: center top -300px 50%;
-  -webkit-transform-origin: center top -300px 50%;
-  transform-origin: center top -300px 50%;
+  -moz-perspective: 900px;
+  -webkit-perspective: 900px;
+  perspective: 900px;
+  -moz-transform-origin: center top 0px 50%;
+  -ms-transform-origin: center top 0px 50%;
+  -webkit-transform-origin: center top 0px 50%;
+  transform-origin: center top 0px 50%;
   -moz-transform: rotateX(0deg);
   -ms-transform: rotateX(0deg);
   -webkit-transform: rotateX(0deg);
@@ -2676,19 +2689,19 @@ header.project.birdhouse + section[ui-view] div[ui-view] div[class*=dialogue] p:
 }
 header.project.birdhouse + section[ui-view] div[ui-view] div[class*=dialogue].dialogue_bob {
   /* Typeface */
-  color: #1ec9ff;
+  color: #dc5225;
   /* Visual */
-  background: #eafaff;
-  border-left: 6px solid #1ec9ff;
-  border-right: 6px solid #1ec9ff;
+  background: #fcefeb;
+  border-left: 6px solid #dc5225;
+  border-right: 6px solid #dc5225;
 }
 header.project.birdhouse + section[ui-view] div[ui-view] div[class*=dialogue].dialogue_me {
   /* Typeface */
-  color: #d3559f;
+  color: #52ab58;
   /* Visual */
-  background: #fdf7fb;
-  border-left: 6px solid #d3559f;
-  border-right: 6px solid #d3559f;
+  background: #ecf6ed;
+  border-left: 6px solid #52ab58;
+  border-right: 6px solid #52ab58;
 }
 header.project.birdhouse + section[ui-view] div[ui-view] div[class*=dialogue].dialogue_me > * {
   /* Position */
@@ -2707,7 +2720,7 @@ header.project.birdhouse + section[ui-view] div[ui-view] div.monologue p {
   text-align: center;
 }
 header.project.birdhouse + section[ui-view] div[ui-view] div.door {
-  background: linear-gradient(45deg, #009000, #007b21);
+  background: linear-gradient(45deg, #9d9d99, #9c9085);
   padding-bottom: 0;
   color: white;
 }
@@ -2715,7 +2728,7 @@ header.project.birdhouse + section[ui-view] div[ui-view] div.door img {
   margin-bottom: 0;
 }
 header.project.birdhouse + section[ui-view] div[ui-view] div.window {
-  background: linear-gradient(45deg, #009000, #007b21);
+  background: linear-gradient(45deg, #9d9d99, #9c9085);
 }
 header.project.birdhouse + section[ui-view] div[ui-view] div.window div img {
   -moz-box-shadow: 2px 12px 12px black;

@@ -1,6 +1,7 @@
-$bob-color: #1ec9ff;
-$me-color: #d3559f;
+$bob-color: #dc5225;
+$me-color: #52ab58;
 $dialogue-border-width: 6px;
+
 
 header.project.birdhouse + section[ui-view] div[ui-view] {
 
@@ -47,7 +48,7 @@ header.project.birdhouse + section[ui-view] div[ui-view] {
             /* Typeface */
             color: $bob-color;
             /* Visual */
-            background: lighten($bob-color, 40);
+            background: lighten($bob-color, 45);
             border-left: $dialogue-border-width solid $bob-color;
             border-right: $dialogue-border-width solid $bob-color;
         }
@@ -57,9 +58,10 @@ header.project.birdhouse + section[ui-view] div[ui-view] {
             color: $me-color;
 
             /* Visual */
-            background: lighten($me-color, 40);
+            background: lighten($me-color, 45);
             border-left: $dialogue-border-width solid $me_color;
             border-right: $dialogue-border-width solid $me_color;
+
 
             &>*{
                 /* Position */
@@ -84,7 +86,7 @@ header.project.birdhouse + section[ui-view] div[ui-view] {
 
 
     div.door{
-        background: linear-gradient(45deg, #009000, #007b21);
+        background: linear-gradient(45deg, #9d9d99, #9c9085);
         padding-bottom: 0;
         color: white;
 
@@ -93,7 +95,8 @@ header.project.birdhouse + section[ui-view] div[ui-view] {
         }
     }
     div.window{
-        background: linear-gradient(45deg, #009000, #007b21);
+        background: linear-gradient(45deg, #9d9d99, #9c9085);
+
 
         div img{
             @include box-shadow(2px 12px 12px black);

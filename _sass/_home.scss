@@ -48,27 +48,7 @@ $timeline-text-color: #3d3e40;
     }
 };
 
-@mixin vh($name, $h){
-    #{$name}: $h*1vh;
-    /*vh fix for ipad*/
-    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
-        #{$name}: 1024*($h / 100)px;
-    }
-    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
-        #{$name}: 768*($h / 100)px;
-    }
-}
 
-@mixin vw($name, $w){
-    #{$name}: $w*1vw;
-    /*vh fix for ipad*/
-    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
-        #{$name}: 768*($w / 100)px;
-    }
-    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
-        #{$name}: 1024*($w / 100)px;
-    }
-}
 
 header.home + section[ui-view]{
 
@@ -278,7 +258,7 @@ header.home + section[ui-view]{
         width: 100%;
         overflow: auto;
         position: relative;
-        margin-bottom: $about-deb-tb-margin;
+        margin-bottom: $about-deb-tb-margin + 40px;
 
 
         a{

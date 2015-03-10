@@ -38,13 +38,14 @@ header.project + section[ui-view]{
 
             /* Box Model */
             width: 100%;
-            height: 100vh;
+            @include vh(height, 100);
+
 
             /* Visual */
             opacity: 0;
             background-color: $c-main-grey;
-            background-position: center 100vh;
-            /*vh fix for ipad*/
+            //background-position: center 100vh;
+            @include vh(background-position, center, 100);
 
             background-size: cover;
             background-attachment: fixed;
@@ -73,8 +74,8 @@ header.project + section[ui-view]{
             background-clip: content-box;
 
             @include transition(all 0.4s);
-            @include perspective(900);
-            @include transform-origin(center top -300px);
+            @include perspective(900px);
+            @include transform-origin(center top 0px);
             @include transform(rotateX(0deg));
 
             &>span, a.projectThumb{
