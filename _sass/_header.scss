@@ -168,8 +168,6 @@ header{
   }
 
 
-
-
   /****************************************** status showing *************************************/
 
   &.about nav a.about,
@@ -234,6 +232,7 @@ header{
 
   div.imagePreload{
     display: none;
+      visibility: hidden;
   }
 }//header
 
