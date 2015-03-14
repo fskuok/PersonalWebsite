@@ -117,20 +117,17 @@
                         where = $dom.elementAtWhere(elem[0]);
 
 
-                        //if the scrollPoint was on top and now not
-                        if($rootScope.onTopScrollPoint === elem && where.indexOf('top') === -1){
+                        // if the scrollPoint was on top and now not
+                        if($rootScope.onTopScrollPoint === elem && where.indexOf('top') === -1)
                             $rootScope.$broadcast('scrollPointLeaveTop', elem, attr["fkScrollPoint"]);
-                        }
 
-                        //if the scrollPoint was on center and now not
-                        if($rootScope.onCenterScrollPoint === elem && where.indexOf('center') === -1){
+                        // if the scrollPoint was on center and now not
+                        if($rootScope.onCenterScrollPoint === elem && where.indexOf('center') === -1)
                             $rootScope.$broadcast('scrollPointLeaveCenter', elem, attr["fkScrollPoint"]);
-                        }
 
                         //if the scrollPoint was on center and now not
-                        if($rootScope.onBottomScrollPoint === elem && where.indexOf('bottom') === -1){
+                        if($rootScope.onBottomScrollPoint === elem && where.indexOf('bottom') === -1)
                             $rootScope.$broadcast('scrollPointLeaveBottom', elem, attr["fkScrollPoint"]);
-                        }
 
                         //check if the scrollPoint's scrollPointReachTop event has not been emitted
                         if($rootScope.onTopScrollPoint !== elem && where.indexOf('top') !== -1){
@@ -269,10 +266,13 @@
         })
 
 
-        .factory('domService', ['$state', '$rootScope', '$window', '$filter', 'compatibilityService',
-            function ( $state, $rootScope, $window, $filter, compatibilityService ) {
+        .factory('domService', ['$state', '$rootScope', '$window', '$filter', '$document', 'compatibilityService',
+            function ( $state, $rootScope, $window, $filter, $document, compatibilityService ) {
                 var $ = function (selector){
-                        return angular.element(document.querySelectorAll(selector))
+                        if(typeof selector === 'string')
+                            return angular.element(document.querySelectorAll(selector))
+                        else
+                            return angular.element(selector);
                     },
                     qs = function (selector){
                         return document.querySelector(selector);
@@ -319,18 +319,25 @@
                         if(bodyTop + winH < elemTop) return 'below';
 
                         return result;
+                    },
+
+                    whichElementAt = function(where){
+                        for(var i=0; i<$.scrollPointStack.length; i++){
+                            if(elementAtWhere($.scrollPointStack[i]).indexOf(where) > -1) return $.scrollPointStack[i]
+                        }
                     };
 
                 $.qs = qs;
                 $.qsa = qsa;
                 $.elementAtWhere = elementAtWhere;
+                $.whichElementAt = whichElementAt;
                 $.scrollPointStack = [];
                 $.nowInProject = findProjectDetail();
 
                 //while changing pages
                 $rootScope.$on('$stateChangeSuccess',
                     function(event, toState, toParams, fromState, fromParams){
-                        $.scrollPointStack = $('[fk-scroll-point]');
+
                         $.nowInProject = findProjectDetail();
 
                         //scroll to top of the page
@@ -338,42 +345,16 @@
                     }
                 );
 
+                $rootScope.$on('$viewContentLoaded',
+                    function(){
+                        $.scrollPointStack = $('[fk-scroll-point]');
+                    }
+                );
+
 
                 return $;
             }
-        ])
-
-
-        .factory('svgService',function(){
-
-            function getDialogBoxPoints(width, height, side, pointerY, pointerR){
-                var x0 = 0, x1 = pointerR, x2 = pointerR + width,
-                    y0 = -pointerY, y1 = - pointerR, y2 = 0,
-                    y3 = pointerR, y4 = height - pointerY;
-
-                if(side === "left"){
-                    x0 = -x0;
-                    x1 = -x1;
-                    x2 = -x2;
-                }
-
-                return "" + x1 + ',' + y0  + ' ' +
-                    x2 + ',' + y0  + ' ' +
-                    x2 + ',' + y4 + ' ' +
-                    x1 + ',' + y4 + ' ' +
-                    x1 + ',' + y3 + ' ' +
-                    x0  + ',' + y2 + ' ' +
-                    x1 + ',' + y1;
-
-
-            }
-
-            return {
-                getDialogBoxPoints : getDialogBoxPoints
-            }
-        });
-
-
+        ]);
 
 
 
@@ -391,89 +372,100 @@
 
     angFsk
         .controller('header_mainController',
-        ['$scope',  'domService', '$rootScope', '$document', '$window',
-            function($scope, $dom, $rootScope, $document, $window){
-                var foldHeader = (function(){
+            ['$scope',  'domService', '$rootScope', '$document', '$window',
+                function($scope, $dom, $rootScope, $document, $window){
+                    var foldHeader = (function(){
 
-                    //use to prevent the shake caused by trigger the event in a short time;
-                    var headerFoldable = true,
-                        bodyScrollTop;
+                        //use to prevent the shake caused by trigger the event in a short time;
+                        var headerFoldable = true,
+                            bodyScrollTop;
 
-                    //Events handler - folding navigation bar
-                    return function(){
+                        //Events handler - folding navigation bar
+                        return function(){
 
-                        //firefox place scrollTop at html tag, while others place it at body
-                        bodyScrollTop = $dom.qs('body').scrollTop ||  $dom.qs('html').scrollTop;
+                            //firefox place scrollTop at html tag, while others place it at body
+                            bodyScrollTop = $dom.qs('body').scrollTop ||  $dom.qs('html').scrollTop;
 
-                        if(headerFoldable){
-                            if( (bodyScrollTop < 60 && $dom('header').hasClass("folded")) ||
-                                (bodyScrollTop >= 60 && !$dom('header').hasClass("folded")) ){
-                                $dom('header').toggleClass("folded");
-                                headerFoldable = false;
+                            if(headerFoldable){
+                                if( (bodyScrollTop < 60 && $dom('header').hasClass("folded")) ||
+                                    (bodyScrollTop >= 60 && !$dom('header').hasClass("folded")) ){
+                                    $dom('header').toggleClass("folded");
+                                    headerFoldable = false;
 
-                                //prevent header fold/unfolded more than once in 300ms
-                                setTimeout(function(){ headerFoldable = true; }, 300);
+                                    //prevent header fold/unfolded more than once in 300ms
+                                    setTimeout(function(){ headerFoldable = true; }, 300);
+                                }
                             }
                         }
-                    }
-                })();
+                    })();
 
 
-                /********* Scope data *********/
-                $scope.projectInName = '';
-                $scope.preloadImages = [];
+                    /********* Scope data *********/
+                    $scope.projectInName = '';
+                    $scope.preloadImages = [];
+                    $scope.showHeader = siteModel.showheader;
 
 
-                /********* Event Register *********/
+                    /********* Event Register *********/
                     // add class on header for style purpose
-                $rootScope.$on('$stateChangeStart',
-                    function(event, toState){
+                    $rootScope.$on('$stateChangeStart',
+                        function(event, toState){
 
-                        //if goes in a project, change the scope variable projectInName to the project's name
-                        if(toState.name.match('project.'))
-                            $scope.projectInName = toState.name.replace('project.', '');
-                        else
-                            $scope.projectInName = '';
-                    }
-                );
-
-                // only load after the view DOM is rendered, to not block the loading of view;
-                $rootScope.$on('$viewContentLoaded', function($event){
-                    $scope.preloadImages = siteModel.preloadImages;
-                });
-
-                // while changing pages
-                $rootScope.$on('$stateChangeSuccess',
-                    function(event, toState, toParams, fromState, fromParams){
-                        $dom.qs('header').setAttribute('class', parseUrl(toState.url));
-
-                        function parseUrl(url){
-                            url = url.slice(1).split('.');
-
-                            //add class 'in' for CSS
-                            if(url.length > 1 && url[0] === 'project') url.push('in');
-
-                            return url.join(' ');
+                            // if goes in a project, change the scope variable projectInName to the project's name
+                            if(toState.name.match('project.'))
+                                $scope.projectInName = toState.name.replace('project.', '');
+                            else
+                                $scope.projectInName = '';
                         }
-                    }
-                );
+                    );
 
-                // Dom ready actions
-                $document.ready(function(){
-                    foldHeader();
-                    angular.element($window).on('scroll', foldHeader);
-                });
-            }
-        ]// header: angularModule.controller() second argument ends
-    )
+                    // only load after the view DOM is rendered, to not block the loading of view;
+                    $rootScope.$on('$viewContentLoaded', function($event){
+                        $scope.preloadImages = siteModel.preloadImages;
+                    });
+
+                    // while changing pages
+                    $rootScope.$on('$stateChangeSuccess',
+                        function(event, toState, toParams, fromState, fromParams){
+                            $dom.qs('header').setAttribute('class', parseUrl(toState.url));
+
+                            function parseUrl(url){
+                                url = url.slice(1).split('.');
+
+                                //add class 'in' for CSS
+                                if(url.length > 1 && url[0] === 'project') url.push('in');
+
+                                return url.join(' ');
+                            }
+                        }
+                    );
+
+                    // Dom ready actions
+                    $document.ready(function(){
+                        foldHeader();
+                        angular.element($window).on('scroll', foldHeader);
+                    });
+                }
+            ]// header: angularModule.controller() second argument ends
+        )
 
 
         .controller('home_mainController',
-        [ '$scope', 'timeService', '$rootScope', 'domService', '$window',
-            function($scope, timeService, $rootScope, $dom, $window){
+        [ '$scope', 'timeService', '$rootScope', 'domService', '$interval', '$document',
+            function($scope, timeService, $rootScope, $dom, $interval, $document){
 
                 /********* Scope data *********/
                 $scope.greeting = timeService.greeting();
+                $scope.showLoadingCover = true;
+
+                $document.ready(function(){
+                    $scope.$apply(function(){
+                        $scope.showLoadingCover = false;
+                        $dom('svg#logo').attr("class", 'introduce');
+                        siteModel.showheader = true;
+                    });
+                });
+
 
                 /********* Event Register *********/
                 $rootScope.$on('scrollPointReachCenter',

@@ -74,6 +74,67 @@ $hidden-border-1px: solid 1px $c-f0;
 }
 
 
+@mixin vh($name, $args...){
+    $new-normal: '';
+    $new-portrait: '';
+    $new-landscape: '';
+
+    @each $arg in $args{
+        @if type-of($arg) == number {
+            $new-normal: $new-normal + ' ' + $arg*1vh;
+            $new-portrait: $new-portrait + ' ' + 1024*($arg / 100) + 'px';
+            $new-landscape: $new-landscape + ' ' + 768*($arg / 100) + 'px';
+        }
+        @else {
+            $new-normal: $new-normal + ' ' + $arg;
+            $new-portrait: $new-portrait + ' ' + $arg;
+            $new-landscape: $new-landscape + ' ' + $arg;
+        }
+    }
 
 
+    #{$name}: unquote($new-normal);
+
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+        #{$name}: unquote($new-portrait);
+    }
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+        #{$name}: unquote($new-landscape);
+    }
+
+}
+
+@mixin vw($name, $args...){
+    $new-normal: '';
+    $new-portrait: '';
+    $new-landscape: '';
+
+    @each $arg in $args{
+        @if type-of($arg) == number {
+            $new-normal: $new-normal + ' ' + $arg*1vw;
+            $new-portrait: $new-portrait + ' ' + 768*($arg / 100) + 'px';
+            $new-landscape: $new-landscape + ' ' + 1024*($arg / 100) + 'px';
+        }
+        @else {
+            $new-normal: $new-normal + ' ' + $arg;
+            $new-portrait: $new-portrait + ' ' + $arg;
+            $new-landscape: $new-landscape + ' ' + $arg;
+        }
+    }
+
+
+    #{$name}: unquote($new-normal);
+
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait){
+        #{$name}: unquote($new-portrait);
+    }
+    @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape){
+        #{$name}: unquote($new-landscape);
+    }
+
+}
+
+$header-z-index: 998;
+$svg-z-index: 1000;
+$cover-z-index: 999;
 

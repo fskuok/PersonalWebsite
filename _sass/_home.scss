@@ -1,3 +1,5 @@
+
+
 $about-lr-margin: 80px;
 $about-svg-width: 100px;
 $about-svg-deb-width: 240px;
@@ -46,7 +48,35 @@ $timeline-text-color: #3d3e40;
     100%{
         @include transform( translateY(15px) );
     }
-};
+}
+
+@include keyframes(loading-icon){
+    0%{
+        @include transform(scale(1) rotate(0deg));
+        opacity: 1;
+    }
+    50%{
+        @include transform(scale(0.6) rotate(360deg));
+        opacity: 0.4;
+    }
+    100%{
+        @include transform(scale(1) rotate(720deg));
+        opacity: 1;
+    }
+}
+
+
+@include keyframes(stroke-animation){
+    0%{
+        stroke-dashoffset: 0;
+    }
+    50%{
+        stroke-dashoffset: 10;
+    }
+    100%{
+        stroke-dashoffset: 20;
+    }
+}
 
 
 
@@ -61,7 +91,7 @@ header.home + section[ui-view]{
     svg{
         /* Position */
         // forced center in the screen
-        z-index: 1000;
+        z-index: $svg-z-index;
         position: fixed;
         top: 50%;
         left: 50%;
@@ -140,10 +170,12 @@ header.home + section[ui-view]{
             stroke: $c-main;
             stroke-width: 1px;
             @include transform( rotate( 0deg ) );
+            @include animation(stroke-animation 2s linear infinite);
+            stroke-dasharray: 10 10;
         }
 
         polyline.arrow{
-            @include animation(arrow-animation 2s ease-in-out infinite);
+            //@include animation(arrow-animation 2s ease-in-out infinite);
         }
 
     }
@@ -176,15 +208,6 @@ header.home + section[ui-view]{
                 fill: rgba(0,0,0,.1);
             }
         }
-
-        /*
-        g.text text[id^=svgYear]{
-            @include transform(
-                  translate(
-                      20px + ($about-svg-deb-width - $about-svg-width)/2 ,
-                      60px + ($about-svg-deb-width - $about-svg-width)/2
-                  ));
-        }*/
     }
 
     svg.project{
@@ -195,7 +218,15 @@ header.home + section[ui-view]{
         }
     }
 
-    svg.timeline-header{
+    svg.loading{
+        @include animation(loading-icon 3s linear infinite);
+
+        g.logo{
+            #hexagon{
+                opacity: 1;
+                fill: $c-main;
+            }
+        }
 
     }
 
@@ -253,6 +284,20 @@ header.home + section[ui-view]{
 //********************************************** DIV STYLES **********************************************
 //********************************************************************************************************
 //********************************************************************************************************
+    div.loading-cover{
+        background: white;
+        z-index: $cover-z-index;
+        @include vh(height, 100);
+        @include vh(line-height, 80);
+        width: 100%;
+        font-size: 16px;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+
+    }
+
 
     &>div{
         width: 100%;

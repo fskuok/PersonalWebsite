@@ -1,4 +1,8 @@
-<svg id="logo" class="introduce">
+<div class="loading-cover" ng-show="showLoadingCover">
+    LOADING
+</div>
+
+<svg id="logo" class="loading">
     <g>
         <g class="logo">
             <polygon id="hexagon" points="6,25 50,0 94,25 94,75 50,100 6,75" stroke-linejoin="round"></polygon>
@@ -25,7 +29,10 @@
         </g>
     </g>
 
-</svg><div class="introduce" fk-scroll-point="introduce">
+</svg>
+
+
+<div class="introduce" fk-scroll-point="introduce" ng-hide="showLoadingCover">
     <p id="greeting">{{ greeting | titleCase }}</p>
     <p id="intro1">I'm <span class="en">Fan Sai Kuok</span><span class="cn">郭 繁世</span></p>
     <p id="intro2">
@@ -39,8 +46,8 @@
     </div>
 </div>
 
-<h3 fk-scroll-point="about-me-header">About Me</h3>
-<div class="deb" fk-scroll-point="deb">
+<h3 fk-scroll-point="about-me-header" ng-hide="showLoadingCover">About Me</h3>
+<div class="deb" fk-scroll-point="deb" ng-hide="showLoadingCover">
     <div class="left">
         <p>
             As a designer and product developer, I'm currently pursuing Master of Integrated Innovation for Products & Services (former Master of Product Development), which is a great program that assemble designers, engineers and business people to create great products, at Carnegie Mellon University. With background in industrial design and web development, I create fun, useful and beautiful experiences that enrich and infuse into people's lives. I work on phases from discover, design to develop.</p>
@@ -65,15 +72,15 @@
 
 
 
-<div class="project" fk-scroll-point="project">
+<div class="project" fk-scroll-point="project" ng-hide="showLoadingCover">
     <p>Problem solving in physical, digital and connected projects</p>
     <a ui-sref="project">PORTFOLIO</a>
 </div>
 
 
-<h3 class="timeline-header" fk-scroll-point="timeline-header">Time Line</h3>
+<h3 class="timeline-header" fk-scroll-point="timeline-header" ng-hide="showLoadingCover">Time Line</h3>
 
-<div class="timeline2014" fk-scroll-point="timeline2014">
+<div class="timeline2014" fk-scroll-point="timeline2014" ng-hide="showLoadingCover">
 
     <div class="left">
         <div class="description_cmu">
@@ -105,7 +112,7 @@
     </div>
 </div>
 
-<div class="timeline2013" fk-scroll-point="timeline2013">
+<div class="timeline2013" fk-scroll-point="timeline2013" ng-hide="showLoadingCover">
 
     <div class="left">
         <div class="description_sjtu">
@@ -145,7 +152,7 @@
 </div>
 
 <!--
-<div class="timeline2012 block-full" fk-scroll-point="timeline2012">
+<div class="timeline2012 block-full" fk-scroll-point="timeline2012" ng-hide="showLoadingCover">
     <div class="left"></div>
 
     <div class="middle"></div>
@@ -154,7 +161,7 @@
 
 </div>
 -->
-<div class="timeline2011" fk-scroll-point="timeline2011">
+<div class="timeline2011" fk-scroll-point="timeline2011" ng-hide="showLoadingCover">
 
     <div class="left"></div>
 
@@ -170,14 +177,14 @@
 
 </div>
 
-<h3 class="contact-me-header" fk-scroll-point="contact-me-header">Contact Me</h3>
-<div class="contact-me" fk-scroll-point="contact-me">
+<h3 class="contact-me-header" fk-scroll-point="contact-me-header" ng-hide="showLoadingCover">Contact Me</h3>
+<div class="contact-me" fk-scroll-point="contact-me" ng-hide="showLoadingCover">
     <p>Email: <a href="mailto:fskuok@yahoo.com">fskuok@yahoo.com</a></p>
     <p>Phone: 412-320-3056</p>
 </div>
 
-<h3 class="about-this-site-header" fk-scroll-point="about-this-site-header">About This Site</h3>
-<div class="about-this-site" fk-scroll-point="about-this-site">
+<h3 class="about-this-site-header" fk-scroll-point="about-this-site-header" ng-hide="showLoadingCover">About This Site</h3>
+<div class="about-this-site" fk-scroll-point="about-this-site" ng-hide="showLoadingCover">
     <p>As a web developing enthusiasm. I designed and coded this website in Jan 2015. Beyond AngularJS(and UI-Router), every line of HTML, CSS(SASS), JavaScript is coded from scratch. I practiced to build event emitting Angular directives, to build an simple SASS grid framework, to create responsive layouts, to pre-load images using JavaScript before page transition, etc...  Code is on <a href="https://github.com/fskuok/PersonalWebsite">Github</a></p>
     <!--<p>If there is a bug or any other issue regarding this website, I'll be appreciate if you <a href="mailto:fskuok@yahoo.com">tell me.</a></p>-->
 

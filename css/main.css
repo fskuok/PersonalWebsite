@@ -1412,7 +1412,7 @@ section[ui-view] {
 }
 
 header {
-  z-index: 10000;
+  z-index: 998;
   position: fixed;
   top: 0;
   left: 0;
@@ -1659,6 +1659,108 @@ header div.imagePreload {
     transform: translateY(15px);
   }
 }
+@-moz-keyframes loading-icon {
+  0% {
+    -moz-transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+
+  50% {
+    -moz-transform: scale(0.6) rotate(360deg);
+    transform: scale(0.6) rotate(360deg);
+    opacity: 0.4;
+  }
+
+  100% {
+    -moz-transform: scale(1) rotate(720deg);
+    transform: scale(1) rotate(720deg);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes loading-icon {
+  0% {
+    -webkit-transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+
+  50% {
+    -webkit-transform: scale(0.6) rotate(360deg);
+    transform: scale(0.6) rotate(360deg);
+    opacity: 0.4;
+  }
+
+  100% {
+    -webkit-transform: scale(1) rotate(720deg);
+    transform: scale(1) rotate(720deg);
+    opacity: 1;
+  }
+}
+@keyframes loading-icon {
+  0% {
+    -moz-transform: scale(1) rotate(0deg);
+    -ms-transform: scale(1) rotate(0deg);
+    -webkit-transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+
+  50% {
+    -moz-transform: scale(0.6) rotate(360deg);
+    -ms-transform: scale(0.6) rotate(360deg);
+    -webkit-transform: scale(0.6) rotate(360deg);
+    transform: scale(0.6) rotate(360deg);
+    opacity: 0.4;
+  }
+
+  100% {
+    -moz-transform: scale(1) rotate(720deg);
+    -ms-transform: scale(1) rotate(720deg);
+    -webkit-transform: scale(1) rotate(720deg);
+    transform: scale(1) rotate(720deg);
+    opacity: 1;
+  }
+}
+@-moz-keyframes stroke-animation {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dashoffset: 10;
+  }
+
+  100% {
+    stroke-dashoffset: 20;
+  }
+}
+@-webkit-keyframes stroke-animation {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dashoffset: 10;
+  }
+
+  100% {
+    stroke-dashoffset: 20;
+  }
+}
+@keyframes stroke-animation {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dashoffset: 10;
+  }
+
+  100% {
+    stroke-dashoffset: 20;
+  }
+}
 header.home + section[ui-view] svg {
   /* Position */
   z-index: 1000;
@@ -1763,25 +1865,16 @@ header.home + section[ui-view] svg.introduce g.logo #hexagon {
   -ms-transform: rotate(0deg);
   -webkit-transform: rotate(0deg);
   transform: rotate(0deg);
-}
-header.home + section[ui-view] svg.introduce polyline.arrow {
-  -moz-animation: arrow-animation 2s ease-in-out infinite;
-  -webkit-animation: arrow-animation 2s ease-in-out infinite;
-  animation: arrow-animation 2s ease-in-out infinite;
+  -moz-animation: stroke-animation 2s linear infinite;
+  -webkit-animation: stroke-animation 2s linear infinite;
+  animation: stroke-animation 2s linear infinite;
+  stroke-dasharray: 10 10;
 }
 header.home + section[ui-view] svg.about-me-header, header.home + section[ui-view] svg.deb {
   width: 240px;
   height: 240px;
   margin-left: -120px;
   margin-top: -120px;
-  /*
-  g.text text[id^=svgYear]{
-      @include transform(
-            translate(
-                20px + ($about-svg-deb-width - $about-svg-width)/2 ,
-                60px + ($about-svg-deb-width - $about-svg-width)/2
-            ));
-  }*/
 }
 header.home + section[ui-view] svg.about-me-header g.logo, header.home + section[ui-view] svg.deb g.logo {
   -moz-transform: translate(70px, 70px);
@@ -1818,6 +1911,15 @@ header.home + section[ui-view] svg.about-me-header g.logo #hexagon, header.home 
 }
 header.home + section[ui-view] svg.project g.logo #topFace, header.home + section[ui-view] svg.project g.logo #rightFace, header.home + section[ui-view] svg.project g.logo #leftFace {
   opacity: 0.4;
+}
+header.home + section[ui-view] svg.loading {
+  -moz-animation: loading-icon 3s linear infinite;
+  -webkit-animation: loading-icon 3s linear infinite;
+  animation: loading-icon 3s linear infinite;
+}
+header.home + section[ui-view] svg.loading g.logo #hexagon {
+  opacity: 1;
+  fill: #2c3e50;
 }
 header.home + section[ui-view] svg[class^=timeline] {
   opacity: 1;
@@ -1908,6 +2010,38 @@ header.home + section[ui-view] svg.contact-me-header g.logo #leftFace,
 header.home + section[ui-view] svg.contact-me-header g.logo #rightFace,
 header.home + section[ui-view] svg.contact-me-header g.logo #leftFace {
   opacity: 0.4;
+}
+header.home + section[ui-view] div.loading-cover {
+  background: white;
+  z-index: 999;
+  height:  100vh;
+  line-height:  80vh;
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.loading-cover {
+    height:  1024px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.loading-cover {
+    height:  768px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  header.home + section[ui-view] div.loading-cover {
+    line-height:  819.2px;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  header.home + section[ui-view] div.loading-cover {
+    line-height:  614.4px;
+  }
 }
 header.home + section[ui-view] > div {
   width: 100%;

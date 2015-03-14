@@ -1,6 +1,6 @@
 <div class="block projectList">
 
-    <div class="background {{showOrHide}}"
+    <div class="background"
          ng-style="backgroundCSS"></div>
 
     <div class="span-4 category {{categoryName}}"
@@ -56,7 +56,7 @@
 
 <div ui-view></div>
 
-<footer ng-controller="project_footerController">
+<footer ng-controller="project_footerController" ng-show="projectDetail">
     <p>The End</p>
     <p>{{projectDetail.name | titleCase}} :  {{projectDetail.description}}</p>
     <a ng-click="goToTop()">Go to top</a>

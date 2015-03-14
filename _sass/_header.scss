@@ -38,8 +38,9 @@ $header-sns-icon-height: 32px;
   border-top: $border-top-color $header-nav-border-top-width solid;;
 }
 
+
 header{
-  z-index: 10000;
+  z-index: $header-z-index;
   position: fixed;
   top: 0;
   left: 0;
