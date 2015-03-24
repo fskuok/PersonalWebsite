@@ -279,14 +279,13 @@
                 return function(scope, elem, attr){
 
                     function setMarginToVerticalCenter(){
-
                         elem[0].style.marginTop = (parseInt($window.getComputedStyle(elem.parent()[0]).height)
                              - parseInt($window.getComputedStyle(elem[0]).height) ) / 2 + 'px';
-
                     }
 
                     $document.ready(setMarginToVerticalCenter);
                     $rootScope.$on('viewContentLoaded', setMarginToVerticalCenter);
+                    $rootScope.$on('stateChangeSuccess', setMarginToVerticalCenter);
                     angular.element($window).on('resize', setMarginToVerticalCenter);
                 }
             }
@@ -391,7 +390,7 @@
             function ( $state, $rootScope, $window, $filter, $document, compatibilityService ) {
                 var $ = function (selector){
                         if(typeof selector === 'string')
-                            return angular.element(document.querySelectorAll(selector))
+                            return angular.element(document.querySelectorAll(selector));
                         else
                             return angular.element(selector);
                     },
@@ -446,7 +445,32 @@
                         for(var i=0; i<$.scrollPointStack.length; i++){
                             if(elementAtWhere($.scrollPointStack[i]).indexOf(where) > -1) return $.scrollPointStack[i]
                         }
+                    },
+                    scrollProgress = {
+                        status: {
+                            show: false,
+                            totalLight: 16,
+                            nowLight: 0
+                        },
+                        update: function(){
+                            var map = function(scrollTop){
+                                return ~~(scrollTop/(qs('html').offsetHeight - $window.innerHeight) * scrollProgress.status.totalLight) + 1;
+                            };
+
+                            var lightOnNum = map(body.scrollTop || $dom.qs('html').scrollTop);
+
+                            if(lightOnNum !== scrollProgress.status.nowLight){
+                                scrollProgress.status.nowLight = lightOnNum;
+                                for(var i=0; i< scrollProgress.status.totalLight;i++){
+                                    if(i<lightOnNum) $('#scroll-progress div:nth-child(' + (i+1) + ')').attr('class', 'on');
+                                    else $('#scroll-progress div:nth-child(' + (i+1) + ')').attr('class', 'off');
+                                }
+                            }
+                        }
+
                     };
+
+
 
                 $.qs = qs;
                 $.qsa = qsa;
@@ -454,6 +478,7 @@
                 $.whichElementAt = whichElementAt;
                 $.scrollPointStack = [];
                 $.nowInProject = findProjectDetail();
+                $.scrollProgress = scrollProgress;
 
                 //while changing pages
                 $rootScope.$on('$stateChangeSuccess',
@@ -525,22 +550,29 @@
                     $scope.projectInName = '';
                     $scope.preloadImages = [];
                     $scope.showHeader = siteModel.showheader;
+                    $scope.light = [];
+                    for(var i=0; i< $dom.scrollProgress.status.totalLight; i++){$scope.light.push(i);}
 
 
                     /********* Event Register *********/
-                    // add class on header for style purpose
+
                     $rootScope.$on('$stateChangeStart',
+
                         function(event, toState){
 
+                            // add class on header for style purpose
                             // if goes in a project, change the scope variable projectInName to the project's name
-                            if(toState.name.match('project.'))
+                            if(toState.name.match('project.')) {
                                 $scope.projectInName = toState.name.replace('project.', '');
-                            else
+                            }
+                            else{
                                 $scope.projectInName = '';
+                            }
                         }
                     );
 
-                    // only load after the view DOM is rendered, to not block the loading of view;
+
+                    // only pre-load images after the view DOM is rendered, to not block the loading of view;
                     $rootScope.$on('$viewContentLoaded', function($event){
                         $scope.preloadImages = siteModel.preloadImages;
                     });
@@ -564,7 +596,9 @@
                     // Dom ready actions
                     $document.ready(function(){
                         foldHeader();
+
                         angular.element($window).on('scroll', foldHeader);
+                        angular.element($window).on('scroll', $dom.scrollProgress.update);
                     });
                 }
             ]// header: angularModule.controller() second argument ends

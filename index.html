@@ -56,7 +56,9 @@ Fan Sai Kuok(fskuok@yahoo.com) @2015
                 <a class="project" ui-sref="project">PROJECT</a>
                 <a class="projectIn">{{projectInName | spaceUnderscore | uppercase}}</a>
             </nav>
-
+            <div id="scroll-progress">
+                <div class="light" ng-repeat="i in light"></div>
+            </div>
             <div class="imagePreload" style="visibility: hidden">
                 <img ng-repeat="img in preloadImages" ng-src="{{img}}" alt=""/>
             </div>

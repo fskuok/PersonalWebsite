@@ -33,165 +33,217 @@ $header-sns-icon-height: 32px;
 
 
 @mixin nav-tag-style($color, $bg-color, $border-top-color){
-  color: $color;
-  background: $bg-color;
-  border-top: $border-top-color $header-nav-border-top-width solid;;
+    color: $color;
+    background: $bg-color;
+    border-top: $border-top-color $header-nav-border-top-width solid;;
 }
 
 
-header{
-  z-index: $header-z-index;
-  position: fixed;
-  top: 0;
-  left: 0;
+header {
+    z-index: $header-z-index;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-  @include transition($header-transition);
-
-  width: 100%;
-  padding: $header-padding-tb 0;
-
-  @media print {
-    display: none;
-  }
-  @media all and (max-width: $header-small-break-point) {
-    background: white;
-    @include box-shadow($header-nav-border-shadow);
-  }
-
-  /************************************ identification ************************************/
-  a.identification{
-    display: block;
-    float: left;
-    height: $header-identification-height;
-
-    div.logoContainer{
-      display: block;
-      float: left;
-      position: relative;
-      background: url('../img/icons/logo_200x200.png') center no-repeat;
-      background-size: 80%;
-
-      width: $header-logo-width;
-      height: $header-logo-height;
-      margin-left: 10px;
-
-      @include transition($header-transition);
-
-    }
-
-    &:hover div.logoContainer{
-      @include animation(rotate3d360_40_50 6s infinite);
-    }
-
-    p.nameAndTitle{
-      display: block;
-      @media all and (max-width: $header-medium-break-point){
-        display: none;
-      }
-      float: left;
-      font-family: $font-default;
-      font-size: $header-title-fs;
-      line-height: $header-identification-height;
-      color: $c-text-regular;
-      margin-left: 10px;
-
-
-      span.name{
-        font-family: $font-bold;
-      }
-      span.title{
-        font-style: italic;
-        font-size: 16px;
-      }
-    }
-  }
-
-
-
-  /****************************************** navigation bar *************************************/
-  nav{
-    float: right;
-    line-height: 0; //eliminate unexpected margins
-    height: 100%;
-    padding-right: $header-nav-padding-right;
     @include transition($header-transition);
 
+    width: 100%;
+    padding: $header-padding-tb 0;
 
-
-    //navigation tags: project, project.in, about, contact
-    & > a{
-      display: block;
-      float: left;
-      position: relative;
-      width: $header-nav-tag-width;
-      padding: 0 $header-nav-tag-padding-lr;
-      line-height: $header-height;
-      text-align: center;
-
-      @include transition($header-transition);
-      @include nav-tag-style($c-main, none, white);
-
-      &:hover{
-        @include nav-tag-style($c-main, rgba(white, 0.6), $c-main);
-      }
-
-      @media all and (max-width: $header-small-break-point){
-        width: auto;
-      }
-
-    }//header nav a
-
-
-    a.projectIn{
-      width: 0;
-      padding: 0;
-      cursor: pointer;
-
-      @media all and (max-width: $header-small-break-point){
+    @media print {
         display: none;
-      }
-
-      &:before{
-        content: ">";
-        position: absolute;
-        display: none;
-        left: -2px;
-      }
     }
 
+    @media all and (max-width: $header-small-break-point) {
+        background: white;
+        @include box-shadow($header-nav-border-shadow);
+    }
+
+    /************************************ identification ************************************/
+    a.identification {
+        display: block;
+        float: left;
+        height: $header-identification-height;
+
+        div.logoContainer {
+            display: block;
+            float: left;
+            position: relative;
+            background: url('../img/icons/logo_200x200.png') center no-repeat;
+            background-size: 80%;
+
+            width: $header-logo-width;
+            height: $header-logo-height;
+            margin-left: 10px;
+
+            @include transition($header-transition);
+
+        }
+
+        &:hover div.logoContainer {
+            @include animation(rotate3d360_40_50 6s infinite);
+        }
+
+        p.nameAndTitle {
+            display: block;
+            @media all and (max-width: $header-medium-break-point) {
+                display: none;
+            }
+
+            float: left;
+            font-family: $font-default;
+            font-size: $header-title-fs;
+            line-height: $header-identification-height;
+            color: $c-text-regular;
+            margin-left: 10px;
+
+            span.name {
+                font-family: $font-bold;
+            }
+
+            span.title {
+                font-style: italic;
+                font-size: 16px;
+            }
+        }
+    }
+
+    /****************************************** navigation bar *************************************/
+    nav {
+        float: right;
+        line-height: 0; //eliminate unexpected margins
+        height: 100%;
+        padding-right: $header-nav-padding-right;
+        @include transition($header-transition);
+
+        //navigation tags: project, project.in, about, contact
+        & > a {
+            display: block;
+            float: left;
+            position: relative;
+            width: $header-nav-tag-width;
+            padding: 0 $header-nav-tag-padding-lr;
+            line-height: $header-height;
+            text-align: center;
+
+            @include transition($header-transition);
+            @include nav-tag-style($c-main, none, white);
+
+            &:hover {
+                @include nav-tag-style($c-main, rgba(white, 0.6), $c-main);
+            }
+
+            @media all and (max-width: $header-small-break-point) {
+                width: auto;
+            }
+
+        }
+        //header nav a
+
+        a.projectIn {
+            width: 0;
+            padding: 0;
+            cursor: pointer;
+
+            @media all and (max-width: $header-small-break-point) {
+                display: none;
+            }
+
+            &:before {
+                content: ">";
+                position: absolute;
+                display: none;
+                left: -2px;
+            }
+        }
+
+    }
+    //header nav
+
+    &.project a.sns-icon, &.about a.sns-icon {
+        display: none;
+    }
+
+    /****************************************** status showing *************************************/
+
+    &.project nav a.project,
+    &.project.in nav a.projectIn {
+        @include nav-tag-style($c-main, white, $c-main-dodge);
+    }
+
+    &.project.in nav {
+        a.project:hover {
+            border-top-color: $c-main;
+        }
+        a.projectIn {
+            width: auto;
+            padding: 0 18px 0 24px;
+            &:before {
+                display: block
+            }
+        ;
+        }
+    }
+
+    div.imagePreload{
+        display: none;
+        visibility: hidden;
+    }
+}
 
 
-  }//header nav
+$scroll-progress-light-width: 5px;
+$scroll-progress-light-gut: 8px;
 
-  &.project a.sns-icon, &.about a.sns-icon{
+header #scroll-progress{
     display: none;
-  }
+    position: fixed;
+    left: 50%;
+    top: ($header-folded-height - $scroll-progress-light-width)/2;
+    margin-left:  -($scroll-progress-light-width*8 + $scroll-progress-light-gut*8);
+    overflow: auto;
 
+    div{
+        height: $scroll-progress-light-width;
+        width: $scroll-progress-light-width;
+        border-radius: $scroll-progress-light-width/2;
+        margin-right: $scroll-progress-light-gut;
+        float: left;
 
-  /****************************************** status showing *************************************/
-
-  &.about nav a.about,
-  &.project nav a.project,
-  &.project.in nav a.projectIn{
-    @include nav-tag-style($c-main, white, $c-main-dodge);
-  }
-
-  &.project.in nav {
-    a.project:hover {
-      border-top-color: $c-main;
+        &:after{
+            content: '';
+            display: block;
+            width: $scroll-progress-light-gut;
+            height: 1px;
+            background: #DDDDDD;
+            position: relative;
+            left: $scroll-progress-light-width;
+            top: $scroll-progress-light-width/2 - 0.5px;
+        }
+        &:last-child:after{
+            display: none;
+        }
     }
-    a.projectIn{
-      width: auto;
-      padding: 0 18px 0 24px;
-      &:before{display: block};
+
+    div.off{
+        background: #DDDDDD;
     }
-  }
+
+    div.on{
+        background: $c-main-opp;
+    }
+}
+
+header.project.in{
+    &.folded #scroll-progress{
+        display: block;
+    }
+}
 
 
+/****************************************** folded header *************************************/
 
-  /****************************************** folded header *************************************/
-
-  &.folded{
+header.folded{
     height: $header-folded-height;
     padding-top: $header-folded-padding-top;
     padding-bottom: $header-folded-padding-bottom;
@@ -200,40 +252,35 @@ header{
 
 
     a.identification{
-      div.logoContainer{
-        width: 0;
-        height: 0;
-      }
-
-      p.nameAndTitle{
-        font-size: $header-folded-fs;
-        line-height: $header-folded-height;
-
-        span.name, span.title{
-          font-size: $header-folded-fs;
-          line-height: $header-folded-height;
+        div.logoContainer{
+            width: 0;
+            height: 0;
         }
-      }
+
+        p.nameAndTitle{
+            font-size: $header-folded-fs;
+            line-height: $header-folded-height;
+
+            span.name, span.title{
+                font-size: $header-folded-fs;
+                line-height: $header-folded-height;
+            }
+        }
     }
 
     nav{
-      &>a{
-        font-size: $header-folded-fs;
-        line-height: $header-folded-line-height;
-      }//header.folded nav a
+        &>a{
+            font-size: $header-folded-fs;
+            line-height: $header-folded-line-height;
+        }//header.folded nav a
 
-      a.sns-icon{
-        display: none;
-      }
+        a.sns-icon{
+            display: none;
+        }
     }//header.folded nav
 
-  }//header.folded
+}//header.folded
 
 
-  div.imagePreload{
-    display: none;
-      visibility: hidden;
-  }
-}//header
 
 
