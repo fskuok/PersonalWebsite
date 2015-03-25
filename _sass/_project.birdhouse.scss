@@ -5,7 +5,6 @@ $dialogue-border-width: 6px;
 
 header.project.birdhouse + section[ui-view] div[ui-view] {
 
-
     div[class*=dialogue]{
         width: calc(100% - #{$dialogue-border-width*2});
         padding-top: 20px;
@@ -44,7 +43,7 @@ header.project.birdhouse + section[ui-view] div[ui-view] {
 
         }
 
-        &.dialogue_bob{
+        &.dialogue-bob{
             /* Typeface */
             color: $bob-color;
             /* Visual */
@@ -53,7 +52,7 @@ header.project.birdhouse + section[ui-view] div[ui-view] {
             border-right: $dialogue-border-width solid $bob-color;
         }
 
-        &.dialogue_me{
+        &.dialogue-me{
             /* Typeface */
             color: $me-color;
 

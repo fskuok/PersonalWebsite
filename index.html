@@ -11,7 +11,8 @@
   \/__//__/   \/____/\/____/\/____/\/___/  \/_/\/_/\/_/\/____/
 
 
-Fan Sai Kuok(fskuok@yahoo.com) @2015
+Fan Sai KUOK 2015
+fskuok@yahoo.com
 
 ********************************************************************-->
 
@@ -27,10 +28,10 @@ Fan Sai Kuok(fskuok@yahoo.com) @2015
         <title>F.S.KUOK | Integrated Innovator</title>
 
         <!-- External CSS -->
-        <link rel="stylesheet" href="css/main.css">
+        <link href="css/main.css" rel="stylesheet">
 
         <!-- External Font | 300italic,400italic,600italic,700italic,800italic,-->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700|Hammersmith+One' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700|Hammersmith+One' rel='stylesheet'>
 
         <!-- External JavaScripts -->
         <script src="//www.google-analytics.com/analytics.js" async></script>
@@ -42,12 +43,10 @@ Fan Sai Kuok(fskuok@yahoo.com) @2015
 
     <body ng-app="fsk">
 
-
         <header ng-controller="header_mainController" ng-cloak ng-show="showHeader">
-
             <a class="identification" ui-sref="home">
-                <div class="logoContainer"></div>
-                <p class="nameAndTitle">
+                <div class="logo-container"></div>
+                <p class="name-and-title">
                     <span class="name">F.S. Kuok</span> | <span class="title">Integrated Innovator</span>
                 </p>
             </a>
@@ -56,9 +55,11 @@ Fan Sai Kuok(fskuok@yahoo.com) @2015
                 <a class="project" ui-sref="project">PROJECT</a>
                 <a class="projectIn">{{projectInName | spaceUnderscore | uppercase}}</a>
             </nav>
+
             <div id="scroll-progress">
                 <div class="light" ng-repeat="i in light"></div>
             </div>
+
             <div class="imagePreload" style="visibility: hidden">
                 <img ng-repeat="img in preloadImages" ng-src="{{img}}" alt=""/>
             </div>

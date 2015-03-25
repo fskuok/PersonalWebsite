@@ -65,7 +65,7 @@ header {
         float: left;
         height: $header-identification-height;
 
-        div.logoContainer {
+        div.logo-container {
             display: block;
             float: left;
             position: relative;
@@ -77,14 +77,13 @@ header {
             margin-left: 10px;
 
             @include transition($header-transition);
-
         }
 
-        &:hover div.logoContainer {
+        &:hover div.logo-container {
             @include animation(rotate3d360_40_50 6s infinite);
         }
 
-        p.nameAndTitle {
+        p.name-and-title {
             display: block;
             @media all and (max-width: $header-medium-break-point) {
                 display: none;
@@ -210,27 +209,26 @@ header #scroll-progress{
         margin-right: $scroll-progress-light-gut;
         float: left;
 
-        &:after{
+        &:before{
             content: '';
             display: block;
             width: $scroll-progress-light-gut;
             height: 1px;
             background: #DDDDDD;
             position: relative;
-            left: $scroll-progress-light-width;
+            right: $scroll-progress-light-gut;
             top: $scroll-progress-light-width/2 - 0.5px;
         }
-        &:last-child:after{
+        &:first-child:before{
             display: none;
         }
     }
 
-    div.off{
-        background: #DDDDDD;
-    }
+    div.off{ background: #DDDDDD; }
 
     div.on{
         background: $c-main-opp;
+        &:before{ background: #ee8283; }
     }
 }
 
@@ -252,12 +250,12 @@ header.folded{
 
 
     a.identification{
-        div.logoContainer{
+        div.logo-container{
             width: 0;
             height: 0;
         }
 
-        p.nameAndTitle{
+        p.name-and-title{
             font-size: $header-folded-fs;
             line-height: $header-folded-height;
 

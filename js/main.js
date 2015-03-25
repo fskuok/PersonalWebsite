@@ -385,10 +385,46 @@
             };
         })
 
+        .factory('eventService', ['$rootScope', function($rootScope){
+            var eventService = {
+                    stack: {},
+                    register : function(scope, eventObj, unableAutoDestroy){
+                            eventService.stack[scope.$id] = eventService.stack[scope.$id] || [];
+                            for(var eventName in eventObj){
+                                if(eventObj.hasOwnProperty(eventName)){
+                                    if(eventName[0] === 'ready'){
 
-        .factory('domService', ['$state', '$rootScope', '$window', '$filter', '$document', 'compatibilityService',
-            function ( $state, $rootScope, $window, $filter, $document, compatibilityService ) {
-                var $ = function (selector){
+                                    }else{
+                                        eventService.stack[scope.$id].push( $rootScope.$on( eventName, eventObj[eventName] ) );
+                                    }
+                                }
+                            }
+
+                            //auto destroy exist listeners on registered in this scope
+                            if(typeof scope === 'object' && scope.$id && !unableAutoDestroy){
+                                scope.$on('$destroy', function(e){
+                                    eventService.cancelGroup(e.targetScope.$id);
+                                })
+                            }
+                        },
+
+                    cancelGroup: function(scopeId){
+                            if(eventService.stack[scopeId]){
+                                eventService.stack[scopeId].forEach(function(cancelFn){
+                                    cancelFn();
+                                })
+                            }
+                        }
+                };
+
+            return eventService;
+        }])
+
+        .factory('domService', ['$state', '$rootScope', '$window', '$filter',
+            function ( $state, $rootScope, $window, $filter) {
+
+                var // jQuery like Selectors
+                    $ = function (selector){
                         if(typeof selector === 'string')
                             return angular.element(document.querySelectorAll(selector));
                         else
@@ -400,8 +436,61 @@
                     qsa = function(selector){
                         return document.querySelectorAll(selector);
                     },
+
+                    // frequent use variables
                     body = qs('body'),
 
+                    // components
+                    scrollProgress = {
+                        status: {
+                            show: false,
+                            totalLight: 16,
+                            nowLight: 0
+                        },
+                        update: function(){
+                            var map = function(scrollTop){
+                                return ~~(scrollTop/(qs('html').offsetHeight - $window.innerHeight) * scrollProgress.status.totalLight) + 1;
+                            };
+
+                            var lightOnNum = map(body.scrollTop || qs('html').scrollTop);
+
+                            if(lightOnNum !== scrollProgress.status.nowLight){
+                                scrollProgress.status.nowLight = lightOnNum;
+                                for(var i=0; i< scrollProgress.status.totalLight;i++){
+                                    if(i<lightOnNum) $('#scroll-progress div:nth-child(' + (i+1) + ')').attr('class', 'on');
+                                    else $('#scroll-progress div:nth-child(' + (i+1) + ')').attr('class', 'off');
+                                }
+                            }
+                        }
+
+                    },
+
+                    foldHeader = (function(){
+
+                        //use to prevent the shake caused by trigger the event in a short time;
+                        var headerFoldable = true,
+                            bodyScrollTop;
+
+                        //Events handler - folding navigation bar
+                        return function(){
+
+                            //firefox place scrollTop at html tag, while others place it at body
+                            bodyScrollTop = body.scrollTop ||  qs('html').scrollTop;
+
+                            if(headerFoldable){
+                                if( (bodyScrollTop < 60 && $('header').hasClass("folded")) ||
+                                    (bodyScrollTop >= 60 && !$('header').hasClass("folded")) ){
+                                    $('header').toggleClass("folded");
+                                    headerFoldable = false;
+
+                                    //prevent header fold/unfolded more than once in 300ms
+                                    setTimeout(function(){ headerFoldable = true; }, 300);
+                                }
+                            }
+                        }
+                    })(),
+
+                    // utility functions
                     findProjectDetail = function(){
                         var projectName, foundProject;
 
@@ -445,49 +534,28 @@
                         for(var i=0; i<$.scrollPointStack.length; i++){
                             if(elementAtWhere($.scrollPointStack[i]).indexOf(where) > -1) return $.scrollPointStack[i]
                         }
-                    },
-                    scrollProgress = {
-                        status: {
-                            show: false,
-                            totalLight: 16,
-                            nowLight: 0
-                        },
-                        update: function(){
-                            var map = function(scrollTop){
-                                return ~~(scrollTop/(qs('html').offsetHeight - $window.innerHeight) * scrollProgress.status.totalLight) + 1;
-                            };
-
-                            var lightOnNum = map(body.scrollTop || $dom.qs('html').scrollTop);
-
-                            if(lightOnNum !== scrollProgress.status.nowLight){
-                                scrollProgress.status.nowLight = lightOnNum;
-                                for(var i=0; i< scrollProgress.status.totalLight;i++){
-                                    if(i<lightOnNum) $('#scroll-progress div:nth-child(' + (i+1) + ')').attr('class', 'on');
-                                    else $('#scroll-progress div:nth-child(' + (i+1) + ')').attr('class', 'off');
-                                }
-                            }
-                        }
-
                     };
-
 
 
                 $.qs = qs;
                 $.qsa = qsa;
                 $.elementAtWhere = elementAtWhere;
                 $.whichElementAt = whichElementAt;
+                $.foldHeader = foldHeader;
                 $.scrollPointStack = [];
                 $.nowInProject = findProjectDetail();
                 $.scrollProgress = scrollProgress;
 
+
+
+
                 //while changing pages
                 $rootScope.$on('$stateChangeSuccess',
-                    function(event, toState, toParams, fromState, fromParams){
-
+                    function(){
                         $.nowInProject = findProjectDetail();
 
                         //scroll to top of the page
-                        $window.scrollTo(0, 0);
+                        $window.scroll(0, 0);
                     }
                 );
 
@@ -501,6 +569,8 @@
                 return $;
             }
         ]);
+
+
 
 
 
@@ -518,32 +588,8 @@
 
     angFsk
         .controller('header_mainController',
-            ['$scope',  'domService', '$rootScope', '$document', '$window',
-                function($scope, $dom, $rootScope, $document, $window){
-                    var foldHeader = (function(){
-
-                        //use to prevent the shake caused by trigger the event in a short time;
-                        var headerFoldable = true,
-                            bodyScrollTop;
-
-                        //Events handler - folding navigation bar
-                        return function(){
-
-                            //firefox place scrollTop at html tag, while others place it at body
-                            bodyScrollTop = $dom.qs('body').scrollTop ||  $dom.qs('html').scrollTop;
-
-                            if(headerFoldable){
-                                if( (bodyScrollTop < 60 && $dom('header').hasClass("folded")) ||
-                                    (bodyScrollTop >= 60 && !$dom('header').hasClass("folded")) ){
-                                    $dom('header').toggleClass("folded");
-                                    headerFoldable = false;
-
-                                    //prevent header fold/unfolded more than once in 300ms
-                                    setTimeout(function(){ headerFoldable = true; }, 300);
-                                }
-                            }
-                        }
-                    })();
+            ['$scope',  'domService', '$document', '$window', 'eventService',
+                function($scope, $dom, $document, $window, eventService){
 
 
                     /********* Scope data *********/
@@ -556,48 +602,41 @@
 
                     /********* Event Register *********/
 
-                    $rootScope.$on('$stateChangeStart',
+                    eventService.register($scope, {
 
-                        function(event, toState){
+                            '$stateChangeStart': function (event, toState) {
+                                    // add class on header for style purpose
+                                    // if goes in a project, change the scope variable projectInName to the project's name
+                                    if (toState.name.match('project.')) $scope.projectInName = toState.name.replace('project.', '');
+                                    else $scope.projectInName = '';
+                                },
 
-                            // add class on header for style purpose
-                            // if goes in a project, change the scope variable projectInName to the project's name
-                            if(toState.name.match('project.')) {
-                                $scope.projectInName = toState.name.replace('project.', '');
+                            '$stateChangeSuccess': function (event, toState) {
+                                    // while changing pages, reset header's class for style purpose
+                                    $dom.qs('header').setAttribute('class', parseUrl(toState.url));
+
+                                    function parseUrl(url) {
+                                        url = url.slice(1).split('.');
+
+                                        //add class 'in' for CSS
+                                        if (url.length > 1 && url[0] === 'project') url.push('in');
+
+                                        return url.join(' ');
+                                    }
+                                },
+
+                            '$viewContentLoaded': function () {
+                                    // only pre-load images after the view DOM is rendered, to not block the loading of view
+                                    $scope.preloadImages = siteModel.preloadImages;
+                                }
                             }
-                            else{
-                                $scope.projectInName = '';
-                            }
-                        }
-                    );
-
-
-                    // only pre-load images after the view DOM is rendered, to not block the loading of view;
-                    $rootScope.$on('$viewContentLoaded', function($event){
-                        $scope.preloadImages = siteModel.preloadImages;
-                    });
-
-                    // while changing pages
-                    $rootScope.$on('$stateChangeSuccess',
-                        function(event, toState, toParams, fromState, fromParams){
-                            $dom.qs('header').setAttribute('class', parseUrl(toState.url));
-
-                            function parseUrl(url){
-                                url = url.slice(1).split('.');
-
-                                //add class 'in' for CSS
-                                if(url.length > 1 && url[0] === 'project') url.push('in');
-
-                                return url.join(' ');
-                            }
-                        }
-                    );
+                        );
 
                     // Dom ready actions
                     $document.ready(function(){
-                        foldHeader();
-
-                        angular.element($window).on('scroll', foldHeader);
+                        $dom.foldHeader();
+                        $dom.scrollProgress.update();
+                        angular.element($window).on('scroll', $dom.foldHeader);
                         angular.element($window).on('scroll', $dom.scrollProgress.update);
                     });
                 }
@@ -606,8 +645,8 @@
 
 
         .controller('home_mainController',
-        [ '$scope', 'timeService', '$rootScope', 'domService', '$interval', '$document',
-            function($scope, timeService, $rootScope, $dom, $interval, $document){
+        [ '$scope', 'timeService', 'domService', '$interval', '$document', 'eventService',
+            function($scope, timeService,  $dom, $interval, $document, eventService){
 
                 /********* Scope data *********/
                 $scope.greeting = timeService.greeting();
@@ -621,13 +660,13 @@
                     });
                 });
 
-
                 /********* Event Register *********/
-                $rootScope.$on('scrollPointReachCenter',
-                    function(event, $scrollPoint, scrollPointName){
-                        $dom('svg#logo').attr("class", scrollPointName);
-                    }
-                );
+                eventService.register($scope,{
+                        'scrollPointReachCenter': function(event, $scrollPoint, scrollPointName){
+                                $dom('svg#logo').attr("class", scrollPointName);
+                            }
+                        }
+                    );
             }
         ]// home: angularModule.controller() second argument ends
     )
@@ -669,8 +708,8 @@
         )
 
 
-        .controller('project_introductionController', ['$scope', '$rootScope', 'domService',
-            function($scope, $rootScope, $dom){
+        .controller('project_introductionController', ['$scope', 'domService', 'eventService',
+            function($scope, $dom, eventService){
 
 
                 /********* Scope data *********/
@@ -678,8 +717,10 @@
 
 
                 /********* Event Register *********/
-                $rootScope.$on('$stateChangeSuccess',function(){
-                    $scope.projectDetail = $dom.nowInProject;
+                eventService.register($scope, {
+                    '$stateChangeSuccess': function(){
+                        $scope.projectDetail = $dom.nowInProject;
+                    }
                 });
 
 
@@ -689,16 +730,18 @@
         )
 
 
-        .controller('project_footerController', ['$scope', '$rootScope', 'domService', '$window',
-            function($scope, $rootScope, $dom, $window){
+        .controller('project_footerController', ['$scope', 'domService', 'eventService', '$window',
+            function($scope, $dom, eventService, $window){
 
                 $scope.goToTop = function(){
-                    $window.scrollTo(0);
+                    $window.scroll(0, 0);
                 };
 
                 /********* Event Register *********/
-                $rootScope.$on('$stateChangeSuccess',function(){
-                    $scope.projectDetail = $dom.nowInProject;
+                eventService.register($scope, {
+                    '$stateChangeSuccess': function(){
+                        $scope.projectDetail = $dom.nowInProject;
+                    }
                 });
 
 
